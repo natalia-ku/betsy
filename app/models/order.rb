@@ -5,5 +5,8 @@ class Order < ApplicationRecord
   validates :status,  presence: true,
                         inclusion: { in: %w(pending paid) }
 
+ #validates :order_products,  presence: true
+
+
 
 end
