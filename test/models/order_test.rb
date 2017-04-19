@@ -23,7 +23,32 @@ describe Order do
       order1.save!
       order2.save!
     end
-
   end
+
+  describe "relations" do
+      it "has a list of order_products" do
+        sophia_cart= orders(:sophia_cart)
+        sophia_cart.must_respond_to :order_products
+          sophia_cart.order_products.each do |order_product|
+           order_product.must_be_kind_of OrderProduct
+        end
+      end
+
+      it "has a list of products" do
+        # dan = users(:dan)
+        # dan.must_respond_to :ranked_works
+        # dan.ranked_works.each do |work|
+        #   work.must_be_kind_of Work
+        # end
+      end
+    end
+
+
+
+
+
+
+
+
 
 end
