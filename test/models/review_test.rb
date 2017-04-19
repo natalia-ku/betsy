@@ -1,9 +1,12 @@
 require "test_helper"
 
 describe Review do
-  let(:review) { Review.new }
+  describe 'validations' do
+    it "Can be created with rating and review_text" do
+      review = reviews(:one)
+    end
 
-  it "must be valid" do
-    value(review).must_be :valid?
+    it "ranges between 1-5"
+    
   end
 end
