@@ -16,6 +16,7 @@ describe Order do
     end
 
     it "successfully creates an order with a status of pending or paid" do
+
       order1 = Order.new(status: "pending")
       order2 = Order.new(status: "paid")
 
