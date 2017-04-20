@@ -35,7 +35,7 @@ describe Review do
   describe 'relationship' do
     it "I can access reviews for products" do
       product_review = reviews(:one).product
-      product_review.must_equal products(:one)
+      product_review.must_equal products(:owl1)
     end
 
     it "has access product's price through review" do
