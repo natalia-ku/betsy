@@ -3,9 +3,9 @@ class Order < ApplicationRecord
   has_many :products, through: :order_products
 
   validates :status,  presence: true,
-  inclusion: { in: %w(pending paid) }
+  inclusion: { in: %w(pending paid complete cancelled) }
 
-  validates :order_products,  presence: true
+  # validates :order_products,  presence: true
 
   with_options({if: :is_paid?}) do |order|
 

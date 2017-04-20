@@ -19,10 +19,16 @@ describe Order do
 
       order1 = Order.new(status: "pending")
       order2 = Order.new(status: "paid")
+      order3 = Order.new(status: "complete")
+      order4 = Order.new(status: "cancelled")
 
+      order2.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", cvv: "567", zip_code: "12345"}
+      
       # This must go through, so we use save!
       order1.save!
       order2.save!
+      order3.save!
+      order4.save!
     end
   end
 
