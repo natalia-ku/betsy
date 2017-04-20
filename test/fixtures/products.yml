@@ -11,7 +11,7 @@ owl1:
   photo_url: /assets/photo_1.jpg
   description: cute owl-tshirt
   stock: 2
-
+  merchant: dan
 #
 owl2:
   name: hairband

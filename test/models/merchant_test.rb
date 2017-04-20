@@ -29,15 +29,15 @@ describe Merchant do
       a = Merchant.create!(username: "Sofi", email: "333@adaworld.com")
       a.email.include? "@"
     end
+  end
 
-    # describe "relations" do
-    #   it "has a list of products"
-    #
-    #   dan = merchants(:dan)
-    #   dan.must_be_respond_to :products
-    #   dan.products.each do |product|
-    #   product.must_be_kind_of Product
-    #
-    #  end
+  describe "relations" do
+    it "has a list of products" do
+      dan = merchants(:dan)
+      dan.must_respond_to :products
+      dan.products.each do |product|
+      product.must_be_kind_of Product
+      end
+    end
   end
 end
