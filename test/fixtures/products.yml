@@ -4,8 +4,8 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-owl1:
 
+owl1:
   name: t-shirt
   price: 20.00
   photo_url: /assets/photo_1.jpg
@@ -18,6 +18,11 @@ owl2:
   photo_url: /assets/photo_2.jpg
   description: cute hairband
   stock: 3
+
+
+hat:
+  name: hat
+
 
 one:
   name: Fred
