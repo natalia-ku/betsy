@@ -5,7 +5,8 @@ class Order < ApplicationRecord
   validates :status,  presence: true,
   inclusion: { in: %w(pending paid complete cancelled) }
 
-  # validates :order_products,  presence: true
+ # Only needed if reqirements include that an order must have at least one OrderProduct
+ # validates :order_products,  presence: true
 
   with_options({if: :is_paid?}) do |order|
 
