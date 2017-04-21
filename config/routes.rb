@@ -8,4 +8,15 @@ Rails.application.routes.draw do
   post 'login', to: "merchants#create"
 
   delete 'logout', to: "merchants#destroy"
+
+  resources :products
+  
+  # resources :merchants do
+  #    resources :products, only: [:show, :new, :create, :index]
+  #  end
+  #
+  #  resources :products
+
+
+
 end

@@ -1,0 +1,9 @@
+<h1>CHECK OUT ALL THE OWLY GOODNESS!!!!</h1>
+
+<% @products.each do |product| %>
+    <%= image_tag product.photo_url, alt:"picture of #{product.name}"%>
+    <%= link_to product.name, "#"%>
+    <% end %>
+
+
+  <!-- PUT IN link_to product.name product_path(product) -->
