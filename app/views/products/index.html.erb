@@ -1,0 +1,7 @@
+<h2>Check out all the OWLY goodness!</h2>
+
+<% @products.each do |product|%>
+
+  <%= link_to product.name, "#" %>
+  <%= image_tag product.photo_url, alt:"picture of #{product.name}"%>
+  <% end %>
