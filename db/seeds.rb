@@ -33,5 +33,5 @@ end
   product.merchant_id = Merchant.all.sample.id
 
   product.save!
-  # product_category = ProductCategory.create({:category_id => Category.all.sample.id, :product_id => product.id})
+  product_category = ProductCategory.create({:category_id => Category.all.sample.id, :product_id => product.id})
 end

@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find_by(id: params[:id])
     redirect_to categories_path, status: :not_found unless @category
-    # @products = @category.products
+    @products = @category.products
   end
 end
 
