@@ -1,0 +1,9 @@
+<section>
+  <p>Order show page:</p>
+  <p>Order id: <%=@order.id%></p>
+  <p>Order status: <%=@order.status%></p>
+  <p>Order product: </p>
+  <%@order.products.each do |pr|%>
+    <%=pr%>
+  <%end%>
+</section>

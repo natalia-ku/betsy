@@ -1,0 +1,21 @@
+<p>Order id: <%=@order.id%></p>
+<h1>Shopping cart:</h1>
+<section>
+<%@shopping_cart_products.each do |op|%>
+  <p>Name of product:<%=link_to op.product.name, product_path(op.product.id)%></p>
+  <p>Quantity:<%=op.quantity%>
+   <%= form_for op do |f| %>
+      <%= number_field_tag("quantity", 1, min: 1, max: op.product.stock) %>
+      <%= hidden_field_tag("order_id", @order.id)%>
+      <%= hidden_field_tag("product_id", op.product.id)%>
+      <%= f.submit value: "Update quantity" %>
+  <% end %></p>
+  <p><%=link_to "Delete from cart", order_product_path(op.id), method: :delete, data: {confirm: 'Are you sure?' }%>
+<%end%>
+
+<%if @shopping_cart_products.length != 0%>
+  <p><%=link_to "Checkout", edit_order_path(@order.id)%> </p>
+<%else%>
+  <p> Shopping cart is empty </p>
+<%end%>
+</section>
