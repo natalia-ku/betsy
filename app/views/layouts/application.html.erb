@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Betsy</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Betsy</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <header>
+    <%if session[:order_id] != nil%>
+    <%= link_to "Clear current order",  order_path(session[:order_id]),method: :delete, data: {confirm: 'Are you sure?' } %>
+    <%end%>
+    <p> <%=link_to "Show shopping cart", shopping_cart_path%></p>
+  </header>
+  <section class="flash">
+    <% flash.each do |name, message| %>
+    <div class="<%= name %>"><%= message %></div>
+    <% end %>
+  </section>
+
+  <%= yield %>
+</body>
+
 </html>
