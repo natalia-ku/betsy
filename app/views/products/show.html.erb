@@ -21,7 +21,6 @@
     <%else%>
     <p>Product already in the <%=link_to "cart", shopping_cart_path%></p>
     <%end%>
-    <p> <%=link_to "Show all order products", order_products_path%></p>
     <p><%=link_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
 
 

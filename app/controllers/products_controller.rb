@@ -10,6 +10,13 @@ class ProductsController < ApplicationController
   def create
     @merchant = Merchant.find(params[:merchant_id])
     @product = @merchant.products.create(product_params)
+    if @product.id != nil
+      flash[:success] = "Successfully created new product"
+      redirect_to merchant_products(@merchant.id)
+    else
+      flash[:failure] = "Product wasn't created"
+      render :new, status: :bad_request
+    end
   end
 
   def show
