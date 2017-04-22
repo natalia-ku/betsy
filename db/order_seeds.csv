@@ -1,4 +1,4 @@
-status,email,mailing_address,card_name,credit_card,cvv,zip_code,paid_at
+status,email,mailing_address,card_name,credit_card,cvv,zip_code
 paid,nat@gmail.com, 676 Fake street, Ros Monks, 987666556565656, 123, 54322,
 paid,ndsd@gmail.com, 123 Main street, Man Borns, 12334556666, 656, 32356,
 paid,fdfdt@gmail.com, 100 Fake street, Reld Fakes, 3222323323, 988, 43231,

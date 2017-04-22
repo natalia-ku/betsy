@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+require 'csv'
 
 csv_text = File.read('db/order_seeds.csv')
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -18,6 +18,6 @@ csv.each do |row|
   o.credit_card = row['credit_card']
   o.cvv = row['cvv'].to_i
   o.zip_code = row['zip_code'].to_i
-  o.paid_at = DateTime.parse(row['paid_at'])
+  o.paid_at = DateTime.now
   o.save
 end

@@ -9,9 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if @order.save
-      redirect_to send(:back)
-    end
+     @order.save
   end
 
   def shopping_cart
@@ -45,7 +43,7 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order.id)
       session[:order_id] = nil
     else
-      render :edit
+      render :edit, status: :bad_request
     end
   end
 

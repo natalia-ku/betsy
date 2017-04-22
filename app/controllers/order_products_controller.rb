@@ -6,8 +6,11 @@ class OrderProductsController < ApplicationController
   def create
     @order_product = OrderProduct.new(quantity: params[:quantity], order_id: params[:order_id], product_id: params[:product_id])
     @order_product.quantity = params[:quantity].to_i
-    @order_product.save
-    redirect_to shopping_cart_path
+    if @order_product.save!
+      redirect_to shopping_cart_path
+    else
+      redirect_to product_path(@order_product.product_id)
+    end
   end
 
   def index

@@ -12,3 +12,9 @@ two: {}
 
 harry:
   username: "harryflies"
+
+
+
+petr:
+  username: "petrcom"
+  email: "foo@gmail.com"
