@@ -1,0 +1,22 @@
+<section>
+  <h2>Product details:</h2>
+  <p>Name: <%=@product.name%></p>
+  <p>Price: <%=@product.price%></p>
+  <p>Photo url: <%=@product.photo_url%></p>
+  <p>Stock: <%=@product.stock%></p>
+  <p>Merchant: <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_path(@product.merchant_id) %></p>
+
+  <%if OrderProduct.find_by(order_id: @current_order.id, product_id: @product.id) == nil%>
+    <%= form_for @order_product do |f| %>
+      <%=f.label :quantity%>
+      <%= number_field_tag("quantity", 1, min: 1, max: @product.stock) %>
+      <%= hidden_field_tag("order_id", @current_order.id)%>
+      <%= hidden_field_tag("product_id", @product.id)%>
+      <%= f.submit value: "Add to shopping cart" %>
+    <% end %>
+  <%else%>
+  <p>Product already in the <%=link_to "cart", shopping_cart_path%></p>
+  <%end%>
+  <p> <%=link_to "Show all order products", order_products_path%></p>
+  <p><%=link_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
+</section>
