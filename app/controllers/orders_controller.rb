@@ -29,20 +29,14 @@ class OrdersController < ApplicationController
     @order.update_attributes(order_update_params)
     if params[:paid_order]
       @order.status = "paid"
-      # Remove items from stock
+      # Remove items from stock:
       order_products = OrderProduct.where(order_id: @order.id)
       order_products.each do |op|
         op.product.stock -= op.quantity
         op.product.save
       end
-
     elsif params[:cancel_order]
       @order.status = "cancelled"
-      # If order cancelled, return items  back to the stock:
-      # order_products = OrderProduct.where(order_id: @order.id)
-      # order_products.each do |op|
-      #   op.product.stock += op.quantity
-      # end
     end
     @order.paid_at = @order.updated_at
 
@@ -68,6 +62,7 @@ class OrdersController < ApplicationController
   def order_update_params
     params.require(:order).permit(:email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code)
   end
+
   def order_params
     params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code, :paid_at)
   end
