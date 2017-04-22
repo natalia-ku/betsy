@@ -29,21 +29,20 @@ class OrdersController < ApplicationController
 
   def update #order paid
     @order = current_order
-    # @order.update_attributes(order_params) # NOT WORKING!!!
-    @order.email = params[:email]
-    @order.mailing_address = params[:mailing_address]
-    @order.card_name = params[:card_name]
-    @order.credit_card = params[:credit_card]
-    @order.cvv = params[:cvv]
-    @order.zip_code = params[:zip_code]
+    @order.update_attributes(order_update_params)
+
     if params[:paid_order]
       @order.status = "paid"
     elsif params[:cancel_order]
       @order.status = "cancelled"
-      # If order cancelled, return stock numbers back:
+      # If order cancelled, return items  back to the stock:
+      order_products = OrderProduct.where(order_id: @order.id)
+      order_products.each do |op|
+        op.product.stock += op.quantity
+      end
     end
-
     @order.paid_at = @order.updated_at
+
     if @order.save!
       flash[:success] = "You successfully created your order"
       redirect_to order_path(@order.id)
@@ -53,9 +52,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def cancel_order
-  #
-  # end
 
   def destroy
     current_order.order_products.each do |op|
@@ -67,7 +63,10 @@ class OrdersController < ApplicationController
   end
 
   private
+  def order_update_params
+    params.require(:order).permit(:email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code)
+  end
   def order_params
-    params.require(:order_params).permit(:status, :email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code, :paid_at)
+    params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code, :paid_at)
   end
 end
