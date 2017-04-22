@@ -1,0 +1,10 @@
+<section>
+  <%= form_for @merchant do |f| %>
+
+    <p>Userame: <%= f.text_field :username%></p>
+    <p>Email: <%= f.text_field :email %></p>
+    <%= f.submit value: "Create"%>
+  <% end %>
+
+  <%=link_to "Return back", merchants_path%>
+</section>

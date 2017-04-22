@@ -1,0 +1,7 @@
+<section>
+  <% @merchants.each do |m|%>
+    <p><%=link_to m.username, merchant_path(m.id)%></p>
+  <% end%>
+
+  <p><%=link_to "Add new merchant",  new_merchant_path %> </p>
+</section>
