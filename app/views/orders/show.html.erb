@@ -16,8 +16,8 @@
         <%@order.products.each do |pr|%>
           <tr>
             <td><%=link_to pr.name, product_path(pr.id)%></td>
-            <td><%=OrderProduct.find_by(product_id: pr.id).quantity%></td>
-            <td><%=OrderProduct.find_by(product_id: pr.id).subtotal%></td>
+            <td><%=OrderProduct.find_by(product_id: pr.id, order_id: @order.id).quantity%></td>
+            <td><%=OrderProduct.find_by(product_id: pr.id, order_id: @order.id).subtotal%></td>
           </tr>
         <%end%>
       </table>
