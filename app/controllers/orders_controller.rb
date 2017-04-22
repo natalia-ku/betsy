@@ -16,7 +16,6 @@ class OrdersController < ApplicationController
   def shopping_cart
     @order = current_order
     @shopping_cart_products = OrderProduct.all.where(order_id: @order.id)
-    #@shopping_cart_products = OrderProduct.all.where(status???)
   end
 
   def show
@@ -51,7 +50,6 @@ class OrdersController < ApplicationController
       render :edit
     end
   end
-
 
   def destroy
     current_order.order_products.each do |op|
