@@ -4,19 +4,17 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
   end
+
   def new
-    #@order = Order.new(order_params)
   end
 
   def create
-    #@order = Order.new(order_params)
     if @order.save
       redirect_to send(:back)
     end
   end
 
   def shopping_cart
-    #@order = current_order
     @shopping_cart_products = OrderProduct.all.where(order_id: @order.id)
   end
 
@@ -25,22 +23,26 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    #@order = current_order
   end
 
-  def update #order paid
-    #@order = current_order
+  def update #make  pending order paid or cancelled
     @order.update_attributes(order_update_params)
-
     if params[:paid_order]
       @order.status = "paid"
+      # Remove items from stock
+      order_products = OrderProduct.where(order_id: @order.id)
+      order_products.each do |op|
+        op.product.stock -= op.quantity
+        op.product.save
+      end
+
     elsif params[:cancel_order]
       @order.status = "cancelled"
       # If order cancelled, return items  back to the stock:
-      order_products = OrderProduct.where(order_id: @order.id)
-      order_products.each do |op|
-        op.product.stock += op.quantity
-      end
+      # order_products = OrderProduct.where(order_id: @order.id)
+      # order_products.each do |op|
+      #   op.product.stock += op.quantity
+      # end
     end
     @order.paid_at = @order.updated_at
 
