@@ -28,8 +28,9 @@ class OrderProductsController < ApplicationController
   def destroy
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
-    @order_product.destroy
-    redirect_to shopping_cart_path
+    if @order_product.destroy
+      redirect_to shopping_cart_path
+    end
   end
 
   private
