@@ -16,8 +16,8 @@ csv.each do |row|
   o.mailing_address = row['mailing_address']
   o.card_name = row['card_name']
   o.credit_card = row['credit_card']
-  o.cvv = row['cvv']
-  o.zip_code = row['zip_code']
+  o.cvv = row['cvv'].to_i
+  o.zip_code = row['zip_code'].to_i
   o.paid_at = DateTime.parse(row['paid_at'])
   o.save
 end
