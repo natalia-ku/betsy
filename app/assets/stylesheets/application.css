@@ -12,4 +12,24 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+   @import url('foundation.css');
+
+
+   a, ul li {
+    color: #F5B19A;
+    font-family: 'Quicksand';
+    text-decoration: none;
+    list-style: none;
+}
+
+li {
+  margin-bottom: 3%;
+}
+
+.category {
+  margin-top: 5%;
+}

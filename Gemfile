@@ -59,6 +59,8 @@ group :development do
   gem 'faker'
 end
 
+gem 'foundation-rails'
+
 group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'

@@ -1,3 +1,14 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h4 a {
+    border: 2pt solid #F5B19A;
+    border-radius: 25px;
+    background-color: #F5B19A;
+    color: white;
+    font-family: 'Anton', sans-serif;
+    font-size: 2em;
+    padding: 5%;
+    margin: 3%;
+}
