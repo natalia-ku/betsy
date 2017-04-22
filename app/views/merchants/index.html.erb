@@ -1,1 +1,5 @@
-<p>This is my Cool Index page</p>
+<p>Owl City: Merchants</p>
+
+<% @merchants.each do |merchant| %>
+<p>Merchant: <%= link_to merchant.username, merchant_path(merchant.id) %> </p>
+<% end %>
