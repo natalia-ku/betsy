@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     @product = @merchant.products.create(product_params)
     if @product.id != nil
       flash[:success] = "Successfully created new product"
-      redirect_to merchant_products(@merchant.id)
+      redirect_to merchant_products_path(@merchant.id)
     else
       flash[:failure] = "Product wasn't created"
       render :new, status: :bad_request
@@ -25,7 +25,6 @@ class ProductsController < ApplicationController
       head :not_found
     end
     @order_product = OrderProduct.new(product: @product, order: current_order)
-    # ??? do we need current order here???
     @current_order = current_order
   end
 
