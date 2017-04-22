@@ -29,6 +29,8 @@
     <%= f.text_field :cvv %>
     <%= f.label :zip_code %>
     <%= f.text_field :zip_code %>
-    <%= f.submit value: "Complete order" %>
+    <%= f.submit value: "Complete order", name: "paid_order" %>
+    <%= f.submit value: "Cancel order", name: "cancel_order" %>
   <% end %>
+
 </section>
