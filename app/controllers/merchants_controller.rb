@@ -5,20 +5,36 @@ class MerchantsController < ApplicationController
   end
 
   def create
-    @merchant = Merchant.new(merchant_params)
-    @merchant.save
-      # flash[:success] = "User added successfully"
-      # session[:user_id] = @user.id
-      # session[:username] = @user.name
-      # flash[:success] = "Successfully logged in as user #{@user.name} "
-    #   redirect_to root_path
-    # else
-    #   # flash.now[:failure] = "User did not save, try again"
-    #   # render :new, status: :bad_request
-    # end
+    auth_hash = request.env['omniauth.auth']
+    merchant = Merchant.find_by(oauth_provider: params[:provider], oauth_id: auth_hash["uid"])
+    if merchant.nil?
+      merchant = Merchant.from_github(auth_hash)
+      if merchant.save
+        session[:user_id] = merchant.id
+        flash[:message] = "Successfully logged in as new merchant #{merchant.username}!"
+      else
+        flash.now[:message] = "Could not log in"
+        merchant.errors.messages.each do |field, problem|
+          flash[:field] = problem.join(', ')
+        end
+      end
+    else
+      session[:user_id] = merchant.id
+      flash[:message] = "Successfully logged in as existing merchant #{merchant.username}"
+    end
+    redirect_to root_path
   end
+
+  def logout
+    session[:user_id] = nil
+    flash[:status] = :success
+    flash[:result_text] = "Successfully logged out"
+    redirect_to root_path
+  end
+
   private
-def merchant_params
-  params.require(:merchant).permit(:username, :email_address)
-end
+
+  def merchant_params
+    params.require(:merchant).permit(:username, :email, :oauth_id, :oauth_provider)
+  end
 end
