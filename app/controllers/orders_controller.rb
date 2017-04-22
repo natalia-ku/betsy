@@ -1,20 +1,22 @@
 class OrdersController < ApplicationController
+  before_action :create_order, only: [:new, :create]
+  before_action :find_current_order, only:[:shopping_cart, :edit, :update]
   def index
     @orders = Order.all
   end
   def new
-    @order = Order.new(order_params)
+    #@order = Order.new(order_params)
   end
 
   def create
-    @order = Order.new(order_params)
+    #@order = Order.new(order_params)
     if @order.save
       redirect_to send(:back)
     end
   end
 
   def shopping_cart
-    @order = current_order
+    #@order = current_order
     @shopping_cart_products = OrderProduct.all.where(order_id: @order.id)
   end
 
@@ -23,11 +25,11 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = current_order
+    #@order = current_order
   end
 
   def update #order paid
-    @order = current_order
+    #@order = current_order
     @order.update_attributes(order_update_params)
 
     if params[:paid_order]
@@ -66,5 +68,13 @@ class OrdersController < ApplicationController
   end
   def order_params
     params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code, :paid_at)
+  end
+
+  def create_order
+    @order = Order.new(order_params)
+  end
+
+  def find_current_order
+    @order = current_order
   end
 end
