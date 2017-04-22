@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   def edit
   end
 
-  def update #make  pending order paid or cancelled
+  def update #make pending order paid or cancelled
     @order.update_attributes(order_update_params)
     if params[:paid_order]
       @order.status = "paid"
