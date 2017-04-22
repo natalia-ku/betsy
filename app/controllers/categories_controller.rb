@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
     if @category.save
       flash[:status] = :success
       flash[:result_text] = "Successfully created #{@category}"
-      redirect_to categories_path(@category.id)
+      redirect_to categories_path
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not create #{@category}"
