@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
   end
+
   def new
     @product = Product.new
     @merchant = Merchant.find(params[:merchant_id])
@@ -30,8 +31,7 @@ class ProductsController < ApplicationController
     if @product.nil?
       head :not_found
     end
-    @order_product = OrderProduct.new(product: @product, order: current_order)
-    @current_order = current_order
+    @order_product = OrderProduct.new  #(product: @product, order: current_order)
   end
 
   def destroy

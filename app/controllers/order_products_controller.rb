@@ -4,10 +4,13 @@ class OrderProductsController < ApplicationController
   end
 
   def create
-    @order_product = OrderProduct.new(quantity: params[:quantity], order_id: params[:order_id], product_id: params[:product_id])
+    @current_order = current_order
+
+    @order_product = OrderProduct.new(quantity: params[:quantity], order_id: @current_order.id, product_id: params[:product_id])
     @order_product.quantity = params[:quantity].to_i
     if @order_product.save!
       redirect_to shopping_cart_path
+      flash[:success] = "You successfully added #{@order_product.product.name} to the cart"
     else
       redirect_to product_path(@order_product.product_id)
     end
@@ -29,6 +32,7 @@ class OrderProductsController < ApplicationController
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
     if @order_product.destroy
+      flash[:success] = "You successfully deleted #{@order_product.product.name} from the shopping cart"
       redirect_to shopping_cart_path
     end
   end
@@ -37,4 +41,6 @@ class OrderProductsController < ApplicationController
   def order_products_params
     params.require(:order_products).permit(:quantity, :order_id, :product_id)
   end
+
+
 end
