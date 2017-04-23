@@ -10,18 +10,5 @@
       <%end%>
       <p>Order total $:<%=@order.total_price%> </p>
       <h3>Order products: </h3>
-      <table>
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-        </tr>
-        <%@order.products.each do |pr|%>
-          <tr>
-            <td><%=link_to pr.name, product_path(pr.id)%></td>
-            <td><%=OrderProduct.find_by(product_id: pr.id, order_id: @order.id).quantity%></td>
-            <td><%=OrderProduct.find_by(product_id: pr.id, order_id: @order.id).subtotal%></td>
-          </tr>
-        <%end%>
-      </table>
+      <%= render partial: 'order_product_table', locals:{item:@order}%>
 </section>

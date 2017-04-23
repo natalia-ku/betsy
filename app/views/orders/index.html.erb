@@ -1,34 +1,21 @@
 <section>
   <h1>List of all orders: </h1>
   <% if @orders.length != 0%>
-  <%@orders.each do |o|%>
-  <%if o.products.length < 1%>
-    <%next%>
-  <%end%>
-  <h2>Order <%=o.id%></h2>
-  <p>Order date and time:<%=o.paid_at%></p>
-  <p>Order status:<%=o.status%> </p>
-  <%if o.status != "shipped"  && o.status != "cancelled"%>
-    <%= link_to "Cancel order", cancel_order_path(o.id), method: :put%>
-  <%end%>
-  <p>Order total $:<%=o.total_price%> </p>
-  <h3>Order products: </h3>
-  <table>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-    </tr>
-    <%o.products.each do |pr|%>
-    <tr>
-      <td><%=link_to pr.name, product_path(pr.id)%></td>
-      <td><%=OrderProduct.find_by(product_id: pr.id, order_id: o.id).quantity%></td>
-      <td><%=OrderProduct.find_by(product_id: pr.id, order_id: o.id).subtotal%></td>
-    </tr>
+    <%@orders.each do |o|%>
+      <%if o.products.length < 1%>
+        <%next%>
+      <%end%>
+      <h2>Order <%=o.id%></h2>
+      <p>Order date and time:<%=o.paid_at%></p>
+      <p>Order status:<%=o.status%> </p>
+      <%if o.status != "shipped"  && o.status != "cancelled"%>
+        <%= link_to "Cancel order", cancel_order_path(o.id), method: :put%>
+      <%end%>
+      <p>Order total $:<%=o.total_price%> </p>
+      <h3>Order products: </h3>
+      <%= render partial: 'order_product_table', locals:{item:o}%>
     <%end%>
-  </table>
-  <%end%>
   <%else%>
-  <p>There is no orders</p>
+    <p>There is no orders to show</p>
   <%end%>
 </section>
