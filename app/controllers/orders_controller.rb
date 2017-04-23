@@ -66,6 +66,7 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def order_update_params
     params.require(:order).permit(:email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code)
   end
@@ -73,10 +74,6 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code, :paid_at)
   end
-
-  # def cancel_order_params
-  #   params.require(:order).permit(:status)
-  # end
 
   def create_order
     @order = Order.new(order_params)
