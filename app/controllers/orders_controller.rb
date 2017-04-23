@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order.id)
       session[:order_id] = nil
     else
+      flash.now[:messages] = @order.errors.messages
       render :edit, status: :bad_request
     end
   end
