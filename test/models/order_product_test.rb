@@ -40,4 +40,6 @@ describe OrderProduct do
     result = op.subtotal
     result.must_equal 230
   end
+
+
 end
