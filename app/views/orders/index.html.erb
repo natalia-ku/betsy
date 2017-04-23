@@ -3,7 +3,7 @@
   <% if @orders.length != 0%>
   <%@orders.each do |o|%>
   <%if o.products.length < 1%>
-  <%next%>
+    <%next%>
   <%end%>
   <h2>Order <%=o.id%></h2>
   <p>Order date and time:<%=o.paid_at%></p>
