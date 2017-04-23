@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     if @product.nil?
       head :not_found
     end
-    @order_product = OrderProduct.new  #(product: @product, order: current_order)
+    @order_product = OrderProduct.new  
   end
 
   def destroy

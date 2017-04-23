@@ -10,13 +10,10 @@
 
 <body>
   <header>
-    <%if session[:order_id] != nil%>
-    <%= link_to "Clear current order / this is temporary link",  order_path(session[:order_id]),method: :delete, data: {confirm: 'Are you sure?' } %>
-    <%end%>
     <p> <%=link_to "Show shopping cart", shopping_cart_path%></p>
     <p> <%=link_to "All merchants", merchants_path%></p>
     <p> <%=link_to "All orders", orders_path%></p>
-      <p> ORDER ID: <%=session[:order_id]%></p>
+    <p> <%=link_to "All products", products_path%></p>
   </header>
   <section class="flash">
     <% flash.each do |name, message| %>

@@ -20,7 +20,7 @@ class OrderProductsController < ApplicationController
     @order_products = OrderProduct.all
   end
 
-  def update #update quantity
+  def update
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
     @order_product.quantity = params[:quantity].to_i
