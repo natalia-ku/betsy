@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   get "shopping_cart", to: 'orders#shopping_cart'
 
-  #put "checkout", to: 'orders#checkout'
 
-  #put "cancel_order", to: 'orders#cancel_order'
 
 end

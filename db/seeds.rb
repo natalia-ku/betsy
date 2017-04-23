@@ -21,3 +21,25 @@ csv.each do |row|
   o.paid_at = DateTime.now
   o.save
 end
+
+csv_text = File.read('db/product_seeds.csv')
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  pr = Product.new
+  pr.name = row['name']
+  pr.price = row['price'].to_f
+  pr.photo_url = row['photo_url']
+  pr.description = row['description']
+  pr.stock = row['stock'].to_i
+  pr.merchant_id = row['merchant_id'].to_i
+  pr.save
+end
+
+csv_text = File.read('db/merchant_seeds.csv')
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  m = Merchant.new
+  m.username = row['username']
+  m.email = row['email']
+  m.save
+end

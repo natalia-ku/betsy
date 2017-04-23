@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
+
   def index
-    @products = Product.all
+    #@products = Product.all
+    @merchant = Merchant.find_by(id: params[:merchant_id])
+    @merchant_products = @merchant.products
   end
   def new
     @product = Product.new
