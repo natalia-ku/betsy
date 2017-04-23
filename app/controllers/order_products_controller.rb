@@ -26,10 +26,18 @@ class OrderProductsController < ApplicationController
     redirect_to shopping_cart_path
   end
 
-  def destroy
+  def destroy # deletes order products from shopping cart
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
     if @order_product.destroy
+      destroy_order = true # delete whole order if shopping cart is empty
+      @order.order_products.each do |op|
+          destroy_order = false if op != nil
+      end
+      if destroy_order == true
+        @order.destroy
+        session[:order_id] = nil
+      end
       flash[:success] = "You successfully deleted #{@order_product.product.name} from the shopping cart"
       redirect_to shopping_cart_path
     end

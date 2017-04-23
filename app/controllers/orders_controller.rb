@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :create_order, only: [:new, :create]
-  before_action :find_current_order, only:[:shopping_cart, :edit, :update]
+  before_action :find_current_order, only:[:edit, :update]
   def index
     @orders = Order.all
   end
@@ -13,7 +13,12 @@ class OrdersController < ApplicationController
   end
 
   def shopping_cart
-    @shopping_cart_products = OrderProduct.all.where(order_id: @order.id)
+    if session[:order_id] != nil # to create order only if there is at least one product in shopping cart
+      find_current_order
+      @shopping_cart_products = OrderProduct.all.where(order_id: @order.id)
+    else
+      @shopping_cart_products = nil
+    end
   end
 
   def show

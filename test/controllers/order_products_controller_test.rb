@@ -7,11 +7,9 @@ describe OrderProductsController do
   let (:order_pr){OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 2)}
   describe "create" do
     it "adds an order_product to the database" do
-      op = OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 2)
-      #op_data = {op: {order: order, product: product, quantity: 2}}
-      #op_data = {order_product: op.attributes}
-      #post order_products_path, params: op_data
-      # must_redirect_to shopping_cart_path # DOES NOT WORK
+      # op_data = {op: {order: order, product: product, quantity: 2}}
+      # post order_products_path, params: op_data
+      #must_redirect_to shopping_cart_path # DOES NOT WORK
     end
     it "changing size of order products after creating" do
       before_count = OrderProduct.all.length
@@ -35,10 +33,11 @@ describe OrderProductsController do
       must_redirect_to shopping_cart_path
     end
     it "after deletion, order product doesn't exist anymore" do
-      temp_id = order_pr.id
-      delete order_product_path(order_pr.id)
+      op = OrderProduct.new(order_id: order.id, product_id: product.id, quantity: 2)
+      op.save!
+      delete order_product_path(op.id)
       must_redirect_to shopping_cart_path
-      OrderProduct.find_by(id: temp_id)
+      OrderProduct.find_by(id: op.id)
       #must_respond_with :not_found
       #OrderProduct.find(temp_id).must_equal nil
     end

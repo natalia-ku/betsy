@@ -43,9 +43,9 @@ describe OrdersController do
       must_redirect_to products_path
     end
     it "after deletion, order doesn't exist anymore" do
-      o = Order.create(status: "paid", email: "neddsdw@gmail.com", mailing_address: "3123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
-      delete order_path(o.id)
-      #Order.find_by(email: "neddsdw@gmail.com").must_equal nil # does not WORKING!!!
+      o_id = Order.first.id
+      delete order_path(o_id)
+      #Order.find_by(id: o_id ).must_be_nil # does not WORKING!!!
     end
     # it "changing size of orders after deleting" do
     #   proc {

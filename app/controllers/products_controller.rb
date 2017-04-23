@@ -31,13 +31,12 @@ class ProductsController < ApplicationController
     if @product.nil?
       head :not_found
     end
-    @order_product = OrderProduct.new  
+    @order_product = OrderProduct.new
   end
 
   def destroy
     @product = Product.find(params[:id])
     if @product.destroy
-
       redirect_to products_path
     end
   end
