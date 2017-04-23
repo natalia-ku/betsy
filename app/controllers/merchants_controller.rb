@@ -4,6 +4,10 @@ class MerchantsController < ApplicationController
     @merchants = Merchant.all
   end
 
+  def show
+    @merchant =Merchant.find_by(id: params[:id])
+  end
+
   def new
     @merchant = Merchant.new
   end

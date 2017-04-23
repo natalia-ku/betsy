@@ -1,11 +1,5 @@
 class ProductsController < ApplicationController
 
-  # def index
-  #   @products = Product.all
-  # end
-  #
-
-
   def index
     if params[:merchant_id]
       # localhost:3000/merchants/2/products
