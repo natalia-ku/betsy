@@ -1,7 +1,7 @@
 name, price, photo_url, description, stock, merchant_id
-flower, 20, photo/2.jpg, good product, 20, 1,
-table, 120, photo/3.jpg, great product, 15, 1,
-pillow, 22, photo/4.jpg, super cool product, 25, 2,
+flower, 20, photo/2.jpg, good product, 20, 40,
+table, 120, photo/3.jpg, great product, 15, 40,
+pillow, 22, photo/4.jpg, super cool product, 25, 40,
 car toy, 14, photo/5.jpg, excellent product, 100, 2,
 bottle, 40, photo/6.jpg, amazing product, 32, 2,
 floor lamp, 25, photo/7.jpg, super product, 12, 3,

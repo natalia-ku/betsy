@@ -1,6 +1,0 @@
-<section>
-  <p> All products for <%=@merchant.username%></p>
-  <%@@merchant_products.each do |pr|%>
-    <p><%=link_to pr.name, product_path(pr.id)%></p>
-  <% end%>
-</section>

@@ -10,7 +10,4 @@ Rails.application.routes.draw do
   resources :order_products
 
   get "shopping_cart", to: 'orders#shopping_cart'
-
-
-
 end
