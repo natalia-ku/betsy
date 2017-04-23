@@ -47,6 +47,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def cancel
+    @order = Order.find(params[:id])
+    @order.status = "cancelled"
+    if @order.save
+      flash[:success] = "You successfully cancelled your order"
+      redirect_to orders_path
+    end
+  end
+
   def destroy
     current_order.order_products.each do |op|
       op.destroy
@@ -64,6 +73,10 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code, :paid_at)
   end
+
+  # def cancel_order_params
+  #   params.require(:order).permit(:status)
+  # end
 
   def create_order
     @order = Order.new(order_params)

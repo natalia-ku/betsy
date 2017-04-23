@@ -6,8 +6,13 @@ Rails.application.routes.draw do
 
   resources :products
 
-  resources :orders
+  resources :orders do
+    member do
+      put :cancel
+    end
+  end
   resources :order_products
 
   get "shopping_cart", to: 'orders#shopping_cart'
+
 end

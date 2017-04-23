@@ -5,6 +5,9 @@
       <p>Email:<%=@order.email%> </p>
       <p>Credit card number:<%=@order.credit_card%> </p>
       <p>Order status:<%=@order.status%> </p>
+      <%if @order.status != "shipped"  && @order.status != "cancelled"%>
+        <%= link_to "Cancel order", cancel_order_path(@order.id), method: :put%>
+      <%end%>
       <p>Order total $:<%=@order.total_price%> </p>
       <h3>Order products: </h3>
       <table>
