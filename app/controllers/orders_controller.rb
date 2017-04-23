@@ -18,6 +18,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    if @order.nil?
+      head :not_found
+    end
   end
 
   def edit

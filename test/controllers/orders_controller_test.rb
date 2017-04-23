@@ -8,12 +8,27 @@ describe OrdersController do
       proc {post orders_path, params: order_data
       }.must_change 'Order.count', 1
     end
+    it "creates an order with valid data" do
+      order_data = {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
+      10.times do
+        start_count = Order.count
+        post orders_path, params: order_data
+        Order.count.must_equal start_count + 1
+      end
+    end
   end
+
   describe "show" do
     it "succesessfully shows order" do
       get order_path(order.id)
       must_respond_with :success
+      get order_path(Order.first)
+      must_respond_with :success
     end
+    # it "should show a 404 when order not found" do
+    #   get order_path(Order.last.id + 1)
+    #   must_respond_with :not_found
+    # end
   end
   describe "shopping_cart" do
     it "succesessfully shows shopping cart" do
@@ -54,5 +69,12 @@ describe OrdersController do
       #must_respond_with :bad_request UNCOMMENT THIS AFTER VALIDATION
     end
   end # end of update block
+
+  describe "cancel" do
+    it "make order status cancelled" do
+      put cancel_order_path(order.id)
+      must_redirect_to orders_path
+    end
+  end #end of cancel block
 
 end
