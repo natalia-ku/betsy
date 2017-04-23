@@ -1,0 +1,8 @@
+<h2>Our Valued Merchants (Click to see their products)</h2>
+
+<% @merchants.each do |merchant|%>
+  <%= link_to merchant.username, merchant_products_path(merchant)%>
+  <br/>
+  <% end %>
+
+  

@@ -1,0 +1,28 @@
+<h2>Add a new product</h2>
+
+<section>
+  <%= form_for @product do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+
+    <%= f.label :photo_url %>
+    <%= f.text_field :photo_url %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+
+    <%= f.label :stock %>
+    <%= f.text_area :stock %>
+
+    <%= f.label :merchant_id %>
+    <%= f.text_area :merchant_id %>
+
+
+    <%= f.submit "Submit" %>
+
+  <% end %>
+</section>
