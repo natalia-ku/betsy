@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :orders do
     member do
       put :cancel
+      put :complete
     end
   end
   resources :order_products
