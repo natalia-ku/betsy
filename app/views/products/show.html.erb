@@ -8,3 +8,11 @@
 <%= "In Stock: #{@product.stock}" %>
 <br/>
 <%= "Description: #{@product.description}" %>
+
+<br/>
+<%= "Categories:   THESE WILL BE BUTTONS "%>
+<% @product.categories.each do |category| %>
+<%= category.name %>
+<% end %>
+<br/>
+<%= "This will be a button too-- Add to cart" %>

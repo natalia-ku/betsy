@@ -1,7 +1,10 @@
 <h2>Add a new product</h2>
 
 <section>
-  <%= form_for @product do |f| %>
+  <%= form_for [@merchant, @product] do |f| %>
+<%= form_for(@product, :url => merchant_product_path(@merchant)) do %>
+
+
 
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -18,9 +21,7 @@
     <%= f.label :stock %>
     <%= f.text_area :stock %>
 
-    <%= f.label :merchant_id %>
-    <%= f.text_area :merchant_id %>
-
+    <%= f.hidden_field :merchant_id, :value => @merchant.id%>
 
     <%= f.submit "Submit" %>
 
