@@ -6,6 +6,6 @@
  <% end %>
 
 <% @products.each do |product|%>
-  <%= link_to product.name, "#" %>
+  <%= link_to product.name, product_path(product) %>
   <%= image_tag product.photo_url, alt:"picture of #{product.name}"%>
   <% end %>

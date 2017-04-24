@@ -3,6 +3,7 @@ require "test_helper"
 
 describe ProductsController do
   describe "index" do
+    
     it "succeeds with many products, when not called with a particular merchant_id" do
       # Assumption: There are many products in the DB
 
@@ -33,7 +34,6 @@ describe ProductsController do
       get merchant_products_path(dan)
       must_respond_with :success
     end
-
   end
 
   # describe "new" do

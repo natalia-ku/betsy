@@ -19,6 +19,7 @@ owl2:
   photo_url: /assets/photo_2.jpg
   description: cute hairband
   stock: 3
+  merchant: dan
 
 
 hat:
