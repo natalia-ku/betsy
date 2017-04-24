@@ -52,7 +52,6 @@ describe ProductsController do
 
 
   describe "create" do
-
     it "creates a new product for the given merchant" do
       merchant = Merchant.first
       start_count = merchant.products.count
@@ -101,11 +100,9 @@ describe ProductsController do
       post merchant_products_path(merchant_id), params: product_data
       must_respond_with :not_found
     end
-
   end
 
   describe "show" do
-
     it "finds a product that exists" do
       product_id = Product.first.id
       get product_path(product_id)
@@ -118,4 +115,20 @@ describe ProductsController do
       must_respond_with :not_found
     end
   end
+
+  describe "edit" do
+    it "finds a product that exists" do
+      product_id = Product.first.id
+      get edit_product_path(product_id)
+      must_respond_with :success
+    end
+
+    it "returns 404 for a product that DNE" do
+      product_id = Product.last.id + 1
+      get edit_product_path(product_id)
+      must_respond_with :not_found
+    end
+  end
+
+
 end
