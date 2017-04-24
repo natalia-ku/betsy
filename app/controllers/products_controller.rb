@@ -64,6 +64,7 @@ class ProductsController < ApplicationController
       ###what page to display???
     end
     @order_product = OrderProduct.new
+    @review = Review.new
   end
 
 
@@ -75,6 +76,8 @@ class ProductsController < ApplicationController
     end
     @merchant = @product.merchant
   end
+
+
 
 
   ## NEED UPDATE METHOD

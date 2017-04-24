@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :products
 
+  resources :reviews, only: [:new, :create]
+
   resources :orders do
     member do
       put :cancel
