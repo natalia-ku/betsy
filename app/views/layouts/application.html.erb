@@ -1,38 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <title>Betsy</title>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-</head>
+  </head>
 
-<body>
-  <header>
-    <% if @current_user != nil %>
-      <p>Logged in as <%= link_to @current_user.username, merchant_path(@current_user) %></p>
-      <%= link_to "Log Out", logout_path, method: :delete, class: "button float-right" %>
-    <% else %>
-      <p>Not logged in</p>
-      <%= link_to "Log In", '/auth/github', class: "button float-right" %>
-    <% end %>
+  <body>
 
-    <p> <%=link_to "Show shopping cart", shopping_cart_path%></p>
-    <p> <%=link_to "All merchants", merchants_path%></p>
-    <p> <%=link_to "All orders", orders_path%></p>
-    <p> <%=link_to "All products", products_path%></p>
-  </header>
-  <section class="flash">
-    <% flash.each do |name, message| %>
-    <div class="<%= name %>"><%= message %></div>
-    <% end %>
-  </section>
+    <%= yield %>
 
-  <%= yield %>
-</body>
-
+  </body>
 </html>
