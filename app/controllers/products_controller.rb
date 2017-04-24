@@ -61,18 +61,6 @@ class ProductsController < ApplicationController
 
 
 
-  ####Didn't write edit, update, destroy, retire/out-of-stock
-
-  # def destroy
-  #   classroom = Classroom.find_by(id: params[:id])
-  #   if classroom.nil?
-  #     head :not_found
-  #   else
-  #     classroom.destroy
-  #     redirect_to classrooms_path
-  #   end
-  # end
-
   private
   def product_params
     params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id)
