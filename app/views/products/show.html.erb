@@ -38,7 +38,5 @@
 
     <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }%> </p>
 
-    <%= @product.retired %>
-
     <p><%=button_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
 </section>
