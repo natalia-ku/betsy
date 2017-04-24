@@ -1,4 +1,4 @@
 <h2> <%= "This is #{@merchant.username}'s page" %> </h2>
 
 
-<%= button_to "Add a new product", new_merchant_product_path( @product, @merchant), method: :get%>
+<%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
