@@ -14,9 +14,6 @@
     <p> <%=link_to "All merchants", merchants_path%></p>
     <p> <%=link_to "All orders", orders_path%></p>
     <p> <%=link_to "All products", products_path%></p>
-     <%if session[:order_id] != nil%>
-     <p>ORDER ID : <%=session[:order_id]%></p>
-     <%end%>
   </header>
   <section class="flash">
     <% flash.each do |name, message| %>
