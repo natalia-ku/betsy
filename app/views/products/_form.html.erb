@@ -20,6 +20,10 @@
 
     <%= f.hidden_field :merchant_id, :value => @merchant.id%>
 
+    <% Category.all.each do |category| %>
+    <%= check_box_tag "#{category.name}" %>
+    <%= category.name %>
+    <% end %>
     <%= f.submit button_text %>
 
   <% end %>

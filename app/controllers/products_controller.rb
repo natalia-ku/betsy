@@ -64,6 +64,7 @@ class ProductsController < ApplicationController
       ###what page to display???
     end
     @order_product = OrderProduct.new
+    @review = Review.new
   end
 
 
