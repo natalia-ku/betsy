@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-before_action :require_login, only: :show
+before_action :require_correct_user, only: :show
 
   def index
     @merchants = Merchant.all
@@ -7,7 +7,12 @@ before_action :require_login, only: :show
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
-    @orders = @merchant.products.orders
+
+    @orders = @merchant.products.map do |product|
+      product.orders.each do |order|
+        order
+      end
+    end
     if @merchant.nil?
       head :not_found
     end
