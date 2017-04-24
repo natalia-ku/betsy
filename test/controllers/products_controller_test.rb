@@ -1,8 +1,8 @@
 require "test_helper"
 
 describe ProductsController do
-  describe "index" do
 
+  describe "index" do
     it "succeeds with many products, when not called with a particular merchant_id" do
       # Assumption: There are many products in the DB
 
@@ -127,6 +127,37 @@ describe ProductsController do
       product_id = Product.last.id + 1
       get edit_product_path(product_id)
       must_respond_with :not_found
+    end
+  end
+
+
+  describe "update" do
+    it "updates the product" do
+      product = Product.first
+      product_data = {
+        product: {
+          name: product.name + " extra stuff"
+        }
+      }
+      patch product_path(product), params: product_data
+      must_redirect_to product_path(product)
+
+      Product.first.name.must_equal product_data[:product][:name]
+    end
+
+    it "responds with bad_request for invalid data" do
+      product = Product.first
+      product_data = {
+        product: {
+          name: ""
+        }
+      }
+      patch product_path(product), params: product_data
+      must_respond_with :bad_request
+
+      # Make sure that what's in the database still matches
+      # what we had before
+      Product.first.name.must_equal product.name
     end
   end
 
