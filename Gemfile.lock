@@ -223,11 +223,8 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   dotenv-rails
-<<<<<<< HEAD
-  foundation-rails
-=======
   faker
->>>>>>> 85606361833e905f52be69b1f5259ef131c9c2fb
+  foundation-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

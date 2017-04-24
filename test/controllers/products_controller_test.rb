@@ -1,12 +1,5 @@
 require "test_helper"
 
-<<<<<<< HEAD
-describe ProductsController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
-=======
-
 describe ProductsController do
   describe "index" do
 
@@ -125,6 +118,4 @@ describe ProductsController do
       must_respond_with :not_found
     end
   end
-
->>>>>>> products_controller
 end
