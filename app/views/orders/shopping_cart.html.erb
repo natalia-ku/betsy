@@ -1,6 +1,6 @@
 <h1>Shopping cart:</h1>
 <section>
-  <%if @shopping_cart_products == nil || @shopping_cart_products.length == 0%>
+  <%if cart_is_empty?(@shopping_cart_products)%>
     <p> Shopping cart is empty </p>
   <%else%>
     <%@shopping_cart_products.each do |op|%>
@@ -17,6 +17,7 @@
       <p><%=link_to "Delete from cart", order_product_path(op.id), method: :delete, data: {confirm: 'Are you sure?' }%>
     <%end%>
     <p>Order Total: <%=@order.total_price%></p>
-    <p><%=link_to "Checkout", edit_order_path(@order.id)%> </p>
+    <p><%=link_to "Proceed to Checkout", edit_order_path(@order.id)%> </p>
+    <p><%=link_to "Continue shopping", products_path%> </p>
   <%end%>
 </section>

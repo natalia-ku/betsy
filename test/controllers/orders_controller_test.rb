@@ -22,7 +22,7 @@ describe OrdersController do
     it "succesessfully shows order" do
       get order_path(order.id)
       must_respond_with :success
-      get order_path(Order.first)
+      get order_path(Order.last)
       must_respond_with :success
     end
     # it "should show a 404 when order not found" do

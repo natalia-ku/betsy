@@ -7,8 +7,11 @@ describe OrderProductsController do
   let (:order_pr){OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 2)}
   describe "create" do
     it "adds an order_product to the database" do
-      # op_data = {op: {order: order, product: product, quantity: 2}}
-      # post order_products_path, params: op_data
+      op = OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 30)
+      result = OrderProduct.find_by(order_id: order.id, product_id: product.id)
+      result.wont_be_nil
+      #op_data = {op: {order: order, product: product, quantity: 2}}
+      #post order_products_path, params: op_data
       #must_redirect_to shopping_cart_path # DOES NOT WORK
     end
     it "changing size of order products after creating" do
