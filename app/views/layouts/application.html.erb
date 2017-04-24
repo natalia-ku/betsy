@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <title>Betsy</title>
+  <title>Betsy</title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
 
 <body>
   <header>
     <% if @current_user != nil %>
-      <p>Logged in as <%= link_to @current_user.username, merchant_path(@current_user) %></p>
-      <%= link_to "Log Out", logout_path, method: :delete, class: "button float-right" %>
+    <p>Logged in as <%= link_to @current_user.username, merchant_path(@current_user) %></p>
+    <%= link_to "Log Out", logout_path, method: :delete, class: "button float-right" %>
     <% else %>
-      <p>Not logged in</p>
-      <%= link_to "Log In", '/auth/github', class: "button float-right" %>
+    <p>Not logged in</p>
+    <%= link_to "Log In", '/auth/github', class: "button float-right" %>
     <% end %>
 
     <p> <%=link_to "Show shopping cart", shopping_cart_path%></p>

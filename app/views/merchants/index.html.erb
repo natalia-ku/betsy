@@ -1,9 +1,5 @@
 <p>Owl City: Merchants</p>
 
-<% @merchants.each do |merchant| %>
-<p>Merchant: <%= link_to merchant.username, merchant_path(merchant.id) %> </p>
-<h2>Our Valued Merchants (Click to see their products)</h2>
-<% end %>
 
 <% @merchants.each do |merchant|%>
   <%= link_to merchant.username, merchant_path(merchant)%>
