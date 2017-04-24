@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'merchants#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -23,5 +24,6 @@ Rails.application.routes.draw do
 
   get "shopping_cart", to: 'orders#shopping_cart'
 
+  resources :categories, only: [:index, :new, :create, :show]
 
 end

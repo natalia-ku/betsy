@@ -1,8 +1,21 @@
+
 <section>
   <h2>Product details:</h2>
     <p>Name: <%=@product.name%></p>
     <p>Price: <%=@product.price%></p>
-    <p>Photo url: <%=@product.photo_url%></p>
+    <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
+
+    <br/>
+    <%= "Description: #{@product.description}" %>
+
+    <br/>
+    <%= "Categories:   THESE WILL BE BUTTONS "%>
+    <% @product.categories.each do |category| %>
+    <%= category.name %>
+    <% end %>
+    <br/>
+
+
     <%if @product.stock == nil || @product.stock < 1%>
       <p>Stock: product is out of stock</p>
     <%else%>
