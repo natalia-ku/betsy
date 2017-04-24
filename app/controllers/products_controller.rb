@@ -14,13 +14,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-    @product = Product.find_by(id: params[:id])
-    if @product.nil?
-      head :not_found
-    end
-  end
-
 
   def new
     @merchant = Merchant.find(params[:merchant_id])
@@ -32,22 +25,20 @@ class ProductsController < ApplicationController
     @merchant = Merchant.find(params[:merchant_id])
     @product = @merchant.products.build(product_params)
     if @product.save
-      flash[:message] = "Woot"
+      flash[:message] = "Woot! Successfully created the new item: #{@product.name}"
       redirect_to merchant_path(@merchant)
     else
-      flash[:message] = "BooHoo"
-      redirect_to merchant_path(@merchant)
+      flash[:message] = "BooHoo. Unable to create new item."
+      render :new, status: :bad_request
+      #redirect_to merchant_path(@merchant)
     end
-    # if @work.save
-    #   flash[:status] = :success
-    #   flash[:result_text] = "Successfully created #{@media_category.singularize} #{@work.id}"
-    #   redirect_to works_path(@media_category)
-    # else
-    #   flash[:status] = :failure
-    #   flash[:result_text] = "Could not create #{@media_category.singularize}"
-    #   flash[:messages] = @work.errors.messages
-    #   render :new, status: :bad_request
-    # end
+  end
+
+  def show
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      head :not_found
+    end
   end
 
 end

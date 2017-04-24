@@ -51,10 +51,11 @@ describe ProductsController do
     end
   end
 
-  # describe "new" do
-  #   it "runs successfully" do
-  #     get new_product_path
-  #     must_respond_with :success
-  #   end
-  # end
+  describe "new" do
+    it "runs successfully" do
+      merchant = Merchant.first
+      get new_merchant_product_path(merchant)
+      must_respond_with :success
+    end
+  end
 end
