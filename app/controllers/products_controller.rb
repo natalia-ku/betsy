@@ -77,7 +77,23 @@ class ProductsController < ApplicationController
   end
 
 
-  ## NEED UPDATE METHOD
+  def update
+    @product  = Product.find_by(id: params[:id])
+    if @product.nil?
+      head :not_found
+    else
+      @merchant = @product.merchant
+      @product.update_attributes(product_params)
+      if @product.save
+        redirect_to product_path(@product)
+      else
+        flash[:message] = "Bad News. Unable to update item."
+        render :edit, status: :bad_request
+      end
+    end
+  end
+
+
 
   def destroy
     @product = Product.find(params[:id])

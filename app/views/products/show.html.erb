@@ -33,5 +33,10 @@
     <%else%>
       <p>Product already in the <%=link_to "cart", shopping_cart_path%></p>
     <%end%>
-    <p><%=link_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
+
+    <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get %> </p>
+
+
+
+    <p><%=button_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
 </section>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       put :cancel
     end
   end
+  
   resources :order_products
 
   get "shopping_cart", to: 'orders#shopping_cart'
