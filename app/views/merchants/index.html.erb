@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 <p>Owl City: Merchants</p>
 
 <% @merchants.each do |merchant| %>
 <p>Merchant: <%= link_to merchant.username, merchant_path(merchant.id) %> </p>
+=======
+<h2>Our Valued Merchants (Click to see their products)</h2>
+
+<% @merchants.each do |merchant|%>
+  <%= link_to merchant.username, merchant_path(merchant)%>
+  <%= "  (these will just be one link IRL)  "%>
+  <%= link_to "See #{merchant.username}'s products", merchant_products_path(merchant)%>
+
+  <br/>
+>>>>>>> products_controller
 <% end %>

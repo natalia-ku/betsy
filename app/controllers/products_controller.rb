@@ -2,27 +2,58 @@ class ProductsController < ApplicationController
 
   def index
     if params[:merchant_id]
-      @merchant = Merchant.find_by(id: params[:merchant_id])
-      @products = @merchant.products
+      # localhost:3000/merchants/2/products
+      # we are in the nested route
+      # retrieve products based on the merchant
+      @products = Merchant.find(params[:merchant_id]).products
     else
+      #localhost:3000/products
+      # we are in our 'regular' route
       @products = Product.all
     end
   end
 
+
+  # def new
+  #   @product = Product.new
+  #   @merchant = Merchant.find(params[:merchant_id])
+  # end
+  #
+  # def create
+  #   @merchant = Merchant.find(params[:merchant_id])
+  #   @product = @merchant.products.create(product_params)
+  #   if @product.id != nil
+  #     flash[:success] = "Successfully created new product"
+  #     redirect_to merchant_products_path(@merchant.id)
+  #   else
+  #     flash[:failure] = "Product wasn't created"
+  #     render :new, status: :bad_request
+  # end
+
   def new
-    @product = Product.new
-    @merchant = Merchant.find(params[:merchant_id])
+    @merchant = Merchant.find_by(id: params[:merchant_id])
+    if @merchant.nil?
+      return head :not_found
+      ###what page to display???
+    end
+    @product = @merchant.products.build
   end
 
+
   def create
-    @merchant = Merchant.find(params[:merchant_id])
-    @product = @merchant.products.create(product_params)
-    if @product.id != nil
-      flash[:success] = "Successfully created new product"
-      redirect_to merchant_products_path(@merchant.id)
+    @merchant = Merchant.find_by(id: params[:merchant_id])
+    if @merchant.nil?
+      return head :not_found
+      ###what page to display???
+    end
+    @product = @merchant.products.build(product_params)
+    if @product.save
+      flash[:message] = "Woot! Successfully created the new item: #{@product.name}"
+      redirect_to merchant_path(@merchant)
     else
-      flash[:failure] = "Product wasn't created"
+      flash[:message] = "BooHoo. Unable to create new item."
       render :new, status: :bad_request
+      #redirect_to merchant_path(@merchant)
     end
   end
 
@@ -30,9 +61,23 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       head :not_found
+      ###what page to display???
     end
     @order_product = OrderProduct.new
   end
+
+
+  def edit
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      head :not_found
+      ###what page to display???
+    end
+    @merchant = @product.merchant
+  end
+
+
+  ## NEED UPDATE METHOD
 
   def destroy
     @product = Product.find(params[:id])
@@ -40,8 +85,10 @@ class ProductsController < ApplicationController
       redirect_to products_path
     end
   end
+
+
   private
   def product_params
-    return params.require(:product).permit( :name, :photo_url, :price, :stock )
+    params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id)
   end
 end
