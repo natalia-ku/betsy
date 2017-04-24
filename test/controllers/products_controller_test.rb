@@ -28,7 +28,7 @@ describe ProductsController do
     end
 
     it "succeeds with no products, whencalled with a particular merchant_id" do
-    # Assumption: That merchant has no products
+      # Assumption: That merchant has no products
       Product.destroy_all
       dan = merchants(:dan)
       get merchant_products_path(dan)
@@ -48,52 +48,48 @@ describe ProductsController do
       merchant_id = Merchant.last.id + 1
       get new_merchant_product_path(merchant_id)
       must_respond_with :not_found
-
     end
-
-
-
-
-
-
-
   end
 
-#
-# describe "create" do
-#     it "creates a new product for the given merchant" do
-#       start_count = Classroom.count
-#
-#       classroom_data = {
-#         classroom: {
-#           designation: "test classroom"
-#         }
-#       }
-#       post classrooms_path, params: classroom_data
-#       must_redirect_to classrooms_path
-#
-#       end_count = Classroom.count
-#       end_count.must_equal start_count + 1
-#
-#       classroom = Classroom.last
-#       classroom.designation.must_equal classroom_data[:classroom][:designation]
-#     end
-#
-#     it "responds with bad_request for bogus data" do
-#       start_count = Classroom.count
-#
-#       classroom_data = {
-#         classroom: {
-#           foo: "bar"
-#         }
-#       }
-#       post classrooms_path, params: classroom_data
-#       must_respond_with :bad_request
-#
-#       end_count = Classroom.count
-#       end_count.must_equal start_count
-#     end
-#   end
+
+  describe "create" do
+
+    it "creates a new product for the given merchant" do
+      merchant = Merchant.first
+      start_count = merchant.products.count
+
+      product_data = {
+        product: {
+          name: "test product",
+          price: 4.00
+        }
+      }
+
+      post merchant_products_path(merchant.id), params: product_data
+      must_redirect_to merchant_path(merchant)
+
+      end_count = merchant.products.count
+      end_count.must_equal start_count + 1
+
+      product = Product.last
+      product.name.must_equal product_data[:product][:name]
+    end
+  end
+  #     it "responds with bad_request for bogus data" do
+  #       start_count = Classroom.count
+  #
+  #       classroom_data = {
+  #         classroom: {
+  #           foo: "bar"
+  #         }
+  #       }
+  #       post classrooms_path, params: classroom_data
+  #       must_respond_with :bad_request
+  #
+  #       end_count = Classroom.count
+  #       end_count.must_equal start_count
+  #     end
+  #   end
 
   describe "show" do
 
