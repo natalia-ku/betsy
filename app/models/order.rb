@@ -23,4 +23,15 @@ class Order < ApplicationRecord
     status == "paid"
   end
 
+
+
+  def total_price
+    op = OrderProduct.where(order_id: self.id)
+    total = 0.0
+    op.each do |product|
+      total += product.subtotal
+    end
+    return total
+  end
+
 end

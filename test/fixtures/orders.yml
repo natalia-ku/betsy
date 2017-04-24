@@ -4,7 +4,20 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 
-
-
 sophia_cart:
   status: pending
+  email: "foobar@gmail.com"
+  mailing_address: 123 Fake street NE"
+  card_name: "natalia kulen"
+  credit_card: "3232332232"
+  cvv: 434
+  zip_code: 90434
+
+order234:
+  status: "paid"
+  email: "foobar@gmail.com"
+  mailing_address: 123 Fake street NE"
+  card_name: "natalia kulen"
+  credit_card: "3232332232"
+  cvv: 434
+  zip_code: 90434

@@ -35,6 +35,11 @@ describe OrderProduct do
     result = op.valid?
     result.must_equal false
   end
+  it "subtotal method should return product price * quantity" do
+    op = OrderProduct.create(quantity: 10, product: product, order: order)
+    result = op.subtotal
+    result.must_equal 230
+  end
 
 
 end

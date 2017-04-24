@@ -1,0 +1,5 @@
+<section>
+  <%@products.each do |pr|%>
+    <p><%=link_to pr.name, product_path(pr.id)%></p>
+  <% end%>
+</section>

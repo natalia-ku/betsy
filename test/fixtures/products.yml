@@ -39,3 +39,12 @@ two:
   description: "Oh yeah, George the Owl."
   stock: 5
 # column: value
+
+
+goodproduct:
+  name: Flower
+  price: 63
+  photo_url: /assets/photo32.jpg
+  description: "good desription."
+  stock: 12
+  merchant: petr
