@@ -93,7 +93,12 @@ class ProductsController < ApplicationController
     end
   end
 
-
+  def retire
+    @product = Product.find(params[:id])
+    @product.retired = true
+    @product.save
+    redirect_to product_path(@product)
+  end
 
   def destroy
     @product = Product.find(params[:id])
