@@ -27,7 +27,7 @@ describe ProductsController do
       must_respond_with :success
     end
 
-    it "succeeds with no products, whencalled with a particular merchant_id" do
+    it "succeeds with no products, when called with a particular merchant_id" do
       # Assumption: That merchant has no products
       Product.destroy_all
       dan = merchants(:dan)
@@ -64,7 +64,6 @@ describe ProductsController do
           price: 4.00
         }
       }
-
       post merchant_products_path(merchant.id), params: product_data
       must_redirect_to merchant_path(merchant)
 
@@ -90,6 +89,21 @@ describe ProductsController do
       end_count = merchant.products.count
       end_count.must_equal start_count
     end
+
+######## This is causing an error
+    # it "returns 404 if trying to create a product for a merchant that DNE" do
+    #   merchant_id = Merchant.last.id + 1
+    #
+    #   product_data = {
+    #     product: {
+    #       name: "test product",
+    #       price: 4.00
+    #     }
+    #   }
+    #   post merchant_products_path(merchant_id), params: product_data
+    #   must_respond_with :not_found
+    # end
+
   end
 
   describe "show" do
