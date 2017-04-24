@@ -1,13 +1,15 @@
-
-
 <section>
   <h2>Merchant details:</h2>
   <p>Username: <%=@merchant.username%></p>
   <p>Email: <%=@merchant.email%></p>
   <p>Merchant id: <%=@merchant.id%></p>
-  <p><%=link_to "Merchant products", merchant_products_path(@merchant.id)%></p>
-  <%= link_to "Add products for merchant", new_merchant_product_path(@merchant, @product)%>
+  <%= @merchant.total_revenue %>
 
+  <%= @merchant.products.orders.each do |order| %>
+  <%= link_to "Order ##{order.id}", order_path(order.id) %>
+  <% end %>
+
+  <%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
 <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
 
 </section>

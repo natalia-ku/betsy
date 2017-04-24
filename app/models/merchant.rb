@@ -12,4 +12,16 @@ class Merchant < ApplicationRecord
     merchant.oauth_provider = "github"
     return merchant
   end
+
+  def total_revenue
+    products = Product.where(merchant_id: self.id)
+    total = 0.0
+    products.each do |product|
+      product.orders.each do |order|
+        total += order.subtotal
+      end
+    end
+    return total
+  end
+
 end
