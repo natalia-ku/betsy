@@ -33,8 +33,9 @@ class ProductsController < ApplicationController
   def new
     @merchant = Merchant.find_by(id: params[:merchant_id])
     if @merchant.nil?
-      return head :not_found
-      ###what page to display???
+      flash[:message] = "Could not find that merchant"
+      redirect_to products_path
+      return
     end
     @product = @merchant.products.build
   end
@@ -43,8 +44,9 @@ class ProductsController < ApplicationController
   def create
     @merchant = Merchant.find_by(id: params[:merchant_id])
     if @merchant.nil?
-      return head :not_found
-      ###what page to display???
+      flash[:message] = "Could not find that merchant"
+      redirect_to products_path
+      return
     end
     @product = @merchant.products.build(product_params)
     if @product.save
@@ -60,27 +62,63 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find_by(id: params[:id])
     if @product.nil?
-      head :not_found
-      ###what page to display???
+      flash[:message] = "Could not find that product"
+      redirect_to products_path
     end
     @order_product = OrderProduct.new
+    @review = Review.new
   end
 
 
   def edit
     @product = Product.find_by(id: params[:id])
     if @product.nil?
-      head :not_found
-      ###what page to display???
+      flash[:message] = "Could not find that product"
+      redirect_to products_path
+      return
     end
     @merchant = @product.merchant
   end
 
 
-  ## NEED UPDATE METHOD
+  def update
+    @product  = Product.find_by(id: params[:id])
+    if @product.nil?
+      flash[:message] = "Could not find that product"
+      redirect_to products_path
+      return
+    else
+      @merchant = @product.merchant
+      @product.update_attributes(product_params)
+      if @product.save
+        redirect_to product_path(@product)
+      else
+        flash[:message] = "Bad News. Unable to update item."
+        render :edit, status: :bad_request
+      end
+    end
+  end
+
+  def retire
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      flash[:message] = "Could not find that product"
+      redirect_to products_path
+      return
+    end
+    @product.retired = true
+    @product.save
+    redirect_to product_path(@product)
+  end
+
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      flash[:message] = "Could not find that product"
+      redirect_to products_path
+      return
+    end
     if @product.destroy
       redirect_to products_path
     end

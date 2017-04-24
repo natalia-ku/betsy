@@ -24,7 +24,9 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by(id: params[:id])
-    redirect_to categories_path, status: :not_found unless @category
+    if @category.nil?
+      return redirect_to categories_path, status: :not_found
+    end
     @products = @category.products
   end
 end

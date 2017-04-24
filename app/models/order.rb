@@ -23,7 +23,10 @@ class Order < ApplicationRecord
     status == "paid"
   end
 
-
+  def last_four
+    num = self.credit_card.length - 4
+    return self.credit_card[num..-1]
+  end
 
   def total_price
     op = OrderProduct.where(order_id: self.id)
