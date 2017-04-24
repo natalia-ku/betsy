@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
     @merchant = Merchant.find_by(id: params[:merchant_id])
     if @merchant.nil?
       flash[:message] = "Could not find that merchant"
-      redirect_to products_path, status: :not_found
+      redirect_to products_path
       return
     end
     @product = @merchant.products.build
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
     @merchant = Merchant.find_by(id: params[:merchant_id])
     if @merchant.nil?
       flash[:message] = "Could not find that merchant"
-      redirect_to products_path, status: :not_found
+      redirect_to products_path
       return
     end
     @product = @merchant.products.build(product_params)
@@ -63,8 +63,7 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:message] = "Could not find that product"
-      redirect_to products_path, status: :not_found
-      return
+      redirect_to products_path
     end
     @order_product = OrderProduct.new
   end
@@ -74,7 +73,7 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:message] = "Could not find that product"
-      redirect_to products_path, status: :not_found
+      redirect_to products_path
       return
     end
     @merchant = @product.merchant
@@ -85,7 +84,7 @@ class ProductsController < ApplicationController
     @product  = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:message] = "Could not find that product"
-      redirect_to products_path, status: :not_found
+      redirect_to products_path
       return
     else
       @merchant = @product.merchant
@@ -100,10 +99,10 @@ class ProductsController < ApplicationController
   end
 
   def retire
-    @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:message] = "Could not find that product"
-      redirect_to products_path, status: :not_found
+      redirect_to products_path
       return
     end
     @product.retired = true
@@ -115,7 +114,7 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:message] = "Could not find that product"
-      redirect_to products_path, status: :not_found
+      redirect_to products_path
       return
     end
     if @product.destroy

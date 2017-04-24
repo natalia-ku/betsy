@@ -43,10 +43,10 @@ describe ProductsController do
       must_respond_with :success
     end
 
-    it "returns 404 if trying to create a product for a merchant that DNE" do
+    it "redirects to products index page if trying to create a product for a merchant that DNE" do
       merchant_id = Merchant.last.id + 1
       get new_merchant_product_path(merchant_id)
-      must_respond_with :not_found
+      must_redirect_to products_path
     end
   end
 
@@ -88,7 +88,7 @@ describe ProductsController do
       end_count.must_equal start_count
     end
 
-    it "returns 404 if trying to create a product for a merchant that DNE" do
+    it "redirects to products index page if trying to create a product for a merchant that DNE" do
       merchant_id = Merchant.last.id + 1
 
       product_data = {
@@ -98,7 +98,7 @@ describe ProductsController do
         }
       }
       post merchant_products_path(merchant_id), params: product_data
-      must_respond_with :not_found
+      must_redirect_to products_path
     end
   end
 
@@ -109,10 +109,10 @@ describe ProductsController do
       must_respond_with :success
     end
 
-    it "returns 404 for a product that DNE" do
+    it "redirects to products index page for a product that DNE" do
       product_id = Product.last.id + 1
       get product_path(product_id)
-      must_respond_with :not_found
+      must_redirect_to products_path
     end
   end
 
@@ -123,10 +123,10 @@ describe ProductsController do
       must_respond_with :success
     end
 
-    it "returns 404 for a product that DNE" do
+    it "redirects to products index page for a product that DNE" do
       product_id = Product.last.id + 1
       get edit_product_path(product_id)
-      must_respond_with :not_found
+      must_redirect_to products_path
     end
   end
 
@@ -160,7 +160,7 @@ describe ProductsController do
       Product.first.name.must_equal product.name
     end
 
-    it "returns 404 for a product that DNE" do
+    it "redirects to products index page for a product that DNE" do
       product_data = {
         product: {
           name: "test product name"
@@ -168,13 +168,33 @@ describe ProductsController do
       }
       product_id = Product.last.id + 1
       patch product_path(product_id), params: product_data
-      must_respond_with :not_found
+      must_redirect_to products_path
+    end
+  end
+
+  describe "retire" do
+    it "retires a product that exists" do
+    product = Product.first
+    product.retired = false
+    product.save
+
+    patch retire_product_path(product)
+    product.reload
+    product.retired.must_equal true
+    must_redirect_to product_path(product)
+    end
+
+    it "redirects to products index page for a product that DNE" do
+      product_id = Product.last.id + 1
+      patch retire_product_path(product_id)
+      must_redirect_to products_path
     end
   end
 
 
+
   describe "destroy" do
-    it "destroys a productthat exists" do
+    it "destroys a product that exists" do
       start_count = Product.count
 
       product_id = Product.first.id
@@ -185,18 +205,16 @@ describe ProductsController do
       end_count.must_equal start_count - 1
     end
 
-    it "returns 404 for a productthat DNE" do
+    it "redirects to products index pagefor a product that DNE" do
       start_count = Product.count
 
       product_id = Product.last.id + 1
       delete product_path(product_id)
-      must_respond_with :not_found
+      must_redirect_to products_path
 
       end_count = Product.count
       end_count.must_equal start_count
     end
   end
-
-
 
 end
