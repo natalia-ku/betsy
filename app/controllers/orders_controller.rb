@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-     @order.save
+    @order.save
   end
 
   def shopping_cart
@@ -35,12 +35,7 @@ class OrdersController < ApplicationController
     @order.update_attributes(order_update_params)
     if params[:paid_order]
       @order.status = "paid"
-      # Remove items from stock:
-      order_products = OrderProduct.where(order_id: @order.id)
-      order_products.each do |op|
-        op.product.stock -= op.quantity
-        op.product.save
-      end
+      change_stock(@order, "remove") # Remove items from stock
     elsif params[:cancel_order]
       @order.status = "cancelled"
     end
@@ -59,6 +54,7 @@ class OrdersController < ApplicationController
   def cancel
     @order = Order.find(params[:id])
     @order.status = "cancelled"
+    change_stock(@order, "add") # add items back to stock
     if @order.save
       flash[:success] = "You successfully cancelled your order"
       redirect_to orders_path
@@ -91,4 +87,18 @@ class OrdersController < ApplicationController
   def find_current_order
     @order = current_order
   end
+
+  def change_stock(order, action)
+    order_products = OrderProduct.where(order_id: order.id)
+    order_products.each do |op|
+      if action == "remove"
+        op.product.stock -= op.quantity
+        op.product.save
+      elsif action == "add"
+        op.product.stock += op.quantity
+        op.product.save
+      end
+    end
+  end
+
 end
