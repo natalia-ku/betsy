@@ -28,19 +28,19 @@ describe CategoriesController do
       must_respond_with :success
     end
 
-    # it "renders 404 not_found for a bogus category" do
-    #   # User.last gives the user with the highest ID
-    #   bogus_category_id = Category.last.id + 10
-    #   get category_path(bogus_category_id)
-    #   must_respond_with :not_found
-    # end
-    #
-    # it "renders 404 not_found for a bogus category" do
-    #   invalid = INVALID_CATEGORIES.sample
-    #   # get "categories/#{category}"
-    #   get category_path(invalid)
-    #   must_respond_with :not_found
-    # end
+    it "renders 404 not_found for a bogus category" do
+      # User.last gives the user with the highest ID
+      bogus_category_id = Category.last.id + 1
+      get category_path(bogus_category_id)
+      must_respond_with :not_found
+    end
+
+    it "renders 404 not_found for a bogus category" do
+      invalid = INVALID_CATEGORIES.sample
+      # get "categories/#{category}"
+      get category_path(invalid)
+      must_respond_with :not_found
+    end
   end
 
   describe "new" do
