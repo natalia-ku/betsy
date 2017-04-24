@@ -1,0 +1,17 @@
+
+<section>
+  <%= form_for @review do |f| %>
+
+
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+
+  <%= f.label :review_text %>
+  <%= f.text_field :review_text %>
+
+  <%= f.hidden_field :product_id, :value => @product.id%>
+
+  <%= f.submit button_text %>
+
+  <% end %>
+</section>

@@ -77,6 +77,8 @@ class ProductsController < ApplicationController
   end
 
 
+
+
   ## NEED UPDATE METHOD
 
   def destroy
