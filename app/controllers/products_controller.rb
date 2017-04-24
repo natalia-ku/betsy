@@ -112,7 +112,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:message] = "Could not find that product"
       redirect_to products_path, status: :not_found

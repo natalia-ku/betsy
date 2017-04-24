@@ -159,7 +159,44 @@ describe ProductsController do
       # what we had before
       Product.first.name.must_equal product.name
     end
+
+    it "returns 404 for a product that DNE" do
+      product_data = {
+        product: {
+          name: "test product name"
+        }
+      }
+      product_id = Product.last.id + 1
+      patch product_path(product_id), params: product_data
+      must_respond_with :not_found
+    end
   end
+
+
+  describe "destroy" do
+    it "destroys a productthat exists" do
+      start_count = Product.count
+
+      product_id = Product.first.id
+      delete product_path(product_id)
+      must_redirect_to products_path
+
+      end_count = Product.count
+      end_count.must_equal start_count - 1
+    end
+
+    it "returns 404 for a productthat DNE" do
+      start_count = Product.count
+
+      product_id = Product.last.id + 1
+      delete product_path(product_id)
+      must_respond_with :not_found
+
+      end_count = Product.count
+      end_count.must_equal start_count
+    end
+  end
+
 
 
 end
