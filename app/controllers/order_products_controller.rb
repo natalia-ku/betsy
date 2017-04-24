@@ -30,11 +30,7 @@ class OrderProductsController < ApplicationController
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
     if @order_product.destroy
-      destroy_order = true # delete whole order if shopping cart is empty
-      @order.order_products.each do |op|
-          destroy_order = false if op != nil
-      end
-      if destroy_order == true
+      if destroy_whole_order?(@order) #== true
         @order.destroy
         session[:order_id] = nil
       end
@@ -44,7 +40,17 @@ class OrderProductsController < ApplicationController
   end
 
   private
+
   def order_products_params
     params.require(:order_products).permit(:quantity, :order_id, :product_id)
   end
+
+  def destroy_whole_order?(order)
+    destroy_order = true # delete whole order if shopping cart is empty
+    order.order_products.each do |op|
+        destroy_order = false if op != nil
+    end
+    return destroy_order
+  end
+
 end
