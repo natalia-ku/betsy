@@ -36,6 +36,65 @@ describe ProductsController do
     end
   end
 
+
+  describe "new" do
+    it "runs successfully when creating a product for a valid merchant" do
+      merchant = Merchant.first
+      get new_merchant_product_path(merchant)
+      must_respond_with :success
+    end
+
+    it "returns 404 if trying to create a product for a merchant that DNE" do
+      merchant_id = Merchant.last.id + 1
+      get new_merchant_product_path(merchant_id)
+      must_respond_with :not_found
+
+    end
+
+
+
+
+
+
+
+  end
+
+#
+# describe "create" do
+#     it "creates a new product for the given merchant" do
+#       start_count = Classroom.count
+#
+#       classroom_data = {
+#         classroom: {
+#           designation: "test classroom"
+#         }
+#       }
+#       post classrooms_path, params: classroom_data
+#       must_redirect_to classrooms_path
+#
+#       end_count = Classroom.count
+#       end_count.must_equal start_count + 1
+#
+#       classroom = Classroom.last
+#       classroom.designation.must_equal classroom_data[:classroom][:designation]
+#     end
+#
+#     it "responds with bad_request for bogus data" do
+#       start_count = Classroom.count
+#
+#       classroom_data = {
+#         classroom: {
+#           foo: "bar"
+#         }
+#       }
+#       post classrooms_path, params: classroom_data
+#       must_respond_with :bad_request
+#
+#       end_count = Classroom.count
+#       end_count.must_equal start_count
+#     end
+#   end
+
   describe "show" do
 
     it "finds a product that exists" do
@@ -51,11 +110,4 @@ describe ProductsController do
     end
   end
 
-  describe "new" do
-    it "runs successfully" do
-      merchant = Merchant.first
-      get new_merchant_product_path(merchant)
-      must_respond_with :success
-    end
-  end
 end

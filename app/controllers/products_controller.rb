@@ -16,13 +16,17 @@ class ProductsController < ApplicationController
 
 
   def new
-    @merchant = Merchant.find(params[:merchant_id])
+    @merchant = Merchant.find_by(id: params[:merchant_id])
+    if @merchant.nil?
+      return head :not_found
+      ###what page to display???
+    end
     @product = @merchant.products.build
   end
 
 
   def create
-    @merchant = Merchant.find(params[:merchant_id])
+    @merchant = Merchant.find_by(id: params[:merchant_id])
     @product = @merchant.products.build(product_params)
     if @product.save
       flash[:message] = "Woot! Successfully created the new item: #{@product.name}"
@@ -38,13 +42,14 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       head :not_found
+      ###what page to display???
     end
   end
 
-end
 
+  private
+  def product_params
+    params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id)
+  end
 
-private
-def product_params
-  params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id)
 end
