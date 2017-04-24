@@ -5,6 +5,7 @@ describe OrderProductsController do
   let(:merchant){Merchant.create(username: "nata", email: "ew@com")}
   let(:product){Product.create(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)}
   let (:order_pr){OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 2)}
+
   describe "create" do
     it "adds an order_product to the database" do
       op = OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 30)
@@ -34,6 +35,17 @@ describe OrderProductsController do
     it "successfully deletes from database" do
       delete order_product_path(order_pr.id)
       must_redirect_to shopping_cart_path
+    end
+    # DOES NOT WORK BECAUSE OF THE SESSION:
+    it "deletes whole order if there are no order product in shopping cart" do
+      # order = Order.create(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
+      # product1 = Product.create(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)
+      # op1 = OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 30)
+      # op2 = OrderProduct.create(order_id: order.id, product_id: product1.id, quantity: 20)
+      # op1.destroy
+      # op2.destroy
+      # result = Order.find(order.id)
+      # result.must_be_nil
     end
     it "after deletion, order product doesn't exist anymore" do
       op = OrderProduct.new(order_id: order.id, product_id: product.id, quantity: 2)

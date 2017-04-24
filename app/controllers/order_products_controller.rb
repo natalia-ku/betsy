@@ -18,7 +18,7 @@ class OrderProductsController < ApplicationController
     @order_products = OrderProduct.all
   end
 
-  def update
+  def update #updating quantity in shopping cart
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
     @order_product.quantity = params[:quantity].to_i
@@ -30,7 +30,7 @@ class OrderProductsController < ApplicationController
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
     if @order_product.destroy
-      if destroy_whole_order?(@order) #== true
+      if destroy_whole_order?(@order)
         @order.destroy
         session[:order_id] = nil
       end

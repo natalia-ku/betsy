@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
     elsif params[:cancel_order]
       @order.status = "cancelled"
     end
-    @order.paid_at = @order.updated_at
+    @order.paid_at =  DateTime.now
 
     if @order.save!
       flash[:success] = "You successfully created your order"
@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def cancel
+  def cancel # to cancel form order show page
     @order = Order.find(params[:id])
     @order.status = "cancelled"
     change_stock(@order, "add") # add items back to stock
