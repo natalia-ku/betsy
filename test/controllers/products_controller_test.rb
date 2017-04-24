@@ -3,7 +3,7 @@ require "test_helper"
 
 describe ProductsController do
   describe "index" do
-    
+
     it "succeeds with many products, when not called with a particular merchant_id" do
       # Assumption: There are many products in the DB
 
@@ -33,6 +33,21 @@ describe ProductsController do
       dan = merchants(:dan)
       get merchant_products_path(dan)
       must_respond_with :success
+    end
+  end
+
+  describe "show" do
+
+    it "finds a product that exists" do
+      product_id = Product.first.id
+      get product_path(product_id)
+      must_respond_with :success
+    end
+
+    it "returns 404 for a product that DNE" do
+      product_id = Product.last.id + 1
+      get product_path(product_id)
+      must_respond_with :not_found
     end
   end
 
