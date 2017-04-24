@@ -50,18 +50,28 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      head :not_found
+      ###what page to display???
+    end
+    @merchant = @product.merchant
+  end
+
+
 
   ####Didn't write edit, update, destroy, retire/out-of-stock
 
-  def destroy
-    classroom = Classroom.find_by(id: params[:id])
-    if classroom.nil?
-      head :not_found
-    else
-      classroom.destroy
-      redirect_to classrooms_path
-    end
-  end
+  # def destroy
+  #   classroom = Classroom.find_by(id: params[:id])
+  #   if classroom.nil?
+  #     head :not_found
+  #   else
+  #     classroom.destroy
+  #     redirect_to classrooms_path
+  #   end
+  # end
 
   private
   def product_params
