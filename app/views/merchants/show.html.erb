@@ -5,8 +5,10 @@
   <p>Merchant id: <%=@merchant.id%></p>
   <%= @merchant.total_revenue %>
 
-  <%= @merchant.products.orders.each do |order| %>
+  <% @merchant.products.each do |product| %>
+  <% product.orders.each do |order| %>
   <%= link_to "Order ##{order.id}", order_path(order.id) %>
+  <% end %>
   <% end %>
 
   <%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>

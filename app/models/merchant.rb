@@ -18,7 +18,7 @@ class Merchant < ApplicationRecord
     total = 0.0
     products.each do |product|
       product.orders.each do |order|
-        total += order.subtotal
+        total += order.total_price
       end
     end
     return total
