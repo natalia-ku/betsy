@@ -74,22 +74,23 @@ describe ProductsController do
       product = Product.last
       product.name.must_equal product_data[:product][:name]
     end
+
+    it "responds with bad_request for bogus data" do
+      merchant = Merchant.first
+      start_count = merchant.products.count
+
+      product_data = {
+        product: {
+          foo: "bar"
+        }
+      }
+      post merchant_products_path(merchant.id), params: product_data
+      must_respond_with :bad_request
+
+      end_count = merchant.products.count
+      end_count.must_equal start_count
+    end
   end
-  #     it "responds with bad_request for bogus data" do
-  #       start_count = Classroom.count
-  #
-  #       classroom_data = {
-  #         classroom: {
-  #           foo: "bar"
-  #         }
-  #       }
-  #       post classrooms_path, params: classroom_data
-  #       must_respond_with :bad_request
-  #
-  #       end_count = Classroom.count
-  #       end_count.must_equal start_count
-  #     end
-  #   end
 
   describe "show" do
 
