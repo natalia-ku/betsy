@@ -61,6 +61,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def complete
+    @order = Order.find(params[:id])
+    @order.status = "complete"
+    if @order.save
+      flash.now[:success] = "You completed this order!"
+      render :show
+    end
+  end
+
   def destroy
     current_order.order_products.each do |op|
       op.destroy
