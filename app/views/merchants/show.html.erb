@@ -4,10 +4,6 @@
   <p>Email: <%=@merchant.email%></p>
   <p>Merchant id: <%=@merchant.id%></p>
 
-  <p><%=link_to "Merchant products", merchant_products_path(@merchant.id)%></p>
-  <%= link_to "Add products for merchant", new_merchant_product_path(@merchant, @product)%>
-  <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
-
   <p> Total Revenue: <%= @merchant.total_revenue %></p>
 <table>
   <thead>
