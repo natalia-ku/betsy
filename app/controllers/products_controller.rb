@@ -27,6 +27,10 @@ class ProductsController < ApplicationController
 
   def create
     @merchant = Merchant.find_by(id: params[:merchant_id])
+    if @merchant.nil?
+      return head :not_found
+      ###what page to display???
+    end
     @product = @merchant.products.build(product_params)
     if @product.save
       flash[:message] = "Woot! Successfully created the new item: #{@product.name}"
@@ -45,6 +49,10 @@ class ProductsController < ApplicationController
       ###what page to display???
     end
   end
+
+
+  ####Didn't write edit, update, destroy
+
 
 
   private
