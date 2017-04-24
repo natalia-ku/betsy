@@ -40,4 +40,8 @@ describe Merchant do
       end
     end
   end
+
+  describe "model methods" do
+    
+  end
 end
