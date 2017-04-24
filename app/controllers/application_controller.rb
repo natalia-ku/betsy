@@ -21,5 +21,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  def require_correct_user
+    find_user
+    if @current_user.id != Merchant.find_by(id: params[:id]).id
+      flash[:message] = "You must be logged in to see that page."
+      redirect_to root_path
+    end
+  end
 end
