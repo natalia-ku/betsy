@@ -23,6 +23,8 @@
     <td><%= order.status.capitalize %></td>
     <% if order.status == "paid" %>
       <td><%= button_to "Ship Order", complete_order_path(order.id), method: :get %></td>
+    <% elsif order.status == "pending" %>
+      <td> Order Not Yet Paid </td>
     <% else %>
       <td>Order Shipped</td>
     <% end %>
