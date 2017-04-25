@@ -1,15 +1,15 @@
 require "test_helper"
 
 describe OrdersController do
-  let(:order){Order.create(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)}
+  let(:order){Order.create(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", card_expiration: DateTime.now, cvv: 434,zip_code: 43434, paid_at: DateTime.now)}
   describe "create" do
     it "adds a order to the database" do
-      order_data = {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
+      order_data = {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", card_expiration: DateTime.now, cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
       proc {post orders_path, params: order_data
       }.must_change 'Order.count', 1
     end
     it "creates an order with valid data" do
-      order_data = {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
+      order_data = {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", card_expiration: DateTime.now, cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
       10.times do
         start_count = Order.count
         post orders_path, params: order_data
@@ -81,7 +81,7 @@ describe OrdersController do
 
   describe "complete action" do
     it "changes the order status to complete" do
-      bob = Order.create!(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
+      bob = Order.create!(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake", card_expiration: DateTime.now, credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
       get complete_order_path(bob.id)
       must_respond_with :success
       bob.reload

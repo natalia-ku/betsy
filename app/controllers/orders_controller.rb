@@ -83,11 +83,11 @@ class OrdersController < ApplicationController
   private
 
   def order_update_params
-    params.require(:order).permit(:email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code)
+    params.require(:order).permit(:email, :mailing_address,:card_name, :credit_card, :card_expiration, :cvv, :zip_code)
   end
 
   def order_params
-    params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :cvv, :zip_code, :paid_at)
+    params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :card_expiration, :cvv, :zip_code, :paid_at)
   end
 
   def create_order

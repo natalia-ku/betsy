@@ -8,7 +8,7 @@
       <h2>Order <%=o.id%></h2>
       <p>Order date and time:<%=o.paid_at.strftime("%m/%d/%Y %I:%M%p")%></p>
       <p>Order status:<%=o.status%> </p>
-      <%if o.status != "shipped"  && o.status != "cancelled"%>
+      <%if o.status != "complete"  && o.status != "cancelled"%>
         <%= link_to "Cancel order", cancel_order_path(o.id), method: :put%>
       <%end%>
       <p>Order total $:<%=o.total_price%> </p>

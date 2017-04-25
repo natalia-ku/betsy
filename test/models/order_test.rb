@@ -21,7 +21,7 @@ describe Order do
       order3 = Order.new(status: "complete")
       order4 = Order.new(status: "cancelled")
 
-      order2.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", cvv: "567", zip_code: "12345"}
+      order2.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", cvv: "567", card_expiration: DateTime.now, zip_code: "12345"}
 
       # This must go through, so we use save!
       order1.save!
@@ -34,7 +34,7 @@ describe Order do
     it "successfully creates an order with a paid status and the subsequently required fields " do
 
       order = Order.new(status: "paid")
-      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", cvv: "567", zip_code: "12345"}
+      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", card_expiration: DateTime.now, cvv: "567", zip_code: "12345"}
 
       # This must go through, so we use save!
       order.save!
@@ -43,7 +43,7 @@ describe Order do
 
     it "requires an email if status is paid" do
       order = Order.new(status: "paid")
-      order.attributes ={mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", cvv: "567", zip_code: "12345"}
+      order.attributes ={mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", card_expiration: DateTime.now, cvv: "567", zip_code: "12345"}
 
       order.valid?.must_equal false
       order.errors.messages.must_include :email
@@ -52,7 +52,7 @@ describe Order do
 
     it "requires a mailing address if status is paid" do
       order = Order.new(status: "paid")
-      order.attributes ={email: "me@aol.com", card_name: "Olga Owl", credit_card: "1234", cvv: "567", zip_code: "12345"}
+      order.attributes ={email: "me@aol.com", card_name: "Olga Owl", credit_card: "1234", card_expiration: DateTime.now, cvv: "567", zip_code: "12345"}
 
       order.valid?.must_equal false
       order.errors.messages.must_include :mailing_address
@@ -60,7 +60,7 @@ describe Order do
 
     it "requires a credit card name if status is paid" do
       order = Order.new(status: "paid")
-      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", credit_card: "1234", cvv: "567", zip_code: "12345"}
+      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", credit_card: "1234", card_expiration: DateTime.now, cvv: "567", zip_code: "12345"}
 
       order.valid?.must_equal false
       order.errors.messages.must_include :card_name
@@ -68,7 +68,7 @@ describe Order do
 
     it "requires a credit card if status is paid" do
       order = Order.new(status: "paid")
-      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", cvv: "567", zip_code: "12345"}
+      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", card_expiration: DateTime.now, cvv: "567", zip_code: "12345"}
 
       order.valid?.must_equal false
       order.errors.messages.must_include :credit_card
@@ -76,7 +76,7 @@ describe Order do
 
     it "requires a cvv if status is paid" do
       order = Order.new(status: "paid")
-      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", zip_code: "12345"}
+      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", card_expiration: DateTime.now, zip_code: "12345"}
 
       order.valid?.must_equal false
       order.errors.messages.must_include :cvv
@@ -84,7 +84,7 @@ describe Order do
 
     it "requires a zip code if status is paid" do
       order = Order.new(status: "paid")
-      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", cvv: "567"}
+      order.attributes ={email: "me@aol.com", mailing_address: "12 34th St", card_name: "Olga Owl", credit_card: "1234", card_expiration: DateTime.now, cvv: "567"}
 
       order.valid?.must_equal false
       order.errors.messages.must_include :zip_code
@@ -96,7 +96,7 @@ describe Order do
     product1 = Product.create(price: 6.00, name: "lkjdekjkalala",merchant: Merchant.create(username: "natkajia", email: "een@com"),description: "blablabla", stock: 3, photo_url: "na/com.jpg")
     product2 = Product.create(price: 16.00, name: "way",merchant: Merchant.create(username: "natkajia", email: "een@com"),description: "blablabla", stock: 3, photo_url: "na/com.jpg")
 
-    order = Order.create(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
+    order = Order.create(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", card_expiration: DateTime.now, cvv: 434,zip_code: 43434, paid_at: DateTime.now)
     op1 = OrderProduct.create(order: order, product: product1, quantity: 10)
     op2 = OrderProduct.create(order: order, product: product2, quantity: 10)
     order.total_price.must_equal 60 + 160

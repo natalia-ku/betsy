@@ -14,6 +14,7 @@ class Order < ApplicationRecord
     order.validates :mailing_address, presence: true
     order.validates :card_name, presence: true
     order.validates :credit_card, presence: true
+    order.validates :card_expiration, presence: true
     order.validates :cvv, presence: true
     order.validates :zip_code, presence: true
   end
