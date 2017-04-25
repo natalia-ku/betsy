@@ -5,11 +5,11 @@ describe OrderProductsController do
   let(:merchant){Merchant.create(username: "nata", email: "ew@com")}
   let(:product){Product.create(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)}
   let (:order_pr){OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 2)}
+  let (:category){Category.create(name: "supercategory")}
 
   describe "create" do
     it "adds an order_product to the database" do
       product1 = products(:owl1)
-      category = Category.create(name: "supercategory")
       pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
       product1.reload
       op = OrderProduct.create(order_id: order.id, product_id: product1.id, quantity: 30)
@@ -19,7 +19,6 @@ describe OrderProductsController do
     it "changing size of order products after creating" do
       before_count = OrderProduct.all.length
       product1 = products(:owl1)
-      category = Category.create(name: "supercategory")
       pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
       product1.reload
       op = OrderProduct.create(order_id: order.id, product_id: product1.id, quantity: 2)
@@ -48,7 +47,6 @@ describe OrderProductsController do
   describe "destroy" do
     it "successfully deletes from database" do
       product1 = products(:owl1)
-      category = Category.create(name: "supercategory")
       pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
       product1.reload
       order_pr = OrderProduct.create(order_id: order.id, product_id: product1.id, quantity: 2)
@@ -69,7 +67,6 @@ describe OrderProductsController do
     end
     it "after deletion, order product doesn't exist anymore" do
       product1 = products(:owl1)
-      category = Category.create(name: "supercategory")
       pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
       product1.reload
       op = OrderProduct.new(order_id: order.id, product_id: product1.id, quantity: 2)
