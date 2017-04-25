@@ -38,6 +38,11 @@ class ProductsController < ApplicationController
       return
     end
     @product = @merchant.products.build
+
+    # @product_categories = []
+    # 5.times do
+    #   @product_categories << ProductCategory.new
+    # end
   end
 
 
@@ -127,6 +132,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id)
+    params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id, category_ids:[])
   end
 end

@@ -6,16 +6,11 @@
     <p>Price: <%=@product.price%></p>
     <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
 
-    <br/>
-    <%= "Description: #{@product.description}" %>
-
-    <br/>
-    <%= "Categories:   THESE WILL BE BUTTONS "%>
+    <p><%= "Description: #{@product.description}" %> </p>
+    <p><%= "Product categories: "%></p>
     <% @product.categories.each do |category| %>
-    <%= category.name %>
+      <li><%=link_to category.name, category_path(category.id)%> </li>
     <% end %>
-    <br/>
-
 
     <%if @product.stock == nil || @product.stock < 1%>
       <p>Stock: product is out of stock</p>

@@ -1,30 +1,27 @@
 
 <section>
   <%= form_for [@merchant, @product] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
+  <%= f.label :price %>
+  <%= f.text_field :price %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
 
-    <%= f.label :price %>
-    <%= f.text_field :price %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
 
-    <%= f.label :photo_url %>
-    <%= f.text_field :photo_url %>
+  <%= f.label :stock %>
+  <%= f.text_area :stock %>
 
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <%= f.hidden_field :merchant_id, :value => @merchant.id%>
 
-    <%= f.label :stock %>
-    <%= f.text_area :stock %>
+  <%= f.label :categories %>
+  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
 
-    <%= f.hidden_field :merchant_id, :value => @merchant.id%>
-
-    <% Category.all.each do |category| %>
-    <%= check_box_tag "#{category.name}" %>
-    <%= category.name %>
-    <% end %>
-    <%= f.submit button_text %>
-
+  <%= f.submit button_text %>
   <% end %>
+  <p>Choose at least one category for your product:</p>
 </section>
