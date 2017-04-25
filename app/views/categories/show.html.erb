@@ -2,5 +2,5 @@
 <h4>Products</h4>
 <% @products.each do |product| %>
 <%= image_tag product.photo_url %>
-<%= product.name %>
+<%= link_to product.name, product_path(product.id) %>
 <% end %>

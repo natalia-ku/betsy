@@ -38,11 +38,6 @@ class ProductsController < ApplicationController
       return
     end
     @product = @merchant.products.build
-
-    # @product_categories = []
-    # 5.times do
-    #   @product_categories << ProductCategory.new
-    # end
   end
 
 
@@ -59,6 +54,7 @@ class ProductsController < ApplicationController
       redirect_to merchant_path(@merchant)
     else
       flash[:message] = "BooHoo. Unable to create new item."
+      flash[:messages] = @product.errors.messages
       render :new, status: :bad_request
       #redirect_to merchant_path(@merchant)
     end
