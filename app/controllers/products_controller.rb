@@ -62,6 +62,10 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+    if @product.retired == true && session[:user_id] != @product.merchant.id
+      flash[:message] = "You cannot view retired products"
+      redirect_to products_path
+    end
     if @product.nil?
       flash[:message] = "Could not find that product"
       redirect_to products_path
