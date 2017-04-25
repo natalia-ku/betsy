@@ -34,5 +34,6 @@
   <%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
 <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
 <%= button_to "All Categories", categories_path, method: :get%>
+  <%= button_to "New Category", new_category_path, :method => :get%>
 
 </section>
