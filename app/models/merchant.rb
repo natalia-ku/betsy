@@ -13,14 +13,6 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
-  def allowed_review?
-    if self.id == Product.find_by(id: params[:id]).merchant_id
-      return false
-    else
-      return true
-    end
-  end
-
   def total_revenue
     products = Product.where(merchant_id: self.id)
     total = 0.0
