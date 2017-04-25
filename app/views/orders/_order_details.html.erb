@@ -10,7 +10,7 @@
       <% if order.status != "complete" && order.status != "cancelled" %>
         <%= link_to "Cancel order", cancel_order_path(order.id), method: :put %>
       <%end%>
-      <p>Order total $<%=order.total_price %> </p>
+      <p>Order total $<%= '%.2f' %(order.total_price) %> </p>
       <h3>Order products: </h3>
-      <%= render partial: 'order_product_table', locals:{ item: order } %>
+      <%= render partial: 'orders/order_product_table', locals:{ item: order } %>
 </section>

@@ -11,7 +11,7 @@
     <tr>
       <td><%=link_to pr.name, product_path(pr.id)%></td>
       <td><%=OrderProduct.find_by(product_id: pr.id, order_id: item.id).quantity%></td>
-      <td><%=OrderProduct.find_by(product_id: pr.id, order_id: item.id).subtotal%></td>
+      <td>$<%= '%.2f' %(OrderProduct.find_by(product_id: pr.id, order_id: item.id).subtotal)%></td>
     </tr>
   <%end%>
 </tbody>

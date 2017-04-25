@@ -37,12 +37,19 @@ class Order < ApplicationRecord
     return total
   end
 
-  def merchant_subtotal(merchant_id)
+
+  def merchant_partial_order(merchant_id)
+    #returns an array of order-products whose products belong to the given merchant
     all_order_products = OrderProduct.where(order_id: self.id)
     my_order_products = all_order_products.select { |order_product| order_product.product.merchant_id == merchant_id}
+    return my_order_products
+  end
+
+
+  def merchant_subtotal(merchant_id)
     total = 0.0
-    my_order_products.each do |product|
-      total += product.subtotal
+    merchant_partial_order(merchant_id).each do |order_product|
+      total += order_product.subtotal
     end
     return total
   end
