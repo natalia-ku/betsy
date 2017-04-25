@@ -24,7 +24,7 @@
     <p> <%=link_to "Show shopping cart", shopping_cart_path%></p>
 
     <p> <%=link_to "All orders", orders_path%></p>
-    <p> <%=link_to "See all products", products_path%></p>
+    <%=button_to "See all products", products_path, method: :get%>
     <%= button_to "Shop by categories", categories_path, method: :get%>
     <%= button_to "Shop by merchants", merchants_path,  method: :get%>
 

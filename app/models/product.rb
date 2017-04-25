@@ -15,7 +15,15 @@ class Product < ApplicationRecord
   end
 
   def self.search(search)
-    where("name ILIKE ? OR description ILIKE ?", "%#{search}%", "%#{search}%") 
+    where("name ILIKE ? OR description ILIKE ?", "%#{search}%", "%#{search}%")
   end
 
+  def average_rating
+    average = 0.0
+    count = Review.where(product_id: self.id).length
+    Review.where(product_id: self.id).each do |review|
+      average += review.rating
+    end
+    return (average/count).round(2)
+  end
 end
