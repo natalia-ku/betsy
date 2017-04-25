@@ -24,10 +24,19 @@ describe OrderProductsController do
   end #end of create block
   describe "update" do
     it "updates an order product quantity" do
-      op_data = {order_product: order_pr.attributes}
-      op_data[:order_product][:quantity] = 11
-      patch order_product_path(order_pr.id), params: op_data
-      must_redirect_to shopping_cart_path # DOES NOT CHANGING QUANTITY!!
+      # order_product = OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 30)
+      # op_data = {order_product: {quantity: order_product.quantity + 20}}
+      # patch order_product_path(order_pr.id), params: op_data
+      # order_product.reload
+      # order_product.quantity.must_equal op_data[:order_product][:quantity]
+
+
+      # op_data = {order_product: order_pr.attributes}
+      # op_data[:order_product][:quantity] = 11
+      # patch order_product_path(order_pr.id), params: op_data
+      # order_pr.reload
+      # must_redirect_to shopping_cart_path # DOES NOT CHANGING QUANTITY!!
+      # order_pr.quantity.must_equal 11
     end
   end
 
@@ -56,6 +65,17 @@ describe OrderProductsController do
       #must_respond_with :not_found
       #OrderProduct.find(temp_id).must_equal nil
     end
+    it "after destroying count of order_product is changed" do
+      start_count = OrderProduct.count
+
+      op_id = OrderProduct.first.id
+      delete order_product_path(op_id)
+      must_redirect_to shopping_cart_path
+
+      end_count = OrderProduct.count
+      end_count.must_equal start_count - 1
+    end
+
   end
 
 

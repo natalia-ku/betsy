@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def shopping_cart
-    if session[:order_id] != nil # to create order only if there is at least one product in shopping cart
+    if session[:order_id] != nil
       find_current_order
       @shopping_cart_products = OrderProduct.all.where(order_id: @order.id)
     else
@@ -32,11 +32,11 @@ class OrdersController < ApplicationController
   def edit
   end
 
-  def update #make pending order paid or cancelled
+  def update
     @order.update_attributes(order_update_params)
     if params[:paid_order]
       @order.status = "paid"
-      change_stock(@order, "remove") # Remove items from stock
+      change_stock(@order, "remove")
     elsif params[:cancel_order]
       @order.status = "cancelled"
     end
@@ -52,10 +52,10 @@ class OrdersController < ApplicationController
     end
   end
 
-  def cancel # to cancel form order show page
+  def cancel
     @order = Order.find(params[:id])
     @order.status = "cancelled"
-    change_stock(@order, "add") # add items back to stock
+    change_stock(@order, "add")
     if @order.save
       flash[:success] = "You successfully cancelled your order"
       redirect_to orders_path

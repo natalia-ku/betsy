@@ -44,9 +44,10 @@ describe OrdersController do
       must_redirect_to products_path
     end
     it "after deletion, order doesn't exist anymore" do
-      o_id = Order.first.id
-      delete order_path(o_id)
-      #Order.find_by(id: o_id ).must_be_nil # does not WORKING!!!
+      order = Order.first
+      delete order_path(order)
+      order.reload
+      # Order.find_by(id: order.id ).must_be_nil # does not WORKING!!!
     end
     # it "changing size of orders after deleting" do
     #   proc {
