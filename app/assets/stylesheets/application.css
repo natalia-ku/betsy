@@ -21,10 +21,22 @@
   font-size: 2rem;
 }
 
-#search-form{
-  width: 20%;
+#search-button{
+  display: inline-block;
 }
-
 #star-image{
   width: 20px;
+}
+
+#search-form{
+   display: inline-block;
+}
+
+li{
+  list-style: none;
+}
+
+.orbit img{
+  height: 400px;
+
 }

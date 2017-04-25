@@ -15,22 +15,9 @@ class ProductsController < ApplicationController
     end
   end
 
-
-  # def new
-  #   @product = Product.new
-  #   @merchant = Merchant.find(params[:merchant_id])
-  # end
-  #
-  # def create
-  #   @merchant = Merchant.find(params[:merchant_id])
-  #   @product = @merchant.products.create(product_params)
-  #   if @product.id != nil
-  #     flash[:success] = "Successfully created new product"
-  #     redirect_to merchant_products_path(@merchant.id)
-  #   else
-  #     flash[:failure] = "Product wasn't created"
-  #     render :new, status: :bad_request
-  # end
+    def top_products
+      @top_products = Product.highest_rated
+    end
 
   def new
     @merchant = Merchant.find_by(id: params[:merchant_id])

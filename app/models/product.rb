@@ -6,6 +6,8 @@ class Product < ApplicationRecord
   has_many :product_categories
   has_many :categories, through: :product_categories
 
+  scope :highest_rated, -> { where("products.id in (select product_id from reviews)").group('products.id, products.name').joins(:reviews).order('AVG(reviews.rating) DESC').limit(6)}
+
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validate :must_have_one_category
@@ -26,4 +28,6 @@ class Product < ApplicationRecord
     end
     return (average/count).round(2)
   end
+
+
 end

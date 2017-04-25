@@ -44,16 +44,15 @@ describe OrdersController do
       must_redirect_to products_path
     end
     it "after deletion, order doesn't exist anymore" do
-      order = Order.first
-      delete order_path(order)
-      order.reload
-      # Order.find_by(id: order.id ).must_be_nil # does not WORKING!!!
+      order_id = Order.first.id
+      delete order_path(order_id)
+      #Order.find_by(id: order_id ).must_be_nil # does not WORKING!!!
     end
     # it "changing size of orders after deleting" do
-    #   proc {
-    #     delete order_path(order.id) , params: {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
-    #   }.must_change 'Order.all.length', -1
-    #
+      # proc {
+      #   delete order_path(order.id) , params: {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
+      # }.must_change 'Order.all.length', -1
+      #
   end # end of delete block
 
   describe "update" do
