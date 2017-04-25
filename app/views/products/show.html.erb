@@ -40,27 +40,30 @@
 
 
 <section>
-  <%= form_for @review do |f| %>
-  <%= radio_button_tag("review[rating]", "1") %>
-  <%= label_tag(:one, "1") %>
-  <%= radio_button_tag("review[rating]", "2") %>
-  <%= label_tag(:two, "2") %>
-  <%= radio_button_tag("review[rating]", "3") %>
-  <%= label_tag(:three, "3") %>
-  <%= radio_button_tag("review[rating]", "4") %>
-  <%= label_tag(:four, "4") %>
-  <%= radio_button_tag("review[rating]", "5") %>
-  <%= label_tag(:five, "5") %>
+  <%if @product.merchant.id != session[:user_id]%>
+    <%= form_for @review do |f| %>
+    <%= radio_button_tag("review[rating]", "1") %>
+    <%= label_tag(:one, "1") %>
+    <%= radio_button_tag("review[rating]", "2") %>
+    <%= label_tag(:two, "2") %>
+    <%= radio_button_tag("review[rating]", "3") %>
+    <%= label_tag(:three, "3") %>
+    <%= radio_button_tag("review[rating]", "4") %>
+    <%= label_tag(:four, "4") %>
+    <%= radio_button_tag("review[rating]", "5") %>
+    <%= label_tag(:five, "5") %>
 
-  <%= f.label :review_text %>
-  <%= f.text_field :review_text %>
-  <%= f.hidden_field :product_id, :value => @product.id%>
-  <%= f.submit value: "Comment" %>
-  <% end %>
+    <%= f.label :review_text %>
+    <%= f.text_field :review_text %>
+    <%= f.hidden_field :product_id, :value => @product.id%>
+    <%= f.submit value: "Comment" %>
+    <% end %>
+  <%else%>
+    <p> You cannot review your own product !</p>
+  <%end%>
 </section>
 
 <% Review.where(product_id: @product.id).each do |review| %>
-Comments:
   <p>Review Rating: <%= review.rating %></p>
   <p>Comment: <%= review.review_text %></p>
-  <% end %>
+<% end %>
