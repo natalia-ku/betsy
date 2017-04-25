@@ -93,13 +93,17 @@ describe Order do
 
   describe "total_price" do
     it "calculates total price of order "do
-    product1 = Product.create(price: 6.00, name: "lkjdekjkalala",merchant: Merchant.create(username: "natkajia", email: "een@com"),description: "blablabla", stock: 3, photo_url: "na/com.jpg")
-    product2 = Product.create(price: 16.00, name: "way",merchant: Merchant.create(username: "natkajia", email: "een@com"),description: "blablabla", stock: 3, photo_url: "na/com.jpg")
-
+    product1 = products(:owl1)
+    product2 = products(:owl2)
+    category = Category.create(name: "supercategory")
+    pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
+    pc2 = ProductCategory.create(product_id: product2.id, category_id: category.id)
+    product1.reload
+    product2.reload
     order = Order.create(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
     op1 = OrderProduct.create(order: order, product: product1, quantity: 10)
     op2 = OrderProduct.create(order: order, product: product2, quantity: 10)
-    order.total_price.must_equal 60 + 160
+    order.total_price.must_equal 300
     end
 
   end
