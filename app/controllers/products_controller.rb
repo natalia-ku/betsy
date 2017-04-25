@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    if params[:search]
+    if params[:search] # for search form
       @products = Product.search(params[:search]).order("name DESC")
     elsif params[:merchant_id]
       # localhost:3000/merchants/2/products
