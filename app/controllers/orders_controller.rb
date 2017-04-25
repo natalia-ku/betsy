@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
     end
     @order.paid_at =  DateTime.now
 
-    if @order.save!
+    if @order.save
       flash[:success] = "You successfully created your order"
       redirect_to order_path(@order.id)
       session[:order_id] = nil
