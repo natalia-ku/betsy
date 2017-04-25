@@ -29,8 +29,8 @@
           <li><%=link_to "Shopping cart", shopping_cart_path%></li>
           <li>
             <%= form_tag(products_path, :method => "get", id: "search-form") do %>
-            <li><%= text_field_tag :search, params[:search], placeholder: "Search Products"%></li>
-            <li><%= submit_tag "Search", :name => nil , class: "button default", id: "search-button"%></li>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Products", id: "search-field"%>
+            <%= submit_tag "Search", :name => nil , class: "button default", id: "search-button"%>
             <% end %>
           </li>
         </ul>
@@ -45,6 +45,9 @@
         <% end %>
       </div>
     </div>
+
+
+
   </header>
 
 

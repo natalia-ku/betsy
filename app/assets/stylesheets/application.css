@@ -22,14 +22,13 @@
 }
 
 #search-button{
-  display: inline-block;
+  width: 80%;
+}
+#search-field{
+  width: 80%;
 }
 #star-image{
   width: 20px;
-}
-
-#search-form{
-   display: inline-block;
 }
 
 li{
