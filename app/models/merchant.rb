@@ -24,4 +24,17 @@ class Merchant < ApplicationRecord
     return total
   end
 
+
+  def my_orders
+    my_orders = []
+    self.products.each do |product|
+      product.orders.each do |order|
+        if !my_orders.include?(order)
+          my_orders.push(order)
+        end
+      end
+    end
+    return my_orders
+  end
+
 end
