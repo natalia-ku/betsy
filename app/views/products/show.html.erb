@@ -66,7 +66,7 @@
   <h2>Product's reviews:</h2>
   <h3> Average rating: <%=@product.average_rating%></h3>
   <% Review.where(product_id: @product.id).each do |review| %>
-    <p>Review Rating: <% review.rating.times do %>
+    <p><% review.rating.times do %>
       <%= image_tag ("star.png"), alt:"star rating", id: "star-image"%>
       <%end%>
     </p>
