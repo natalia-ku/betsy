@@ -38,10 +38,10 @@ class Order < ApplicationRecord
   end
 
   def merchant_subtotal(merchant_id)
-    all_products = OrderProduct.where(order_id: self.id)
-    my_products = all_products.select { |product| product.merchant_id == merchant_id}
+    all_order_products = OrderProduct.where(order_id: self.id)
+    my_order_products = all_order_products.select { |order_product| order_product.product.merchant_id == merchant_id}
     total = 0.0
-    my_products.each do |product|
+    my_order_products.each do |product|
       total += product.subtotal
     end
     return total
