@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
 
   def index
-    if params[:merchant_id]
+    if params[:search]
+      @products = Product.search(params[:search]).order("name DESC")
+    elsif params[:merchant_id]
       # localhost:3000/merchants/2/products
       # we are in the nested route
       # retrieve products based on the merchant
@@ -62,12 +64,11 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
-    if @product.retired == true && session[:user_id] != @product.merchant.id
-      flash[:message] = "You cannot view retired products"
-      redirect_to products_path
-    end
     if @product.nil?
       flash[:message] = "Could not find that product"
+      redirect_to products_path
+    elsif @product.retired == true && session[:user_id] != @product.merchant.id
+      flash[:message] = "You cannot view retired products"
       redirect_to products_path
     end
     @order_product = OrderProduct.new

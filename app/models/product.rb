@@ -14,4 +14,8 @@ class Product < ApplicationRecord
     errors.add(:error, 'You must select at least one category') if self.categories.blank?
   end
 
+  def self.search(search)
+    where("name ILIKE ? OR description ILIKE ?", "%#{search}%", "%#{search}%") 
+  end
+
 end

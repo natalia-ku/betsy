@@ -1,6 +1,12 @@
 <h3>Category: <%= @category.name %></h3>
 <h4>Products</h4>
-<% @products.each do |product| %>
-<%= image_tag product.photo_url %>
-<%= link_to product.name, product_path(product.id) %>
-<% end %>
+<section>
+  <% @products.each do |product| %>
+    <%if product.retired == true%>
+      <%next%>
+    <%else%>
+      <%= image_tag product.photo_url %>
+      <%= link_to product.name, product_path(product.id) %>
+    <% end %>
+  <% end %>
+</section>

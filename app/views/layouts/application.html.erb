@@ -22,9 +22,18 @@
     <% end %>
 
     <p> <%=link_to "Show shopping cart", shopping_cart_path%></p>
-    <p> <%=link_to "All merchants", merchants_path%></p>
+
     <p> <%=link_to "All orders", orders_path%></p>
-    <p> <%=link_to "All products", products_path%></p>
+    <p> <%=link_to "See all products", products_path%></p>
+    <%= button_to "Shop by categories", categories_path, method: :get%>
+    <%= button_to "Shop by merchants", merchants_path,  method: :get%>
+
+    <%= form_tag(products_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Products" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+
   </header>
   <section class="flash">
     <% flash.each do |name, message| %>
