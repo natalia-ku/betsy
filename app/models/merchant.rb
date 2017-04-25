@@ -13,13 +13,21 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
+  # def total_revenue
+  #   products = Product.where(merchant_id: self.id)
+  #   total = 0.0
+  #   products.each do |product|
+  #     product.orders.each do |order|
+  #       total += order.total_price
+  #     end
+  #   end
+  #   return total
+  # end
+
   def total_revenue
-    products = Product.where(merchant_id: self.id)
-    total = 0.0
-    products.each do |product|
-      product.orders.each do |order|
-        total += order.total_price
-      end
+    total = 0.00
+    self.my_orders.each do |order|
+      total += order.merchant_subtotal(self.id)
     end
     return total
   end
