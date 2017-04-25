@@ -22,7 +22,7 @@
     <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
     <td><%= order.status.capitalize %></td>
     <% if order.status == "paid" %>
-      <td><%= link_to "Ship Order", complete_order_path(order.id), method: :put%></td>
+      <td><%= button_to "Ship Order", complete_order_path(order.id), method: :get %></td>
     <% else %>
       <td>Order Shipped</td>
     <% end %>

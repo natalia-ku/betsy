@@ -1,6 +1,7 @@
 <p>Owl City Shops</p>
 
-
-<% @merchants.each do |merchant|%>
-<%= link_to merchant.username.capitalize, merchant_products_path(merchant) %>
+<% if @merchants.length > 0 %>
+  <% @merchants.each do |merchant|%>
+  <%= link_to merchant.username, merchant_products_path(merchant) %>
+  <% end %>
 <% end %>

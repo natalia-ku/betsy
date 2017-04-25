@@ -42,6 +42,9 @@ describe Merchant do
   end
 
   describe "model methods" do
-    
+    it "can call total revenue on the orders" do
+      dan = merchants(:dan)
+      dan.total_revenue.must_be_kind_of Float
+    end
   end
 end

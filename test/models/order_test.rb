@@ -108,5 +108,10 @@ describe Order do
       end
     end
   end
-
+  describe "model methods" do
+    it "can return the last four of a credit card number" do
+      cart = orders(:sophia_cart)
+      cart.last_four.must_equal "2232"
+    end
+  end
 end
