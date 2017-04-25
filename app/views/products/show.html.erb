@@ -40,6 +40,7 @@
 
 
 <section>
+  <% if @current_user != nil %>
 <% if @current_user.allowed_review?(@product) %>
   <%= form_for @review do |f| %>
   <%= radio_button_tag("review[rating]", "1") %>
@@ -57,6 +58,7 @@
   <%= f.text_field :review_text %>
   <%= f.hidden_field :product_id, :value => @product.id%>
   <%= f.submit value: "Comment" %>
+  <% end %>
   <% end %>
   <% end %>
 </section>
