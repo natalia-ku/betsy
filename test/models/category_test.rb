@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe "Category" do
-  let(:category) { Category.new(name: "blablabla") }
+  let(:category) { Category.new(name: "blablablas") }
   let(:category_no_attributes) { Category.new }
 
   describe "Validation" do
