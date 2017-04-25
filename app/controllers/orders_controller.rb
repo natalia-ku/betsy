@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def shopping_cart
-    if session[:order_id] != nil # to create order only if there is at least one product in shopping cart
+    if session[:order_id] != nil
       find_current_order
       @shopping_cart_products = OrderProduct.all.where(order_id: @order.id)
     else
@@ -22,26 +22,27 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find_by(id: params[:id])
     if @order.nil?
-      head :not_found
+      flash[:message] = "Could not find this order"
+      redirect_to orders_path
     end
   end
 
   def edit
   end
 
-  def update #make pending order paid or cancelled
+  def update
     @order.update_attributes(order_update_params)
     if params[:paid_order]
       @order.status = "paid"
-      change_stock(@order, "remove") # Remove items from stock
+      change_stock(@order, "remove")
     elsif params[:cancel_order]
       @order.status = "cancelled"
     end
     @order.paid_at =  DateTime.now
 
-    if @order.save!
+    if @order.save
       flash[:success] = "You successfully created your order"
       redirect_to order_path(@order.id)
       session[:order_id] = nil
@@ -51,10 +52,10 @@ class OrdersController < ApplicationController
     end
   end
 
-  def cancel # to cancel form order show page
+  def cancel
     @order = Order.find(params[:id])
     @order.status = "cancelled"
-    change_stock(@order, "add") # add items back to stock
+    change_stock(@order, "add")
     if @order.save
       flash[:success] = "You successfully cancelled your order"
       redirect_to orders_path

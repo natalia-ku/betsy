@@ -39,6 +39,7 @@ before_action :require_correct_user, only: :show
 
   def logout
     session[:user_id] = nil
+    session[:order_id] = nil
     flash[:status] = :success
     flash[:result_text] = "Successfully logged out"
     redirect_to root_path

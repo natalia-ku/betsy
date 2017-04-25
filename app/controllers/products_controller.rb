@@ -54,6 +54,7 @@ class ProductsController < ApplicationController
       redirect_to merchant_path(@merchant)
     else
       flash[:message] = "BooHoo. Unable to create new item."
+      flash[:messages] = @product.errors.messages
       render :new, status: :bad_request
       #redirect_to merchant_path(@merchant)
     end
@@ -127,6 +128,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id)
+    params.require(:product).permit(:name, :price, :photo_url, :description, :stock, :merchant_id, category_ids:[])
   end
 end
