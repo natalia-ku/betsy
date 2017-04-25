@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
       redirect_to merchant_path(@merchant)
     else
       flash[:message] = "BooHoo. Unable to create new item."
-      flash[:messages] = @product.errors.messages
+      #flash[:messages] = @product.errors.messages
       render :new, status: :bad_request
       #redirect_to merchant_path(@merchant)
     end
