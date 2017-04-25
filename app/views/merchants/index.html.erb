@@ -1,7 +1,8 @@
 <p>Owl City Shops</p>
-
+<section>
 <% if @merchants.length > 0 %>
   <% @merchants.each do |merchant|%>
   <%= link_to merchant.username, merchant_products_path(merchant) %>
   <% end %>
 <% end %>
+</section>

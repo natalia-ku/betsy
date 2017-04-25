@@ -5,6 +5,7 @@
   <p>Merchant id: <%=@merchant.id%></p>
 
   <p> Total Revenue: <%= @merchant.total_revenue %></p>
+</section>
 <table>
   <thead>
     <tr>
@@ -33,8 +34,8 @@
   <% end %>
 </tbody>
 </table>
-  <%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
+<section>
+<%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
 <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
 <%= button_to "All Categories", categories_path, method: :get%>
-
 </section>
