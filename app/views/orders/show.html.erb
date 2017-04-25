@@ -20,7 +20,7 @@
       <p> Customer: <%= @order.card_name %>
       <p>Customer Email: <%= @order.email%> </p>
       <p>Last Four Digits of Credit Card: <%= @order.last_four %> </p>
-      <p>Card Expiration Date: <%= @order.card_expiration %></p>
+      <p>Card Expiration Date: <%= @order.card_expiration.strftime("%m/%y") %></p>
       <p>Order Status: <%= @order.status.capitalize %> </p>
       <% if @order.status != "complete" && @order.status != "cancelled" %>
         <%= link_to "Cancel order", cancel_order_path(@order.id), method: :put %>
