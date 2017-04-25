@@ -2,7 +2,7 @@ require "test_helper"
 
 describe CategoriesController do
   CATEGORIES = %w(albums books movies)
-  INVALID_CATEGORIES = ["nope", "42", "", "  ", "albumstrailingtext"]
+  INVALID_CATEGORIES = ["nope", "42", "  ", "albumstrailingtext"]
 
   describe "index" do
     it "succeeds with many categories" do
@@ -36,10 +36,11 @@ describe CategoriesController do
     end
 
     it "renders 404 not_found for a bogus category" do
-      invalid = INVALID_CATEGORIES.sample
-      # get "categories/#{category}"
-      get category_path(invalid)
-      must_respond_with :not_found
+      INVALID_CATEGORIES.each do |invalid|
+        # get "categories/#{category}"
+        get category_path(invalid)
+        must_respond_with :not_found
+      end
     end
   end
 
