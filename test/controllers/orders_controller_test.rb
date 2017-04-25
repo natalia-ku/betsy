@@ -25,10 +25,11 @@ describe OrdersController do
       get order_path(Order.last)
       must_respond_with :success
     end
-    # it "should show a 404 when order not found" do
-    #   get order_path(Order.last.id + 1)
-    #   must_respond_with :not_found
-    # end
+    it "should redirect to orders page if order doesn't exist" do
+      order_id = Order.last.id + 1
+      get order_path(order_id)
+      must_redirect_to orders_path
+    end
   end
   describe "shopping_cart" do
     it "succesessfully shows shopping cart" do
@@ -56,7 +57,6 @@ describe OrdersController do
 
   describe "update" do
     it "updates order" do
-      #o = Order.create(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
       order_data = {order: order.attributes}
       order_data[:order][:email] = "test change"
       patch order_path(order.id), params: order_data
@@ -74,6 +74,14 @@ describe OrdersController do
     it "make order status cancelled" do
       put cancel_order_path(order.id)
       must_redirect_to orders_path
+      order.reload.status.must_equal "cancelled"
+    end
+  end #end of cancel block
+
+  describe "complete" do
+    it "make order status completed" do
+      put complete_order_path(order.id)
+      order.reload.status.must_equal "complete"
     end
   end #end of cancel block
 

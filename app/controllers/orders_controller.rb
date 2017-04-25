@@ -22,9 +22,10 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find_by(id: params[:id])
     if @order.nil?
-      head :not_found
+      flash[:message] = "Could not find this order"
+      redirect_to orders_path
     end
   end
 
