@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :products, except: [:show] #only: [:show, :new, :create, :index]
   end
 
+  get "merchants/:id/orders/:order_id", to: "merchants#show_merchants_order", as: "merchant_order_view"
+
   resources :products do
     member do
       patch :retire
