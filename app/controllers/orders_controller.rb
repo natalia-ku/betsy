@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :find_current_order, only:[:edit, :update]
   def index
     @orders = Order.all
+
   end
 
   def new
@@ -110,5 +111,5 @@ class OrdersController < ApplicationController
       end
     end
   end
-  
+
 end
