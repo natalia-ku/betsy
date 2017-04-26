@@ -16,4 +16,4 @@
   <%end%>
 
   <h1>Order show page:</h1>
-  <%= render partial: "order_details", locals: {order: @order} %>
+  <%= render partial: "orders/order_details", locals: {order: @order, order_product_list: @order.order_products, as_merchant: false} %>
