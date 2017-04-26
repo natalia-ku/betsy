@@ -1,7 +1,7 @@
 class Merchant < ApplicationRecord
   has_many :products
   has_many :order_products, through: :products
-  
+
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, format: /.+@.+/
 
@@ -44,13 +44,5 @@ class Merchant < ApplicationRecord
       end
     end
     return my_orders
-  end
-
-  def allowed_review?(product)
-    if self.id == Product.find_by(id: product.id).merchant_id
-      return false
-    else
-      return true
-    end
   end
 end

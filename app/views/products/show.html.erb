@@ -29,16 +29,16 @@
       <%else%>
         <p>Product already in the <%=link_to "cart", shopping_cart_path%></p>
       <%end%>
-
+      <% if @product.allowed_access?(@current_user) %>
       <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get %> </p>
       <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }%> </p>
       <p><%=button_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
+      <% end %>
   </section>
 
   <section class = "large-6 medium-6 small-12 column">
     <section>
-      <% if @current_user != nil %>
-    <% if @current_user.allowed_review?(@product) %>
+    <% if !@product.allowed_access?(@current_user) %>
       <%= form_for @review do |f| %>
       <%= radio_button_tag("review[rating]", "1") %>
       <%= label_tag(:one, "1") %>
@@ -57,7 +57,7 @@
       <%= f.submit value: "Comment" %>
       <% end %>
       <% end %>
-      <% end %>
+
 
       </section>
   <section>

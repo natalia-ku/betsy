@@ -55,14 +55,6 @@ before_action :require_correct_user, only: :show
     redirect_to root_path
   end
 
-  def allowed_review?
-    if self.id == Product.find_by(id: params[:id]).merchant_id
-      return false
-    else
-      return true
-    end
-  end
-
   private
 
   def merchant_params

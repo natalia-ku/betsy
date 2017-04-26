@@ -35,5 +35,11 @@ class Product < ApplicationRecord
     return (average/count).round(2)
   end
 
-
+  def allowed_access?(user)
+    if user != nil && self.merchant_id == user.id
+      return true
+    else
+      return false
+    end
+  end
 end
