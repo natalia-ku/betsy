@@ -39,6 +39,17 @@ describe Merchant do
         product.must_be_kind_of Product
       end
     end
+
+
+    it "has a list of order_products" do
+      dan = merchants(:dan)
+      dan.must_respond_to :order_products
+      dan.order_products.each do |order_product|
+        order_product.must_be_kind_of OrderProduct
+      end
+    end
+
+
   end
 
   describe "model methods" do

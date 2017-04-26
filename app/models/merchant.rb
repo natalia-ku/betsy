@@ -1,6 +1,7 @@
 class Merchant < ApplicationRecord
   has_many :products
   has_many :order_products, through: :products
+  
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, format: /.+@.+/
 
