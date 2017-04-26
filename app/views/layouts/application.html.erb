@@ -7,32 +7,56 @@
   <title>Betsy</title>
 
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "application"%>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
   <header>
-    <% if @current_user != nil %>
-    <p>Logged in as <%= link_to @current_user.username, merchant_path(@current_user) %></p>
-    <%= link_to "Log Out", logout_path, method: :delete, class: "button float-right" %>
-    <% else %>
-    <p>Not logged in</p>
-    <%= link_to "Log In", '/auth/github', class: "button float-right" %>
-    <% end %>
-      <nav>
-        <%=link_to "Shopping Cart", shopping_cart_path%>
-        <%=link_to "All Merchants", merchants_path%>
-        <%=link_to "All Products", products_path%>
-    </nav>
+
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text"><%=link_to "Owl City", root_path%></li>
+          <li><a href="/products">See all products</a></li>
+          <li><a href="/merchants">Shop by merchants</a></li>
+          <li><a href="/categories">Shop by categories</a>
+            <ul class="menu vertical">
+              <% Category.all.each do |category| %>
+              <li><%= link_to category.name, category_path(category.id) %>  </li>
+              <% end %>
+            </ul>
+          </li>
+          <li><%=link_to "Shopping cart", shopping_cart_path%></li>
+          <li>
+            <%= form_tag(products_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Products", id: "search-field"%>
+            <%= submit_tag "Search", :name => nil , class: "button default", id: "search-button"%>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <% if @current_user != nil %>
+          <p>Logged in as <%= link_to @current_user.username, merchant_path(@current_user) %></p>
+          <%= link_to "Log Out", logout_path, method: :delete, class: "button float-right" %>
+        <% else %>
+          <p>Not logged in</p>
+          <%= link_to "Log In", '/auth/github', class: "button float-right" %>
+        <% end %>
+      </div>
+    </div>
+
   </header>
   <section class="flash">
     <% flash.each do |name, message| %>
     <div class="<%= name %>"><%= message %></div>
     <% end %>
   </section>
-
   <%= yield %>
+  <footer>
+    <h3 class="text-center"> @2017 JSAN (Janice, Sofia, Anna, Natalia)</h3>
+  <footer>
 </body>
 
 </html>

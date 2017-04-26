@@ -52,12 +52,15 @@ describe Product do
       product.errors.messages.must_include :name
     end
     it "requires a unique product name" do
-      price = 6.00
-      name = "Petunia"
-      product1 = Product.new(price: price, name: name, merchant_id: merchants(:harry).id)
+
+      category = Category.create(name: "supercategory")
+
+      product1 = products(:owl1)
+      pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
+      product1.reload
       product1.save!
 
-      product2 = Product.new(price: price, name: name, merchant_id: merchants(:harry).id)
+      product2 = Product.new(price: 6.00, name: products(:owl1).name, merchant_id: merchants(:harry).id)
       product2.valid?.must_equal false
       product2.errors.messages.must_include :name
     end

@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
 
   def index
-    if params[:merchant_id]
+    if params[:search] # for search form
+      @products = Product.search(params[:search]).order("name DESC")
+    elsif params[:merchant_id]
       # localhost:3000/merchants/2/products
       # we are in the nested route
       # retrieve products based on the merchant
@@ -13,22 +15,9 @@ class ProductsController < ApplicationController
     end
   end
 
-
-  # def new
-  #   @product = Product.new
-  #   @merchant = Merchant.find(params[:merchant_id])
-  # end
-  #
-  # def create
-  #   @merchant = Merchant.find(params[:merchant_id])
-  #   @product = @merchant.products.create(product_params)
-  #   if @product.id != nil
-  #     flash[:success] = "Successfully created new product"
-  #     redirect_to merchant_products_path(@merchant.id)
-  #   else
-  #     flash[:failure] = "Product wasn't created"
-  #     render :new, status: :bad_request
-  # end
+    def top_products
+      @top_products = Product.highest_rated
+    end
 
   def new
     @merchant = Merchant.find_by(id: params[:merchant_id])
@@ -64,6 +53,9 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash[:message] = "Could not find that product"
+      redirect_to products_path
+    elsif @product.retired == true && session[:user_id] != @product.merchant.id
+      flash[:message] = "You cannot view retired products"
       redirect_to products_path
     end
     @order_product = OrderProduct.new

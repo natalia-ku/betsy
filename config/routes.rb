@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-
-  root to: 'merchants#index'
+  root "products#top_products"
+  #root to: 'merchants#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :merchants, only: [:show, :index]
 
   delete 'logout', to: "merchants#logout"
 
-  get "/auth/:provider/callback", to: "merchants#create"
+  get "/auth/:provider/callback", to: "merchants#create" , as: "auth_callback"
 
   resources :merchants do
     resources :products, except: [:show] #only: [:show, :new, :create, :index]

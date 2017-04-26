@@ -8,6 +8,7 @@ class Order < ApplicationRecord
   # Only needed if reqirements include that an order must have at least one OrderProduct
   # validates :order_products,  presence: true
 
+
   with_options({if: :is_paid?}) do |order|
 
     order.validates :email, presence: true

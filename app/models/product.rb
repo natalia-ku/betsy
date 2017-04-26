@@ -6,14 +6,34 @@ class Product < ApplicationRecord
   has_many :product_categories
   has_many :categories, through: :product_categories
 
+  scope :highest_rated, -> { where("products.id in (select product_id from reviews)").group('products.id, products.name').joins(:reviews).order('AVG(reviews.rating) DESC').limit(6)}
+
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true, numericality: { greater_than: 0 }
 
   # validates :stock, presence: true,  numericality: true
-  # validate :must_have_one_category
-  #
-  # def must_have_one_category
-  #   errors.add(:error, 'You must select at least one category') if self.categories.blank?
-  # end
+  validate :must_have_one_category
+
+
+
+  validate :must_have_one_category
+
+  def must_have_one_category
+    errors.add(:error, 'You must select at least one category') if self.categories.blank?
+  end
+
+  def self.search(search)
+    where("name ILIKE ? OR description ILIKE ?", "%#{search}%", "%#{search}%")
+  end
+
+  def average_rating
+    average = 0.0
+    count = Review.where(product_id: self.id).length
+    Review.where(product_id: self.id).each do |review|
+      average += review.rating
+    end
+    return (average/count).round(2)
+  end
+
 
 end
