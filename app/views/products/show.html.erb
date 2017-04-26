@@ -1,71 +1,71 @@
 
 <section>
   <h2>Product details:</h2>
-
-    <p>Name: <%=@product.name%></p>
-    <p>Price: <%=@product.price%></p>
-    <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
-
-    <p><%= "Description: #{@product.description}" %> </p>
-    <p><%= "Product categories: "%></p>
-    <% @product.categories.each do |category| %>
-      <li><%=link_to category.name, category_path(category.id)%> </li>
-    <% end %>
-
-    <%if @product.stock == nil || @product.stock < 1%>
-      <p>Stock: product is out of stock</p>
-    <%else%>
-      <p>Stock: <%=@product.stock%></p>
-    <%end%>
-    <p>Merchant: <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_path(@product.merchant_id) %></p>
-
-    <%if  OrderProduct.find_by(order_id: session[:order_id], product_id: @product.id) == nil%>
-      <%= form_for @order_product do |f| %>
-        <%=f.label :quantity%>
-        <%= number_field_tag("quantity", 1, min: 1, max: @product.stock) %>
-        <%= hidden_field_tag("product_id", @product.id)%>
-        <%= f.submit value: "Add to shopping cart" %>
+<section class = "row">
+  <section class = "large-6 medium-6 small-12 column">
+      <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
+      <p>Name: <%=@product.name%></p>
+      <p>Price: <%=@product.price%></p>
+      <p><%= "Description: #{@product.description}" %> </p>
+      <p><%= "Product categories: "%></p>
+      <% @product.categories.each do |category| %>
+        <li><%=link_to category.name, category_path(category.id)%> </li>
       <% end %>
-    <%else%>
-      <p>Product already in the <%=link_to "cart", shopping_cart_path%></p>
-    <%end%>
 
-    <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get %> </p>
-
-    <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }%> </p>
-
-    <p><%=button_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
-
-</section>
-
-
-<section>
-    <%= form_for @review do |f| %>
-    <%= radio_button_tag("review[rating]", "1") %>
-    <%= label_tag(:one, "1") %>
-    <%= radio_button_tag("review[rating]", "2") %>
-    <%= label_tag(:two, "2") %>
-    <%= radio_button_tag("review[rating]", "3") %>
-    <%= label_tag(:three, "3") %>
-    <%= radio_button_tag("review[rating]", "4") %>
-    <%= label_tag(:four, "4") %>
-    <%= radio_button_tag("review[rating]", "5") %>
-    <%= label_tag(:five, "5") %>
-
-    <%= f.label :review_text %>
-    <%= f.text_field :review_text %>
-    <%= f.hidden_field :product_id, :value => @product.id%>
-    <%= f.submit value: "Comment" %>
-    <% end %>
-</section>
-<section>
-  <h2>Product's reviews:</h2>
-  <h3> Average rating: <%=@product.average_rating%></h3>
-  <% Review.where(product_id: @product.id).each do |review| %>
-    <p><% review.rating.times do %>
-      <%= image_tag ("star.png"), alt:"star rating", id: "star-image"%>
+      <%if @product.stock == nil || @product.stock < 1%>
+        <p>Stock: product is out of stock</p>
+      <%else%>
+        <p>Stock: <%=@product.stock%></p>
       <%end%>
-    </p>
-    <p>Comment: <%= review.review_text %></p>
-  <% end %>
+      <p>Merchant: <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_path(@product.merchant_id) %></p>
+
+      <%if  OrderProduct.find_by(order_id: session[:order_id], product_id: @product.id) == nil%>
+        <%= form_for @order_product do |f| %>
+          <%=f.label :quantity%>
+          <%= number_field_tag("quantity", 1, min: 1, max: @product.stock) %>
+          <%= hidden_field_tag("product_id", @product.id)%>
+          <%= f.submit value: "Add to shopping cart" %>
+        <% end %>
+      <%else%>
+        <p>Product already in the <%=link_to "cart", shopping_cart_path%></p>
+      <%end%>
+
+      <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get %> </p>
+      <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }%> </p>
+      <p><%=button_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
+  </section>
+
+  <section class = "large-6 medium-6 small-12 column">
+  <section>
+      <%= form_for @review do |f| %>
+      <%= radio_button_tag("review[rating]", "1") %>
+      <%= label_tag(:one, "1") %>
+      <%= radio_button_tag("review[rating]", "2") %>
+      <%= label_tag(:two, "2") %>
+      <%= radio_button_tag("review[rating]", "3") %>
+      <%= label_tag(:three, "3") %>
+      <%= radio_button_tag("review[rating]", "4") %>
+      <%= label_tag(:four, "4") %>
+      <%= radio_button_tag("review[rating]", "5") %>
+      <%= label_tag(:five, "5") %>
+
+      <%= f.label :review_text %>
+      <%= f.text_field :review_text %>
+      <%= f.hidden_field :product_id, :value => @product.id%>
+      <%= f.submit value: "Comment" %>
+      <% end %>
+  </section>
+  <section>
+    <h2>Product's reviews:</h2>
+    <h3> Average rating: <%=@product.average_rating%></h3>
+    <% Review.where(product_id: @product.id).each do |review| %>
+      <p><% review.rating.times do %>
+        <%= image_tag ("star.png"), alt:"star rating", id: "star-image"%>
+        <%end%>
+      </p>
+      <p>Comment: <%= review.review_text %></p>
+    <% end %>
+  </section>
+
+  </section>
 </section>

@@ -48,3 +48,7 @@ li{
   float: left;
   margin: 2% 2% 2% 2%;
 }
+
+input#quantity{
+  width: 60px;
+}
