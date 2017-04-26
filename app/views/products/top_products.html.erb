@@ -38,12 +38,12 @@
           <h3 class="text-center"> Top-rated products </h3>
           <h2 class="text-center"> <%= link_to product.name, product_path(product.id) %> </h2>
           <h2 class="text-center"><%= image_tag product.photo_url, alt:"picture of #{product.name}" %><h2>
-          <p class="text-center"> Price: $<%=product.price %> </p>
-          <p class="text-center"> Rating: <%if product.average_rating == nil %>
+          <h5 class="text-center"> Price: $<%=product.price %> </h5>
+          <h5 class="text-center"> Rating: <%if product.average_rating == nil %>
             <p> Not rated</p>
           <%else%>
             <%=product.average_rating%>
-          <%end%></p>
+          <%end%></h5>
         </div>
       </li>
     <%end%>
