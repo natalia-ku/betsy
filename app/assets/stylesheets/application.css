@@ -52,3 +52,16 @@ li{
 input#quantity{
   width: 60px;
 }
+
+form{
+  width: 60%;
+  margin-left: 20%;
+}
+form#new_review.new_review{
+  width: 60%;
+  margin-left: 0%;
+}
+input#review_review_text{
+    width: 100%;
+    height: 100px;
+}

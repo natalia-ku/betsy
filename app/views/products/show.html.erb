@@ -1,6 +1,6 @@
 
 <section>
-  <h2>Product details:</h2>
+  <h2 >Product details:</h2>
 <section class = "row">
   <section class = "large-6 medium-6 small-12 column">
       <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
@@ -56,7 +56,6 @@
       <% end %>
   </section>
   <section>
-    <h2>Product's reviews:</h2>
     <h3> Average rating: <%=@product.average_rating%></h3>
     <% Review.where(product_id: @product.id).each do |review| %>
       <p><% review.rating.times do %>
