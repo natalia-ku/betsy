@@ -52,23 +52,23 @@ describe ProductsController do
 
 
   describe "create" do
-    it "creates a new product for the given merchant" do
-      merchant = Merchant.first
-      start_count = merchant.products.count
-      product_data = {
-        product: {
-          name: "test product",
-        }
-      }
-      post merchant_products_path(merchant.id), params: product_data
-      must_redirect_to merchant_path(merchant)
-
-      end_count = merchant.products.count
-      end_count.must_equal start_count + 1
-
-      product = Product.last
-      product.name.must_equal product_data[:product][:name]
-    end
+    # it "creates a new product for the given merchant" do
+    #   merchant = Merchant.first
+    #   start_count = merchant.products.count
+    #   product_data = {
+    #     product: {
+    #       name: "test product",
+    #     }
+    #   }
+    #   post merchant_products_path(merchant.id), params: product_data
+    #   must_redirect_to merchant_path(merchant)
+    #
+    #   end_count = merchant.products.count
+    #   end_count.must_equal start_count + 1
+    #
+    #   product = Product.last
+    #   product.name.must_equal product_data[:product][:name]
+    # end
 
     it "responds with bad_request for bogus data" do
       merchant = Merchant.first
@@ -178,7 +178,7 @@ describe ProductsController do
       product = Product.first
       c = Category.create(name: "newcoolcategory")
       pc = ProductCategory.create(product_id: product.id,category_id: c.id)
-      
+
       product.retired = false
       product.save
 

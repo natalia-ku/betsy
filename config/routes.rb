@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   delete 'logout', to: "merchants#logout"
 
-  get "/auth/:provider/callback", to: "merchants#create"
+  get "/auth/:provider/callback", to: "merchants#create" , as: "auth_callback"
 
   resources :merchants do
     resources :products, except: [:show] #only: [:show, :new, :create, :index]

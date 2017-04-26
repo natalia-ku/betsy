@@ -45,20 +45,16 @@
         <% end %>
       </div>
     </div>
-
-
-
   </header>
-
-
-
   <section class="flash">
     <% flash.each do |name, message| %>
     <div class="<%= name %>"><%= message %></div>
     <% end %>
   </section>
-
   <%= yield %>
+  <footer>
+    <h3 class="text-center"> @2017 JSAN (Janice, Sofia, Anna, Natalia)</h3>
+  <footer>
 </body>
 
 </html>
