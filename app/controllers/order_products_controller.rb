@@ -29,6 +29,7 @@ class OrderProductsController < ApplicationController
 
     def ship
       @order_product = OrderProduct.find(params[:id])
+
       @order_product.status = "shipped"
 
       if @order_product.save
