@@ -48,16 +48,16 @@ describe Merchant do
         order_product.must_be_kind_of OrderProduct
       end
     end
-
-
   end
 
-  describe "model methods" do
+  describe "total_revenue" do
     it "can call total revenue on the orders" do
       dan = merchants(:dan)
       dan.total_revenue.must_be_kind_of Float
     end
+  end
 
+  describe "my_orders" do
     it "my_orders gets accurate list of orders by given merchant" do
       dan = merchants(:dan)
       dan.my_orders.must_include orders(:sophia_cart)
@@ -67,9 +67,15 @@ describe Merchant do
     it "my_orders returns an empty array if given merchantn has no orders" do
       jamie = merchants(:jamie)
       jamie.my_orders.must_equal []
-
     end
-
-
   end
+
+  describe "allowed_review?" do
+    it "returns true if merchant_id and product's merchant_id is same" do
+      dan = merchants(:dan)
+      product = dan.products.first
+      product.merchant_id.must_equal dan.id
+    end
+  end
+
 end

@@ -12,7 +12,9 @@ order_product1:
 order_product2:
   order: sophia_cart
   product: owl1
+  quantity: 2
 
 order_product2:
   order: sophia_cart
   product: owl2
+  quantity: 3
