@@ -35,6 +35,7 @@ end
       Merchant.count.must_equal start_count + 1
       session[:user_id].must_equal Merchant.last.id, "Merchant was not logged in"
     end
+    
     it "accepts a returning user"do
       start_count = Merchant.count
       merchant = merchants(:grace)

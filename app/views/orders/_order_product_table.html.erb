@@ -4,6 +4,7 @@
     <th>Product</th>
     <th>Quantity</th>
     <th>Subtotal</th>
+    <th>Status</th>
   </tr>
 </thead>
 <tbody>
@@ -13,6 +14,10 @@
       <td><%=link_to order_product.product.name, product_path(order_product.product.id)%></td>
       <td><%= order_product.quantity%></td>
       <td>$<%= '%.2f' %(order_product.subtotal)%></td>
+       <% if as_merchant && (order_product.status == "not shipped") %>
+       <!-- ************* -->
+          <% link_to "Ship product", path patch%>
+      <td><%= order_product.status%></td>
     </tr>
   <%end%>
 

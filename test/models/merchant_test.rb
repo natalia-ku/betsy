@@ -67,9 +67,6 @@ describe Merchant do
     it "my_orders returns an empty array if given merchantn has no orders" do
       jamie = merchants(:jamie)
       jamie.my_orders.must_equal []
-
     end
-
-
   end
 end

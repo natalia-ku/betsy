@@ -26,6 +26,19 @@ class OrderProductsController < ApplicationController
     redirect_to shopping_cart_path
   end
 
+
+    def ship
+      @order_product = OrderProduct.find(params[:id])
+      @order_product.status = "shipped"
+
+      if @order_product.save
+        flash[:success] = "You successfully shipped this product"
+        redirect_to merchant_order_view_path(@order_product.product.merchant_id  , @order_product.order_id )
+      end
+    end
+
+
+
   def destroy # deletes order products from shopping cart
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
