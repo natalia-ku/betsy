@@ -5,8 +5,8 @@ class Order < ApplicationRecord
   validates :status,  presence: true,
   inclusion: { in: %w(pending paid complete cancelled) }
 
- # Only needed if reqirements include that an order must have at least one OrderProduct
- # validates :order_products,  presence: true
+  # Only needed if reqirements include that an order must have at least one OrderProduct
+  # validates :order_products,  presence: true
 
   with_options({if: :is_paid?}) do |order|
 
@@ -34,6 +34,23 @@ class Order < ApplicationRecord
     total = 0.0
     op.each do |product|
       total += product.subtotal
+    end
+    return total
+  end
+
+
+  def merchant_partial_order(merchant_id)
+    #returns an array of order-products whose products belong to the given merchant
+    all_order_products = OrderProduct.where(order_id: self.id)
+    my_order_products = all_order_products.select { |order_product| order_product.product.merchant_id == merchant_id}
+    return my_order_products
+  end
+
+
+  def merchant_subtotal(merchant_id)
+    total = 0.0
+    merchant_partial_order(merchant_id).each do |order_product|
+      total += order_product.subtotal
     end
     return total
   end

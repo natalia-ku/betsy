@@ -8,8 +8,10 @@ class Product < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true, numericality: { greater_than: 0 }
+
+  # validates :stock, presence: true,  numericality: true
   # validate :must_have_one_category
-  # 
+  #
   # def must_have_one_category
   #   errors.add(:error, 'You must select at least one category') if self.categories.blank?
   # end

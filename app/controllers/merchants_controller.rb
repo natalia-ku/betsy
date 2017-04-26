@@ -12,6 +12,16 @@ before_action :require_correct_user, only: :show
     end
   end
 
+  def show_merchants_order
+    @merchant = Merchant.find_by(id: params[:id])
+    @order = Order.find_by(id: params[:order_id])
+    @merchants_order = @order.merchant_partial_order(@merchant.id)
+
+    # if @merchant.nil?
+    #   head :not_found
+    # end
+  end
+
   def new
     @merchant = Merchant.new
   end

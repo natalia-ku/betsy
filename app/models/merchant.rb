@@ -1,6 +1,7 @@
 class Merchant < ApplicationRecord
   has_many :products
-
+  has_many :order_products, through: :products
+  
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, format: /.+@.+/
 
@@ -13,15 +14,36 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
+  # def total_revenue
+  #   products = Product.where(merchant_id: self.id)
+  #   total = 0.0
+  #   products.each do |product|
+  #     product.orders.each do |order|
+  #       total += order.total_price
+  #     end
+  #   end
+  #   return total
+  # end
+
   def total_revenue
-    products = Product.where(merchant_id: self.id)
-    total = 0.0
-    products.each do |product|
-      product.orders.each do |order|
-        total += order.total_price
-      end
+    total = 0.00
+    self.my_orders.each do |order|
+      total += order.merchant_subtotal(self.id)
     end
     return total
+  end
+
+
+  def my_orders
+    my_orders = []
+    self.products.each do |product|
+      product.orders.each do |order|
+        if !my_orders.include?(order)
+          my_orders.push(order)
+        end
+      end
+    end
+    return my_orders
   end
 
   def allowed_review?(product)

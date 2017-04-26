@@ -7,12 +7,14 @@
   </tr>
 </thead>
 <tbody>
-  <% item.products.each do |pr|%>
+
+  <% items.each do |order_product|%>
     <tr>
-      <td><%=link_to pr.name, product_path(pr.id)%></td>
-      <td><%=OrderProduct.find_by(product_id: pr.id, order_id: item.id).quantity%></td>
-      <td><%=OrderProduct.find_by(product_id: pr.id, order_id: item.id).subtotal%></td>
+      <td><%=link_to order_product.product.name, product_path(order_product.product.id)%></td>
+      <td><%= order_product.quantity%></td>
+      <td>$<%= '%.2f' %(order_product.subtotal)%></td>
     </tr>
   <%end%>
+
 </tbody>
 </table>

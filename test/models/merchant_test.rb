@@ -36,9 +36,20 @@ describe Merchant do
       dan = merchants(:dan)
       dan.must_respond_to :products
       dan.products.each do |product|
-      product.must_be_kind_of Product
+        product.must_be_kind_of Product
       end
     end
+
+
+    it "has a list of order_products" do
+      dan = merchants(:dan)
+      dan.must_respond_to :order_products
+      dan.order_products.each do |order_product|
+        order_product.must_be_kind_of OrderProduct
+      end
+    end
+
+
   end
 
   describe "model methods" do
@@ -46,5 +57,19 @@ describe Merchant do
       dan = merchants(:dan)
       dan.total_revenue.must_be_kind_of Float
     end
+
+    it "my_orders gets accurate list of orders by given merchant" do
+      dan = merchants(:dan)
+      dan.my_orders.must_include orders(:sophia_cart)
+      dan.my_orders.count.must_equal 1
+    end
+
+    it "my_orders returns an empty array if given merchantn has no orders" do
+      jamie = merchants(:jamie)
+      jamie.my_orders.must_equal []
+
+    end
+
+
   end
 end

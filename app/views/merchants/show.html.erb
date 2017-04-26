@@ -3,9 +3,9 @@
   <p>Username: <%=@merchant.username%></p>
   <p>Email: <%=@merchant.email%></p>
   <p>Merchant id: <%=@merchant.id%></p>
-
-  <p> Total Revenue: <%= @merchant.total_revenue %></p>
+  <p> Total Revenue: $<%= '%.2f' %(@merchant.total_revenue) %></p>
 </section>
+
 <table>
   <thead>
     <tr>
@@ -16,10 +16,9 @@
     </tr>
   </thead>
   <tbody>
-  <% @merchant.products.each do |product| %>
-    <% product.orders.each do |order| %>
+  <% @merchant.my_orders.each do |order| %>
     <tr>
-    <td><%= link_to "Order ##{order.id}", order_path(order.id) %></td>
+    <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
     <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
     <td><%= order.status.capitalize %></td>
     <% if order.status == "paid" %>
@@ -31,7 +30,7 @@
     <% end %>
   </tr>
     <% end %>
-  <% end %>
+
 </tbody>
 </table>
 <section>

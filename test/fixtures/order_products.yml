@@ -8,3 +8,11 @@
 order_product1:
   order: sophia_cart
   product: hat
+
+order_product2:
+  order: sophia_cart
+  product: owl1
+
+order_product2:
+  order: sophia_cart
+  product: owl2
