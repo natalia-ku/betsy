@@ -7,9 +7,11 @@
   <p> Customer: <%= order.card_name %>
     <p>Customer Email: <%= order.email%> </p>
     <p>Last Four Digits of Credit Card: <%= order.last_four %> </p>
+
+    <% order.complete? %>
     <p>Order Status: <%= order.status.capitalize %> </p>
     <% if !as_merchant %>
-    <% if order.status != "complete" && order.status != "cancelled" &&%>
+    <% if order.can_cancel? %>
     <%= link_to "Cancel order", cancel_order_path(order.id), method: :put %>
     <%end%>
     <p>Order total $<%= '%.2f' %(order.total_price) %> </p>
@@ -18,5 +20,5 @@
     <%end%>
 
     <h3>Order products: </h3>
-    <%= render partial: 'orders/order_product_table', locals:{ items: order_product_list } %>
+    <%= render partial: 'orders/order_product_table', locals:{ items: order_product_list, as_merchant: as_merchant } %>
   </section>

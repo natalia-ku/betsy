@@ -56,4 +56,42 @@ class Order < ApplicationRecord
     return total
   end
 
+  def merchant_shipping_required?(merchant_id)
+    to_ship = self.merchant_partial_order(merchant_id).select {|order_product| order_product.status == "not shipped"}
+    if to_ship.empty?
+      return false
+    else
+      return true
+    end
+  end
+
+
+  def can_cancel?
+    if (self.status == "complete") || (self.status == "cancelled")
+      return false
+    else
+      shipped = self.order_products.select {|op|op.status == "shipped"}
+      if !shipped.empty?
+        return false
+      else
+        return true
+      end
+    end
+  end
+
+
+  def complete?
+    number_shipped = 0
+    self.order_products.each do |op|
+      if op.status == "shipped"
+        number_shipped += 1
+      end
+    end
+    if number_shipped == self.order_products.count
+      self.status = "complete"
+      self.save
+    end
+  end
+
+
 end

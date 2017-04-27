@@ -21,12 +21,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reviews, only: [:new, :create]
+ patch 'order_products/:id', to: 'order_products#ship', as: 'ship_order_product'
+
+
+resources :reviews, only: [:new, :create]
 
   resources :orders do
     member do
       put :cancel
-      get :complete
+      #get :complete
     end
   end
 

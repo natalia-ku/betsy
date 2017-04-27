@@ -26,6 +26,39 @@ class OrderProductsController < ApplicationController
     redirect_to shopping_cart_path
   end
 
+
+  def ship
+    @order_product = OrderProduct.find(params[:id])
+
+    @order_product.status = "shipped"
+
+    if @order_product.save
+      flash[:success] = "You successfully shipped this product"
+      redirect_to merchant_order_view_path(@order_product.product.merchant_id  , @order_product.order_id )
+    end
+
+    order = @order_product.order
+    order.complete?
+    #complete? is a method in orders controller
+    end
+
+    # number_shipped = 0
+    #
+    # order.order_products.each do |op|
+    #   if op.status == "shipped"
+    #     number_shipped += 1
+    #   end
+    # end
+    # if number_shipped == order.order_products.count
+    #   order.status = "complete"
+    #   order.save
+    # end
+    #end
+
+
+
+
+
   def destroy # deletes order products from shopping cart
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
@@ -48,7 +81,7 @@ class OrderProductsController < ApplicationController
   def destroy_whole_order?(order)
     destroy_order = true # delete whole order if shopping cart is empty
     order.order_products.each do |op|
-        destroy_order = false if op != nil
+      destroy_order = false if op != nil
     end
     return destroy_order
   end

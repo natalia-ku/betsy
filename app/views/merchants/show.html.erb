@@ -12,31 +12,30 @@
       <th>Order</th>
       <th>Date</th>
       <th>Status</th>
-      <th>Mark As Shipped?</th>
     </tr>
   </thead>
   <tbody>
-  <% @merchant.my_orders.each do |order| %>
+    <% @merchant.my_orders.each do |order| %>
     <tr>
-    <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
-    <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
-    <td><%= order.status.capitalize %></td>
-    <% if order.status == "paid" %>
-      <td><%= button_to "Ship Order", complete_order_path(order.id), method: :get %></td>
-    <% elsif order.status == "pending" %>
-      <td> Order Not Yet Paid </td>
-    <% else %>
-      <td>Order Shipped</td>
-    <% end %>
-  </tr>
+      <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
+      <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
+      <td><%= order.status.capitalize %></td>
+
+
+      <% if (order.status == "paid" || order.status == "pending") %>
+      <% if order.merchant_shipping_required?(@merchant.id) %>
+      <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get %></td>
+      <% end %>
+      <% end %>
+    </tr>
     <% end %>
 
-</tbody>
+  </tbody>
 </table>
 <section>
-<%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
-<%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
-<%= button_to "All Categories", categories_path, method: :get%>
+  <%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
+  <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
+  <%= button_to "All Categories", categories_path, method: :get%>
   <%= button_to "New Category", new_category_path, :method => :get%>
 
 

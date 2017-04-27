@@ -68,6 +68,7 @@ describe Merchant do
       jamie = merchants(:jamie)
       jamie.my_orders.must_equal []
     end
+
   end
 
   describe "allowed_review?" do
