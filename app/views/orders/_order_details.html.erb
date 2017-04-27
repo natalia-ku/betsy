@@ -20,5 +20,5 @@
     <%end%>
 
     <h3>Order products: </h3>
-    <%= render partial: 'orders/order_product_table', locals:{ items: order_product_list, as_merchant: as_merchant } %>
+    <%= render partial: 'orders/order_product_table', locals:{order: @order, items: order_product_list, as_merchant: as_merchant } %>
   </section>

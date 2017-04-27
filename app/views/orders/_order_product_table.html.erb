@@ -15,10 +15,10 @@
       <td><%= order_product.quantity%></td>
       <td>$<%= '%.2f' %(order_product.subtotal)%></td>
 
-      <% if as_merchant && (order_product.status == "not shipped") %>
-      <td><%= button_to "Ship this product", ship_order_product_path(order_product.id), method: :patch %></td>
+      <% if as_merchant && ((order.status == "paid") && (order_product.status == "not shipped")) %>
+        <td><%= button_to "Ship this product", ship_order_product_path(order_product.id), method: :patch %></td>
       <% else%>
-      <td><%= order_product.status%></td>
+        <td><%= order_product.status%></td>
       <%end%>
     </tr>
     <%end%>
