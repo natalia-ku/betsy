@@ -66,6 +66,20 @@ class Order < ApplicationRecord
   end
 
 
+  def can_cancel?
+    if (self.status == "complete") || (self.status == "cancelled")
+      return false
+    else
+      shipped = self.order_products.select {|op|op.status == "shipped"}
+      if !shipped.empty?
+        return false
+      else
+        return true
+      end
+    end
+  end
+
+
   def complete?
     number_shipped = 0
     self.order_products.each do |op|
@@ -78,5 +92,6 @@ class Order < ApplicationRecord
       self.save
     end
   end
+
 
 end

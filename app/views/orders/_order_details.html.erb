@@ -9,7 +9,7 @@
     <p>Last Four Digits of Credit Card: <%= order.last_four %> </p>
     <p>Order Status: <%= order.status.capitalize %> </p>
     <% if !as_merchant %>
-    <% if order.status != "complete" && order.status != "cancelled" &&%>
+    <% if order.can_cancel? %>
     <%= link_to "Cancel order", cancel_order_path(order.id), method: :put %>
     <%end%>
     <p>Order total $<%= '%.2f' %(order.total_price) %> </p>
