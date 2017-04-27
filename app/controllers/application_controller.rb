@@ -14,7 +14,17 @@ class ApplicationController < ActionController::Base
     return order
   end
 
-
+  def my_orders(merchant)
+    my_orders = []
+    merchant.products.each do |product|
+      product.orders.each do |order|
+        if !my_orders.include?(order)
+          my_orders.push(order)
+        end
+      end
+    end
+    return my_orders
+  end
 
   private
   def find_user

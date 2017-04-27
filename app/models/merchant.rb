@@ -5,6 +5,7 @@ class Merchant < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, format: /.+@.+/
 
+
   def self.from_github(auth_hash)
     merchant = Merchant.new
     merchant.username = auth_hash["info"]["nickname"]
@@ -29,6 +30,21 @@ class Merchant < ApplicationRecord
     total = 0.00
     self.my_orders.each do |order|
       total += order.merchant_subtotal(self.id)
+    end
+    return total
+  end
+
+  def revenue_by_status(status)
+    if self.products == nil || self.my_orders == nil
+      return 0.0
+    end
+    total = 0.00
+    self.my_orders.each do |order|
+      if order.status != status
+        next
+      else
+        total += order.merchant_subtotal(self.id)
+      end
     end
     return total
   end

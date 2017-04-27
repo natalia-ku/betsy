@@ -13,6 +13,6 @@
   <%= f.text_field :cvv, value: nil %>
   <%= f.label :zip_code %>
   <%= f.text_field :zip_code, value: nil %>
-  <%= f.submit value: "Complete order", name: "paid_order" %>
-  <%= f.submit value: "Cancel order", name: "cancel_order" %>
+  <%= f.submit value: "Complete order", name: "paid_order" , class: "button hollow topbar-responsive-button "%>
+  <%= f.submit value: "Cancel order", name: "cancel_order", class: "button hollow topbar-responsive-button " %>
 <% end %>

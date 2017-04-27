@@ -52,8 +52,8 @@ describe Merchant do
 
   describe "total_revenue" do
     it "can call total revenue on the orders" do
-      dan = merchants(:dan)
-      dan.total_revenue.must_be_kind_of Float
+      jamie = merchants(:jamie)
+      jamie.total_revenue.must_be_kind_of Float
     end
   end
 
@@ -67,6 +67,17 @@ describe Merchant do
     it "my_orders returns an empty array if given merchantn has no orders" do
       jamie = merchants(:jamie)
       jamie.my_orders.must_equal []
+
+    end
+
+    it "revenue_by_status(status) must be float" do
+      jamie = merchants(:jamie)
+      jamie.revenue_by_status("pending").must_be_kind_of Float
+    end
+    it "allowed_review must return boolean" do
+      dan = merchants(:dan)
+      dan.allowed_review?(products(:owl1)).must_equal false
+
     end
 
   end
