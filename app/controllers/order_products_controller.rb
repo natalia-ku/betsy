@@ -1,4 +1,5 @@
 class OrderProductsController < ApplicationController
+  before_action :find_order_product, only: [:update, :ship, :destroy]
   def new
     @order_product = OrderProduct.new
   end
@@ -20,7 +21,7 @@ class OrderProductsController < ApplicationController
 
   def update
     @order = current_order
-    @order_product = OrderProduct.find(params[:id])
+    # @order_product = OrderProduct.find(params[:id])
     @order_product.quantity = params[:quantity].to_i
     if @order_product.save
       redirect_to shopping_cart_path
@@ -28,7 +29,7 @@ class OrderProductsController < ApplicationController
   end
 
   def ship
-    @order_product = OrderProduct.find(params[:id])
+    # @order_product = OrderProduct.find(params[:id])
 
     if @order_product.order.status != "paid"
       flash[:message] = "You cannot ship this product, since order status is #{@order_product.order.status}"
@@ -62,7 +63,7 @@ class OrderProductsController < ApplicationController
 
   def destroy
     @order = current_order
-    @order_product = OrderProduct.find(params[:id])
+    # @order_product = OrderProduct.find(params[:id])
     if @order_product.destroy
       if destroy_whole_order?(@order)
         @order.destroy
@@ -80,11 +81,15 @@ class OrderProductsController < ApplicationController
   end
 
   def destroy_whole_order?(order)
-    destroy_order = true 
+    destroy_order = true
     order.order_products.each do |op|
       destroy_order = false if op != nil
     end
     return destroy_order
+  end
+
+  def find_order_product
+    @order_product = OrderProduct.find(params[:id])
   end
 
 end
