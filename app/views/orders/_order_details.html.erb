@@ -7,6 +7,8 @@
   <p> Customer: <%= order.card_name %>
     <p>Customer Email: <%= order.email%> </p>
     <p>Last Four Digits of Credit Card: <%= order.last_four %> </p>
+
+    <% order.complete? %>
     <p>Order Status: <%= order.status.capitalize %> </p>
     <% if !as_merchant %>
     <% if order.can_cancel? %>
