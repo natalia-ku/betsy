@@ -4,6 +4,9 @@
   <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
   <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
   <%@top_products.each do |product| %>
+    <%if product.retired == true%>
+      <%next%>
+    <%else%>
       <li class="is-active orbit-slide">
         <div>
           <h3 class="text-center"><strong> Top-rated products </strong></h3>
@@ -17,6 +20,7 @@
           <%end%></h5>
         </div>
       </li>
+      <%end%>
     <%end%>
 </ul>
 <nav class="orbit-bullets">
