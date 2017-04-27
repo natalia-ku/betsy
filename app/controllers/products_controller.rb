@@ -99,7 +99,11 @@ class ProductsController < ApplicationController
       redirect_to products_path
       return
     end
-    @product.retired = true
+    if @product.retired == true
+      @product.retired = false
+    else
+      @product.retired = true
+    end
     @product.save
     redirect_to product_path(@product)
   end

@@ -33,8 +33,12 @@
       <%end%>
       <% if @product.allowed_access?(@current_user) %>
               <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get , class: "button hollow topbar-responsive-button "%> </p>
-              <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }, class: "button hollow topbar-responsive-button warning button"%> </p>
-            
+              <%if @product.retired == false%>
+                <p><%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }, class: "button hollow topbar-responsive-button warning button"%> </p>
+              <%else%>
+                <p>Product is retired</p>
+                <p><%= button_to "Get product back", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }, class: "button hollow topbar-responsive-button warning button"%> </p>
+              <%end%>
       <% end %>
     </section>
 
