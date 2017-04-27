@@ -105,18 +105,18 @@ class ProductsController < ApplicationController
   end
 
 
-  def destroy
-    @product = Product.find_by(id: params[:id])
-    if @product.nil?
-      flash[:message] = "Could not find that product"
-      redirect_to products_path
-      return
-    end
-    if @product.destroy
-      redirect_to products_path
-    end
-  end
-
+  # def destroy
+  #   @product = Product.find_by(id: params[:id])
+  #   if @product.nil?
+  #     flash[:message] = "Could not find that product"
+  #     redirect_to products_path
+  #     return
+  #   end
+  #   if @product.destroy
+  #     redirect_to products_path
+  #   end
+  # end
+  #
 
   private
   def product_params

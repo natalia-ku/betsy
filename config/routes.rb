@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #root to: 'merchants#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :merchants, only: [:show, :index]  
+  resources :merchants, only: [:show, :index]
 
   delete 'logout', to: "merchants#logout"
 
@@ -15,14 +15,13 @@ Rails.application.routes.draw do
 
   get "merchants/:id/orders/:order_id", to: "merchants#show_merchants_order", as: "merchant_order_view"
 
-  resources :products do
+  resources :products, except:[:destroy] do
     member do
       patch :retire
     end
   end
 
  patch 'order_products/:id/ship', to: 'order_products#ship', as: 'ship_order_product'
-
 
 
 resources :reviews, only: [:new, :create]
