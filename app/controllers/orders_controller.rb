@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
     change_stock(@order, "add")
     if @order.save
       flash[:success] = "You successfully cancelled your order"
-      redirect_to orders_path
+      redirect_to order_path(@order.id)
     end
   end
 

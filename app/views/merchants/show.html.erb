@@ -38,20 +38,44 @@
   </thead>
 
   <tbody>
-    <% @merchant.my_orders.each do |order| %>
-    <tr>
-      <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
-      <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
-      <td><%= order.status.capitalize %></td>
-
-
-      <% if (order.status == "paid") %>
-      <% if order.merchant_shipping_required?(@merchant.id) %>
-      <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get %></td>
+    <%if @orders_by_status.length > 0%>
+      <p>Total revenue by status: <%=@merchant.revenue_by_status(params[:status])%></p>
+      <% @orders_by_status.each do |order| %>
+         <% order.order_products.each do |op|%>
+            <%if op.product.merchant == @merchant %>
+            <tr>
+              <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
+              <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
+              <td><%= order.status.capitalize %></td>
+              <% if (order.status == "paid") %>
+                <% if order.merchant_shipping_required?(@merchant.id) %>
+                <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get %></td>
+                <% end %>
+              <% end %>
+            </tr>
+            <%else%>
+                <%next%>
+            <%end%>
+          <% end %>
       <% end %>
+      <%else%>
+        <% @merchant.my_orders.each do |order| %>
+        <tr>
+          <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
+          <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
+          <td><%= order.status.capitalize %></td>
+          <% if (order.status == "paid") %>
+            <% if order.merchant_shipping_required?(@merchant.id) %>
+            <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get %></td>
+            <% end %>
+          <% end %>
+        </tr>
+        <% end %>
       <% end %>
-    </tr>
-    <% end %>
 
   </tbody>
 </table>
+
+<section>
+  <h2>Orders that was ordered by me:</h2>
+</section>

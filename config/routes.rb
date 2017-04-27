@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
- patch 'order_products/:id', to: 'order_products#ship', as: 'ship_order_product'
+ patch 'order_products/:id/ship', to: 'order_products#ship', as: 'ship_order_product'
+ # patch 'order_products/:id/', to: 'order_products#ship', as: 'ship_order_product'
 
 
 resources :reviews, only: [:new, :create]
