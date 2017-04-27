@@ -10,7 +10,7 @@
           <p><strong>Name of product: </strong><%=link_to op.product.name, product_path(op.product.id)%></p>
           <p><strong>Quantity: </strong><%=op.quantity%>
            <%= form_for op do |f| %>
-              <%= number_field_tag("quantity", 1, min: 1, max: op.product.stock) %>
+              <%= number_field_tag("quantity", op.quantity, min: 1, max: op.product.stock) %>
               <%= hidden_field_tag("order_id", @order.id)%>
               <%= hidden_field_tag("product_id", op.product.id)%>
               <%= f.submit value: "Update quantity", class: "button hollow topbar-responsive-button success button"%>
