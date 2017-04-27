@@ -54,6 +54,10 @@ describe Product do
          r.must_be_kind_of Product
        end
      end
+     it "still works fine if cannot find product" do
+       result = Product.search("oatmeal")
+       result.must_be_kind_of ActiveRecord::Relation
+     end
   end
 
   describe "validations" do

@@ -37,11 +37,11 @@ describe OrderProductsController do
       op_data = {order_product: order_product.attributes}
       op_data[:order_product][:quantity] = 11
       order_product.save
-      patch order_product_path(order_product.id), params: op_data
+      patch order_product_path(order_product.id), params: { quantity: 11 }
       order_product.reload
 
-      # must_redirect_to shopping_cart_path # DOES NOT CHANGING QUANTITY!!
-      # order_product.quantity.must_equal 11
+      must_redirect_to shopping_cart_path # DOES NOT CHANGING QUANTITY!!
+      order_product.quantity.must_equal 11
     end
   end
 
@@ -80,9 +80,9 @@ describe OrderProductsController do
       delete order_product_path(op1.id)
       must_redirect_to shopping_cart_path
 
-      OrderProduct.find_by(id: op1.id)
+      # OrderProduct.find_by(id: op1.id)
       # must_respond_with :not_found
-      # OrderProduct.find_by(id: op1.id).must_equal nil
+      OrderProduct.find_by(id: op1.id).must_equal nil
     end
     it "after destroying count of order_product is changed" do
       start_count = OrderProduct.count
