@@ -4,35 +4,35 @@
   <section class = "row">
     <section class = "large-6 medium-6 small-12 column">
         <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
-        <p>Name: <%=@product.name%></p>
-        <p>Price: <%=@product.price%></p>
-        <p><%= "Description: #{@product.description}" %> </p>
-        <p><%= "Product categories: "%></p>
+        <h4><strong>Name: </strong><%=@product.name%></h4>
+        <h4><strong>Price: </strong>$<%=@product.price%></h4>
+        <h4><strong>Description:</strong> <%=@product.description%> </h4>
+        <h4><strong>Product categories:</strong></h4>
         <% @product.categories.each do |category| %>
           <li><%=link_to category.name, category_path(category.id)%> </li>
         <% end %>
 
         <%if @product.stock == nil || @product.stock < 1%>
-          <p>Stock: product is out of stock</p>
+          <h4><strong>Stock:</strong> product is out of stock</h4>
         <%else%>
-          <p>Stock: <%=@product.stock%></p>
+          <h4><strong>Stock: </strong><%=@product.stock%></h4>
         <%end%>
-        <p>Merchant: <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_path(@product.merchant_id) %></p>
+        <h4><strong>Merchant:</strong> <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_path(@product.merchant_id) %></h4>
 
         <%if  OrderProduct.find_by(order_id: session[:order_id], product_id: @product.id) == nil%>
           <%= form_for @order_product do |f| %>
             <%=f.label :quantity%>
             <%= number_field_tag("quantity", 1, min: 1, max: @product.stock) %>
             <%= hidden_field_tag("product_id", @product.id)%>
-            <%= f.submit value: "Add to shopping cart" %>
+            <%= f.submit value: "Add to shopping cart" ,  class: "button hollow topbar-responsive-button "%>
           <% end %>
         <%else%>
-          <p>Product already in the <%=link_to "cart", shopping_cart_path%></p>
+          <h4>Product already in the <%=link_to "cart", shopping_cart_path%></h4>
         <%end%>
 
-        <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get %> </p>
-        <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }%> </p>
-        <p><%=button_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } %> </p>
+        <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get , class: "button hollow topbar-responsive-button "%> </p>
+        <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }, class: "button hollow topbar-responsive-button warning button"%> </p>
+        <p><%=button_to "Delete product",  product_path(@product.id),method: :delete, data: {confirm: 'Are you sure?' } , class: "button hollow topbar-responsive-button alert button "%> </p>
     </section>
 
     <section class = "large-6 medium-6 small-12 column">
@@ -56,6 +56,8 @@
                 <%= f.hidden_field :product_id, :value => @product.id%>
                 <%= f.submit value: "Comment" %>
               <% end %>
+              <%else%>
+                <h3>You cannot review your product</h3>
             <% end %>
           <% end %>
       </section>

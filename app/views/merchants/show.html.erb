@@ -1,10 +1,21 @@
-<section>
-  <h2 class="text-center">Merchant details:</h2>
+<section class = "row">
+  <h2 class="text-left">Merchant details:</h2>
+  <section class = "large-6 medium-6 small-12 column">
   <p>Username: <%=@merchant.username%></p>
   <p>Email: <%=@merchant.email%></p>
   <p>Merchant id: <%=@merchant.id%></p>
   <p> Total Revenue: $<%= '%.2f' %(@merchant.total_revenue) %></p>
+  </section>
+  <section class = "large-6 medium-6 small-12 column">
+    <div class=" button-group">
+    <%= button_to "My products", merchant_products_path(@merchant.id), method: :get , class: "button hollow topbar-responsive-button user-button"%>
+    <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get, class: "button hollow topbar-responsive-button user-button"%>
+    <%= button_to "All Categories", categories_path, method: :get, class: "button hollow topbar-responsive-button user-button"%>
+    <%= button_to "New Category", new_category_path, :method => :get, class: "button hollow topbar-responsive-button user-button"%>
+  </div>
+  </section>
 </section>
+
 
 <ul class="dropdown menu" data-dropdown-menu>
   <li><a href="#">Sort orders by status type</a>
@@ -17,7 +28,6 @@
     </ul>
   </li>
 </ul>
-
 <table>
   <thead>
     <tr>
@@ -67,10 +77,3 @@
       <% end %>
   </tbody>
 </table>
-
-<section>
-  <%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
-  <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
-  <%= button_to "All Categories", categories_path, method: :get%>
-  <%= button_to "New Category", new_category_path, :method => :get%>
-</section>
