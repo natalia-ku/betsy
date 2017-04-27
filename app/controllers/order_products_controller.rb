@@ -22,8 +22,9 @@ class OrderProductsController < ApplicationController
     @order = current_order
     @order_product = OrderProduct.find(params[:id])
     @order_product.quantity = params[:quantity].to_i
-    @order_product.save
-    redirect_to shopping_cart_path
+    if @order_product.save
+      redirect_to shopping_cart_path
+    end
   end
 
   def destroy # deletes order products from shopping cart

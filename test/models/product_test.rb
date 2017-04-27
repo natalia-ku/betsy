@@ -44,6 +44,17 @@ describe Product do
       product.merchant.must_be_kind_of Merchant
     end
   end
+  describe "search" do
+     it "return ActiveRecord Relation array" do
+       Product.search("owl1").must_be_kind_of ActiveRecord::Relation
+     end
+     it "return products" do
+       result = Product.search("owl1")
+       result.each do |r|
+         r.must_be_kind_of Product
+       end
+     end
+  end
 
   describe "validations" do
     it "requires a product name" do

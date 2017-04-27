@@ -35,6 +35,9 @@ class Merchant < ApplicationRecord
   end
 
   def revenue_by_status(status)
+    if self.products == nil || self.my_orders == nil
+      return 0.0
+    end
     total = 0.00
     self.my_orders.each do |order|
       if order.status != status
