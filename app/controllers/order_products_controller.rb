@@ -47,6 +47,7 @@ class OrderProductsController < ApplicationController
     end
     if number_shipped == order.order_products.count
       order.status = "complete"
+      order.save
     end
 
   end

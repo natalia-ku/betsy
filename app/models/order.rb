@@ -56,4 +56,13 @@ class Order < ApplicationRecord
     return total
   end
 
+  def merchant_shipping_required?(merchant_id)
+    to_ship = self.merchant_partial_order(merchant_id).select {|order_product| order_product.status == "not shipped"}
+    if to_ship.empty?
+      return false
+    else
+      return true
+    end
+  end
+
 end
