@@ -7,17 +7,17 @@
 </section>
 
 <ul class="dropdown menu" data-dropdown-menu>
-  <li><a href="#">Sort by status type</a>
+  <li><a href="#">Sort orders by status type</a>
     <ul class="menu vertical">
-            <li><%= link_to "paid", {controller: 'merchants', action: 'show', :status => 'paid'}%></li>
-            <li><%= link_to "cancelled", {controller: 'merchants', action: 'show', :status => 'cancelled'}%></li>
-            <li><%= link_to "completed", {controller: 'merchants', action: 'show', :status => 'completed'} %></li>
-            <li><%= link_to "pending", {controller: 'merchants', action: 'show', :status => 'pending'} %></li>
+      <li><%= link_to "All orders", {controller: 'merchants', action: 'show'}%></li>
+      <li><%= link_to "Paid", {controller: 'merchants', action: 'show', :status => 'paid'}%></li>
+      <li><%= link_to "Cancelled", {controller: 'merchants', action: 'show', :status => 'cancelled'}%></li>
+      <li><%= link_to "Completed", {controller: 'merchants', action: 'show', :status => 'complete'} %></li>
+      <li><%= link_to "Pending", {controller: 'merchants', action: 'show', :status => 'pending'} %></li>
     </ul>
   </li>
 </ul>
 
-<%if @orders_by_status.length > 0%>
 <table>
   <thead>
     <tr>
@@ -28,6 +28,8 @@
     </tr>
   </thead>
     <tbody>
+      <%if @orders_by_status.length > 0%>
+      <p>Total revenue by status: <%=@merchant.revenue_by_status(params[:status])%></p>
       <% @orders_by_status.each do |order| %>
          <% order.order_products.each do |op|%>
             <%if op.product.merchant == @merchant %>
@@ -48,44 +50,27 @@
             <%end%>
           <% end %>
       <% end %>
-  </tbody>
-</table>
-<%end%>
-<br>
-
-
-<br>
-<br>
-<table>
-  <thead>
-    <tr>
-      <th>Order</th>
-      <th>Date</th>
-      <th>Status</th>
-      <th>Mark As Shipped?</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @merchant.my_orders.each do |order| %>
-    <tr>
-    <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
-    <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
-    <td><%= order.status.capitalize %></td>
-    <% if order.status == "paid" %>
-      <td><%= button_to "Ship Order", complete_order_path(order.id), method: :get %></td>
-    <% elsif order.status == "pending" %>
-      <td> Order Not Yet Paid </td>
-    <% else %>
-      <td>Order Shipped</td>
-    <% end %>
-  </tr>
-    <% end %>
+      <%else%>
+        <% @merchant.my_orders.each do |order| %>
+          <tr>
+          <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
+          <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
+          <td><%= order.status.capitalize %></td>
+          <% if order.status == "paid" %>
+            <td><%= button_to "Ship Order", complete_order_path(order.id), method: :get %></td>
+          <% elsif order.status == "pending" %>
+            <td> Order Not Yet Paid </td>
+          <% else %>
+            <td>Order Shipped</td>
+          <% end %>
+        <% end %>
+      <% end %>
   </tbody>
 </table>
 
 <section>
-<%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
-<%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
-<%= button_to "All Categories", categories_path, method: :get%>
-<%= button_to "New Category", new_category_path, :method => :get%>
+  <%= button_to "My products", merchant_products_path(@merchant.id), method: :get %>
+  <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get%>
+  <%= button_to "All Categories", categories_path, method: :get%>
+  <%= button_to "New Category", new_category_path, :method => :get%>
 </section>

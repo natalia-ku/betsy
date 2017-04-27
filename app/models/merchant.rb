@@ -34,6 +34,18 @@ class Merchant < ApplicationRecord
     return total
   end
 
+  def revenue_by_status(status)
+    total = 0.00
+    self.my_orders.each do |order|
+      if order.status != status
+        next
+      else
+        total += order.merchant_subtotal(self.id)
+      end
+    end
+    return total
+  end
+
 
   def my_orders
     my_orders = []
