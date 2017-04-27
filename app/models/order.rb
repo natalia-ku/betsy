@@ -4,7 +4,8 @@ class Order < ApplicationRecord
 
   validates :status,  presence: true,
   inclusion: { in: %w(pending paid complete cancelled) }
-  scope :by_status,-> (status){ where(:status => status) }  
+  scope :by_status,-> (status){ where(:status => status) }
+  
   # Only needed if reqirements include that an order must have at least one OrderProduct
   # validates :order_products,  presence: true
 
