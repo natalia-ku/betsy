@@ -65,4 +65,18 @@ class Order < ApplicationRecord
     end
   end
 
+
+  def complete?
+    number_shipped = 0
+    self.order_products.each do |op|
+      if op.status == "shipped"
+        number_shipped += 1
+      end
+    end
+    if number_shipped == self.order_products.count
+      self.status = "complete"
+      self.save
+    end
+  end
+
 end

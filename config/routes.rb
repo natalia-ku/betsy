@@ -29,7 +29,7 @@ resources :reviews, only: [:new, :create]
   resources :orders do
     member do
       put :cancel
-      get :complete
+      #get :complete
     end
   end
 

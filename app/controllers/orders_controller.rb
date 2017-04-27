@@ -62,53 +62,58 @@ class OrdersController < ApplicationController
     end
   end
 
-  def complete
-    @order = Order.find(params[:id])
-    @order.status = "complete"
-    if @order.save
-      flash.now[:success] = "You completed this order!"
-      render :show
+  # def complete
+  #   @order = Order.find(params[:id])
+  #   @order.status = "complete"
+  #   if @order.save
+  #     flash.now[:success] = "You completed this order!"
+  #     render :show
+  #   end
+  # end
+ # method updated b/c of new status for individual order_products, and moved to order Model
+
+
+
+
+    def destroy
+      current_order.order_products.each do |op|
+        op.destroy
+      end
+      current_order.destroy
+      session[:order_id] = nil
+      redirect_to products_path
     end
-  end
 
-  def destroy
-    current_order.order_products.each do |op|
-      op.destroy
+
+    private
+
+    def order_update_params
+      params.require(:order).permit(:email, :mailing_address,:card_name, :credit_card, :card_expiration, :cvv, :zip_code)
     end
-    current_order.destroy
-    session[:order_id] = nil
-    redirect_to products_path
-  end
 
-  private
+    def order_params
+      params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :card_expiration, :cvv, :zip_code, :paid_at)
+    end
 
-  def order_update_params
-    params.require(:order).permit(:email, :mailing_address,:card_name, :credit_card, :card_expiration, :cvv, :zip_code)
-  end
+    def create_order
+      @order = Order.new(order_params)
+    end
 
-  def order_params
-    params.require(:order).permit(:status, :email, :mailing_address,:card_name, :credit_card, :card_expiration, :cvv, :zip_code, :paid_at)
-  end
+    def find_current_order
+      @order = current_order
+    end
 
-  def create_order
-    @order = Order.new(order_params)
-  end
-
-  def find_current_order
-    @order = current_order
-  end
-
-  def change_stock(order, action)
-    order_products = OrderProduct.where(order_id: order.id)
-    order_products.each do |op|
-      if action == "remove"
-        op.product.stock -= op.quantity
-        op.product.save
-      elsif action == "add"
-        op.product.stock += op.quantity
-        op.product.save
+    def change_stock(order, action)
+      order_products = OrderProduct.where(order_id: order.id)
+      order_products.each do |op|
+        if action == "remove"
+          op.product.stock -= op.quantity
+          op.product.save
+        elsif action == "add"
+          op.product.stock += op.quantity
+          op.product.save
+        end
       end
     end
+
   end
-  
-end

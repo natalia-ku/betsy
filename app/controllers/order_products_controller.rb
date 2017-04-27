@@ -38,19 +38,24 @@ class OrderProductsController < ApplicationController
     end
 
     order = @order_product.order
-    number_shipped = 0
-
-    order.order_products.each do |op|
-      if op.status == "shipped"
-        number_shipped += 1
-      end
-    end
-    if number_shipped == order.order_products.count
-      order.status = "complete"
-      order.save
+    order.complete?
+    #complete? is a method in orders controller
     end
 
-  end
+    # number_shipped = 0
+    #
+    # order.order_products.each do |op|
+    #   if op.status == "shipped"
+    #     number_shipped += 1
+    #   end
+    # end
+    # if number_shipped == order.order_products.count
+    #   order.status = "complete"
+    #   order.save
+    # end
+    #end
+
+
 
 
 
