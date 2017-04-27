@@ -28,7 +28,14 @@ class OrderProductsController < ApplicationController
   end
 
 
+
   def ship
+    if @order_product.order.status != "paid"
+      flash[:message] = "You cannot ship this product, since order status is #{@order_product.order.status}"
+      redirect_to merchant_order_view_path(@order_product.product.merchant_id  , @order_product.order_id )
+      return
+    end
+
     @order_product = OrderProduct.find(params[:id])
 
     @order_product.status = "shipped"
