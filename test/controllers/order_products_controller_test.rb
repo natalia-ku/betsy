@@ -25,7 +25,8 @@ describe OrderProductsController do
       after_count =  OrderProduct.all.length
       (after_count - before_count).must_equal 1
     end
-  end #end of create block
+  end
+
   describe "update" do
     it "updates an order product quantity" do
       product1 = products(:owl1)
@@ -51,7 +52,6 @@ describe OrderProductsController do
       must_redirect_to shopping_cart_path
       OrderProduct.find_by(order_id: session[:order_id]).must_be_nil
     end
-
     it "deletes whole order if there are no order product in shopping cart" do
       order = orders(:sophia_cart)
       op1 = order_products(:order_product1)
@@ -82,8 +82,6 @@ describe OrderProductsController do
       end_count = OrderProduct.count
       end_count.must_equal start_count - 1
     end
-
-
     end
     describe "ship" do
       it "changed the status" do

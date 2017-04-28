@@ -5,8 +5,7 @@ class OrdersController < ApplicationController
   #   @orders = Order.all
   # end
 
-  def new
-  end
+  def new; end
 
   def create
     @order.save
@@ -29,8 +28,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @order.update_attributes(order_update_params)

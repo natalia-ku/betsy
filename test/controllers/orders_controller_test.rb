@@ -46,9 +46,9 @@ describe OrdersController do
     it "after deletion, order doesn't exist anymore" do
       order_id = Order.first.id
       delete order_path(order_id)
-      #Order.find_by(id: order_id ).must_be_nil # does not WORKING!!!
+      # Order.find_by(id: order_id ).must_be_nil # does not WORKING!!!
     end
-  end # end of delete block
+  end
 
   describe "update" do
     it "updates order" do
