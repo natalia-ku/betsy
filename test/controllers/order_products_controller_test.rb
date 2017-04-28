@@ -9,11 +9,22 @@ describe OrderProductsController do
 
   describe "create" do
     it "adds an order_product to the database" do
+<<<<<<< HEAD
       product1 = products(:owl1)
       category1 = Category.create(name: "supercategorays")
       pc1 = ProductCategory.create(product_id: product1.id, category_id: category1.id)
       product1.reload
       order1 = Order.create(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
+=======
+      merchant = merchants(:dan)
+      login(merchant)
+      product1 = Product.new(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)
+      category1 = Category.create!(name: "supercategory")
+#      pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
+      product1.category_ids = category1.id
+      product1.save!
+      order1 = Order.create!(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
+>>>>>>> 4fb9735a736a46ebe9e1759abb86f686f6667f68
       get product_path(product1.id)
       post order_products_path, params:{ order_id: order1.id, product_id: product1.id, quantity: 2 }
       must_redirect_to shopping_cart_path
