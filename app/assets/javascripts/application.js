@@ -17,3 +17,10 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+$(document).foundation({
+  accordion: {
+    callback : function (accordion) {
+      console.log(accordion);
+    }
+  }
+});

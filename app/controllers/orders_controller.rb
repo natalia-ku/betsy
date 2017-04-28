@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :create_order, only: [:new, :create]
   before_action :find_current_order, only:[:edit, :update]
-  def index
-    @orders = Order.all
-  end
+  # def index  # WE DONT NEED THIS??
+  #   @orders = Order.all
+  # end
 
   def new
   end
@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     if @order.nil?
       flash[:message] = "Could not find this order"
-      redirect_to orders_path
+      redirect_to root_path
     end
   end
 
@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
   # end
   # method updated b/c of new status for individual order_products, and moved to order Model
 
-    
+
   def destroy
     current_order.order_products.each do |op|
       op.destroy

@@ -1,11 +1,12 @@
 class OrderProductsController < ApplicationController
   before_action :find_order_product, only: [:update, :ship, :destroy]
-  def new
-    @order_product = OrderProduct.new
-  end
+  before_action :find_current_order, only: [:create, :update, :destroy]
+  # def new
+  #   @order_product = OrderProduct.new
+  # end
 
   def create
-    @current_order = current_order
+    # @current_order = current_order
     @order_product = OrderProduct.new(quantity: params[:quantity], order_id: @current_order.id, product_id: params[:product_id])
     if @order_product.save!
       redirect_to shopping_cart_path
@@ -15,12 +16,12 @@ class OrderProductsController < ApplicationController
     end
   end
 
-  def index
-    @order_products = OrderProduct.all
-  end
+  # def index DONT NEED THIS????
+  #   @order_products = OrderProduct.all
+  # end
 
   def update
-    @order = current_order
+    # @order = current_order
     # @order_product = OrderProduct.find(params[:id])
     @order_product.quantity = params[:quantity].to_i
     if @order_product.save
@@ -45,24 +46,24 @@ class OrderProductsController < ApplicationController
     order = @order_product.order
     order.complete?
     #complete? is a method in orders controller
-    end
+  end
 
-    # number_shipped = 0
-    #
-    # order.order_products.each do |op|
-    #   if op.status == "shipped"
-    #     number_shipped += 1
-    #   end
-    # end
-    # if number_shipped == order.order_products.count
-    #   order.status = "complete"
-    #   order.save
-    # end
-    #end
+  # number_shipped = 0
+  #
+  # order.order_products.each do |op|
+  #   if op.status == "shipped"
+  #     number_shipped += 1
+  #   end
+  # end
+  # if number_shipped == order.order_products.count
+  #   order.status = "complete"
+  #   order.save
+  # end
+  #end
 
 
   def destroy
-    @order = current_order
+    # @order = current_order
     # @order_product = OrderProduct.find(params[:id])
     if @order_product.destroy
       if destroy_whole_order?(@order)
@@ -75,7 +76,6 @@ class OrderProductsController < ApplicationController
   end
 
   private
-
   def order_products_params
     params.require(:order_products).permit(:quantity, :order_id, :product_id)
   end
@@ -90,6 +90,10 @@ class OrderProductsController < ApplicationController
 
   def find_order_product
     @order_product = OrderProduct.find(params[:id])
+  end
+
+  def find_current_order
+    @order = current_order
   end
 
 end
