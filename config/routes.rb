@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete 'logout', to: "merchants#logout"
 
   resources :merchants, only: [:show, :index] do
-    resources :products, only: [:index, :new, :create]
+    resources :products, only: [:index, :new, :create, :edit, :update]
   end
 
   get "merchants/:id/orders/:order_id", to: "merchants#show_merchants_order", as: "merchant_order_view"

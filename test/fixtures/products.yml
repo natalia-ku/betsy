@@ -12,6 +12,7 @@ owl1:
   description: cute owl-tshirt
   stock: 2
   merchant: dan
+
 #
 owl2:
   name: hairband
@@ -27,6 +28,12 @@ hat:
   photo_url: /assets/photo_2.jpg
   price: 10.00
   merchant: harry
+
+scarve:
+  name: scarve
+  photo_url: /assets/photo_2.jpg
+  price: 10000000000.00
+  merchant: hermione
 
 one:
   name: Fred
