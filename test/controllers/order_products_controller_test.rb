@@ -4,18 +4,28 @@ describe OrderProductsController do
   let(:order){Order.create(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)}
   let(:merchant){Merchant.create(username: "nata", email: "ew@com")}
   let(:product){Product.create(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)}
-  let (:order_pr){OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 2)}
-  let (:category){Category.create(name: "supercategory")}
+  let(:order_pr){OrderProduct.create(order_id: order.id, product_id: product.id, quantity: 2)}
+  let(:category){Category.create(name: "supercategory")}
 
   describe "create" do
     it "adds an order_product to the database" do
-      product1 = products(:owl1)
-      pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
-      product1.reload
-      op = OrderProduct.create(order_id: order.id, product_id: product1.id, quantity: 30)
-      result = OrderProduct.find_by(order_id: order.id, product_id: product1.id)
-      result.wont_be_nil
+      product1 = Product.new(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)
+      category1 = Category.create!(name: "supercategory")
+#      pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
+      product1.category_ids = category1.id
+      product1.save!
+      order1 = Order.create!(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
+      order_prod = {order_product: {order_id: order1.id, product_id: product1.id, quantity: 2}}
+
+      # result = OrderProduct.find_by(order_id: order.id, product_id: product1.id)
+      # result.wont_be_nil
+      # op.wont_be_nil
+      # op.product_id.must_equal product1.id
+      # op.quantity.must_equal 30
+      post order_products_path, params: order_prod
+      must_redirect_to shopping_cart_path
     end
+
     it "changing size of order products after creating" do
       before_count = OrderProduct.all.length
       product1 = products(:owl1)
@@ -85,10 +95,30 @@ describe OrderProductsController do
     end
     describe "ship" do
       it "changed the status" do
-        op = OrderProduct.create(status: "paid", quantity: 2, order_id: orders(:sophia_cart).id, product_id: products(:owl1).id)
-        # patch ship_order_product_path(op.id)
-        # redirect_to merchant_order_view_path(op.product.merchant_id, op.order_id )
-        # op.status.must_equal "shipped"
+        merchant = merchants(:dan)
+        login(merchant)
+        order1 = orders(:sophia_cart)
+
+        op = OrderProduct.create!(quantity: 2, order: order1, product: products(:owl1))
+        order1.status = "paid"
+        order1.save!
+        op.save!
+        patch ship_order_product_path(op.id)
+        must_redirect_to merchant_order_view_path(op.product.merchant_id, op.order_id )
+        op.reload
+        op.status.must_equal "shipped"
+      end
+
+      it "doesn't change the status if the order is not paid yet" do
+        merchant = merchants(:dan)
+        login(merchant)
+        order1 = orders(:sophia_cart)
+
+        op = OrderProduct.create!(quantity: 2, order: order1, product: products(:owl1))
+        patch ship_order_product_path(op.id)
+        must_redirect_to merchant_order_view_path(op.product.merchant_id, op.order_id )
+        op.reload
+        op.status.must_equal "not shipped"
       end
   end
 

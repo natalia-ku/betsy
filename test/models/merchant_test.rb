@@ -53,7 +53,7 @@ describe Merchant do
   describe "total_revenue" do
     it "can call total revenue on the orders" do
       dan = merchants(:dan)
-      dan.total_revenue.must_equal 30
+      dan.total_revenue.must_equal 70.0
     end
   end
 
@@ -76,7 +76,7 @@ describe Merchant do
     end
 
     it "returns 0 for merchant with no products" do
-      harry = merchants(:harry)
+      harry = merchants(:hermione)
       harry.revenue_by_status("pending").must_equal 0.0
     end
 

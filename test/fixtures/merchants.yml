@@ -5,6 +5,8 @@
 # below each fixture, per the syntax in the comments below
 #
 dan:
+  oauth_provider: github
+  oauth_id: 12345
   username: dan
   email: 777@adaworld.com
 
@@ -12,7 +14,9 @@ jamie:
   username: jamie
   email: 555@adaworld.com
 
-
+hermione:
+  username: hermione
+  email: 4265@harrypotter.com
 #
 two: {}
 # column: value
