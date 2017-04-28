@@ -30,16 +30,12 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find_by(id: params[:id])
     @order.update_attributes(order_update_params)
-    if params[:paid_order]
-      @order.status = "paid"
-      change_stock(@order, "remove")
-    elsif params[:cancel_order]
-      @order.status = "cancelled"
-    end
+    @order.status = "paid"
     @order.paid_at =  DateTime.now
 
     if @order.save
       flash[:success] = "You successfully created your order"
+      change_stock(@order, "remove")
       redirect_to order_path(@order.id)
       session[:order_id] = nil
     else

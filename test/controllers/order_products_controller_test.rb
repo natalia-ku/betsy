@@ -47,10 +47,6 @@ describe OrderProductsController do
       pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
       product1.reload
       order_product = OrderProduct.create(order_id: order.id, product_id: product1.id, quantity: 2)
-
-      op_data = {order_product: order_product.attributes}
-      op_data[:order_product][:quantity] = 11
-      order_product.save
       patch order_product_path(order_product.id), params: { quantity: 11 }
       order_product.reload
       must_respond_with :redirect
@@ -67,15 +63,12 @@ describe OrderProductsController do
       OrderProduct.find_by(order_id: session[:order_id]).must_be_nil
     end
     it "deletes whole order if there are no order product in shopping cart" do
-      order = orders(:sophia_cart)
-      op1 = order_products(:order_product1)
-      op2 = order_products(:order_product2)
-      op3 = order_products(:order_product2)
-
-      # delete order_product_path(op1.id)
-      # delete order_product_path(op2.id)
-      # delete order_product_path(op3.id)
-      # order.reload
+      order = Order.create(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
+      op1 = OrderProduct.create(order_id: order.id, product_id: products(:owl1).id, quantity: 2)
+      op2 = OrderProduct.create(order_id: order.id, product_id: products(:owl2).id, quantity: 2)
+      delete order_product_path(op1.id)
+      delete order_product_path(op2.id)
+      order.reload
       # get order_path(order.id)
       # must_redirect_to root_path
       # result = Order.find_by(id: order.id)
