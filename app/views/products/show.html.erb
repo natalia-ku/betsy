@@ -15,7 +15,7 @@
       <%else%>
         <h4><strong>Stock: </strong><%=@product.stock%></h4>
       <%end%>
-      <h4><strong>Merchant:</strong> <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_path(@product.merchant_id) %></h4>
+      <h4><strong>Merchant:</strong> <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_products_path(@product.merchant_id) %></h4>
 
       <%if  OrderProduct.find_by(order_id: session[:order_id], product_id: @product.id) == nil%>
         <%= form_for @order_product do |f| %>

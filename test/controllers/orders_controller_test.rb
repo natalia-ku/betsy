@@ -84,4 +84,13 @@ describe OrdersController do
     end
   end
 
+  describe "test change stock" do
+    it "updates order" do
+      order = Order.new
+      order_data = {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", card_expiration: DateTime.now, cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
+      patch order_path(order.id), params: order_data
+      must_respond_with :found
+    end
+  end
+
 end
