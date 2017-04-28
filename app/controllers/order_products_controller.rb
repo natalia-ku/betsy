@@ -13,10 +13,7 @@ class OrderProductsController < ApplicationController
     end
   end
 
-
   def update
-    # @order = current_order
-    # @order_product = OrderProduct.find(params[:id])
     @order_product.quantity = params[:quantity].to_i
     if @order_product.save
       redirect_to shopping_cart_path
@@ -24,8 +21,6 @@ class OrderProductsController < ApplicationController
   end
 
   def ship
-    # @order_product = OrderProduct.find(params[:id])
-
     if @order_product.order.status != "paid"
       flash[:message] = "You cannot ship this product, since order status is #{@order_product.order.status}"
       redirect_to merchant_order_view_path(@order_product.product.merchant_id  , @order_product.order_id )
@@ -40,26 +35,9 @@ class OrderProductsController < ApplicationController
 
     order = @order_product.order
     order.complete?
-    #complete? is a method in orders controller
   end
 
-  # number_shipped = 0
-  #
-  # order.order_products.each do |op|
-  #   if op.status == "shipped"
-  #     number_shipped += 1
-  #   end
-  # end
-  # if number_shipped == order.order_products.count
-  #   order.status = "complete"
-  #   order.save
-  # end
-  #end
-
-
   def destroy
-    # @order = current_order
-    # @order_product = OrderProduct.find(params[:id])
     if @order_product.destroy
       if destroy_whole_order?(@order)
         @order.destroy
