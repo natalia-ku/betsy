@@ -1,12 +1,11 @@
 class OrdersController < ApplicationController
   before_action :create_order, only: [:new, :create]
   before_action :find_current_order, only:[:edit, :update]
-  def index
-    @orders = Order.all
-  end
+  # def index  # WE DONT NEED THIS??
+  #   @orders = Order.all
+  # end
 
-  def new
-  end
+  def new; end
 
   def create
     @order.save
@@ -25,12 +24,11 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     if @order.nil?
       flash[:message] = "Could not find this order"
-      redirect_to orders_path
+      redirect_to root_path
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @order.update_attributes(order_update_params)
@@ -47,7 +45,7 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order.id)
       session[:order_id] = nil
     else
-      flash.now[:messages] = @order.errors.messages
+      # flash.now[:messages] = @order.errors.messages
       render :edit, status: :bad_request
     end
   end
@@ -62,6 +60,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  # def complete
+  #   @order = Order.find(params[:id])
+  #   @order.status = "complete"
+  #   if @order.save
+  #     flash.now[:success] = "You completed this order!"
+  #     render :show
+  #   end
+  # end
+  # method updated b/c of new status for individual order_products, and moved to order Model
 
   def destroy
     current_order.order_products.each do |op|

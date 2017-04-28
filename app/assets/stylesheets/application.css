@@ -1,43 +1,44 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- *= require foundation_and_overrides
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*= require foundation_and_overrides
 
- */
+*/
 body{
   font-family: 'Merriweather', serif;
 }
+
 .flash {
   color: green;
   font-size: 2rem;
 }
 
 html {
-    position: relative;
-    min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
 main {
-    margin: 0 0 100px;
-    padding-left: 10px;
+  margin: 0 0 100px;
+  padding-left: 10px;
 }
 footer {
   border-top: 1px solid black;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
 }
 
 #search-button, #search-field{
@@ -86,7 +87,7 @@ form#new_review.new_review{
   margin-left: 0%;
 }
 input#review_review_text{
-    width: 100%;
+  width: 100%;
 }
 
 #login-section{
@@ -168,8 +169,8 @@ input#review_review_text{
     padding: 0.25rem 0.45rem;
     top: 50%;
     -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   .topbar-responsive .top-bar-title span .menu-icon {
     margin-bottom: 4px;
@@ -197,35 +198,43 @@ input#review_review_text{
 @-webkit-keyframes slideDown {
   0% {
     -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
+    transform: translateY(-100%);
   }
   100% {
     -webkit-transform: translateY(0%);
-            transform: translateY(0%);
+    transform: translateY(0%);
   }
 }
 
 @keyframes slideDown {
   0% {
     -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
+    transform: translateY(-100%);
   }
   100% {
     -webkit-transform: translateY(0%);
-            transform: translateY(0%);
+    transform: translateY(0%);
   }
 }
 
 @media screen and (max-width: 39.9375em) {
   .topbar-responsive-links {
     -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
+    animation-fill-mode: both;
     -webkit-animation-duration: 0.5s;
-            animation-duration: 0.5s;
+    animation-duration: 0.5s;
     width: 100%;
     -webkit-animation: fadeIn 1s ease-in;
-            animation: fadeIn 1s ease-in;
+    animation: fadeIn 1s ease-in;
   }
 }
 
-/*BUTTON SHOW MERCHANT*/
+.orbit button{
+  color:#EF662F;
+}
+/**/
+#products_title{
+  text-align: center;
+  text-decoration:underline;
+  text-decoration-style: dotted;
+}

@@ -29,7 +29,6 @@ class ProductsController < ApplicationController
     @product = @merchant.products.build
   end
 
-
   def create
     @merchant = Merchant.find_by(id: params[:merchant_id])
     if @merchant.nil?
@@ -62,7 +61,6 @@ class ProductsController < ApplicationController
     @review = Review.new
   end
 
-
   def edit
     @product = Product.find_by(id: params[:id])
     if @product.nil?
@@ -72,7 +70,6 @@ class ProductsController < ApplicationController
     end
     @merchant = @product.merchant
   end
-
 
   def update
     @product  = Product.find_by(id: params[:id])
@@ -99,7 +96,11 @@ class ProductsController < ApplicationController
       redirect_to products_path
       return
     end
-    @product.retired = true
+    if @product.retired == true
+      @product.retired = false
+    else
+      @product.retired = true
+    end
     @product.save
     redirect_to product_path(@product)
   end

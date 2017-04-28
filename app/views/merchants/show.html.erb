@@ -1,15 +1,15 @@
 <section class = "row">
   <h2 class="text-left">Merchant details:</h2>
   <section class = "large-6 medium-6 small-12 column">
-  <p>Username: <%=@merchant.username%></p>
-  <p>Email: <%=@merchant.email%></p>
-  <p>Merchant id: <%=@merchant.id%></p>
-  <p> Total Revenue: $<%= '%.2f' %(@merchant.total_revenue) %></p>
+    <p>Username: <%=@merchant.username%></p>
+    <p>Email: <%=@merchant.email%></p>
+    <p>Merchant id: <%=@merchant.id%></p>
+    <p> Total Revenue: $<%= '%.2f' %(@merchant.total_revenue) %></p>
   </section>
   <section class = "large-6 medium-6 small-12 column">
     <div class=" button-group">
     <%= button_to "My products", merchant_products_path(@merchant.id), method: :get , class: "button hollow topbar-responsive-button user-button"%>
-    <%= button_to "Add a new product", new_merchant_product_path(@merchant), method: :get, class: "button hollow topbar-responsive-button user-button"%>
+    <%= button_to "Add new product", new_merchant_product_path(@merchant), method: :get, class: "button hollow topbar-responsive-button user-button"%>
     <%= button_to "All Categories", categories_path, method: :get, class: "button hollow topbar-responsive-button user-button"%>
     <%= button_to "New Category", new_category_path, :method => :get, class: "button hollow topbar-responsive-button user-button"%>
   </div>
@@ -43,36 +43,16 @@
       <% @orders_by_status.each do |order| %>
          <% order.order_products.each do |op|%>
             <%if op.product.merchant == @merchant %>
-            <tr>
-              <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
-              <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
-              <td><%= order.status.capitalize %></td>
-              <% if (order.status == "paid") %>
-                <% if order.merchant_shipping_required?(@merchant.id) %>
-                <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get %></td>
-                <% end %>
-              <% end %>
-            </tr>
+              <%= render partial: "orders_table", locals: {order: order, as_merchant: @merchant} %>
             <%else%>
                 <%next%>
             <%end%>
           <% end %>
         <% end %>
-
       <%else%>
         <% @merchant.my_orders.each do |order| %>
-        <tr>
-          <td><%= link_to "Order ##{order.id}", merchant_order_view_path(@merchant, order.id) %></td>
-          <td><%= order.paid_at.strftime("%b %d, %Y at %I:%M %P") %></td>
-          <td><%= order.status.capitalize %></td>
-          <% if (order.status == "paid") %>
-            <% if order.merchant_shipping_required?(@merchant.id) %>
-            <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get %></td>
-            <% end %>
-          <% end %>
-        </tr>
+          <%= render partial: "orders_table", locals: {order: order, as_merchant: @merchant} %>
         <% end %>
       <% end %>
-
   </tbody>
 </table>

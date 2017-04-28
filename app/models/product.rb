@@ -15,9 +15,6 @@ class Product < ApplicationRecord
   validate :must_have_one_category
 
 
-
-  validate :must_have_one_category
-
   def must_have_one_category
     errors.add(:error, 'You must select at least one category') if self.categories.blank?
   end
@@ -32,7 +29,11 @@ class Product < ApplicationRecord
     Review.where(product_id: self.id).each do |review|
       average += review.rating
     end
-    return (average/count).round(2)
+    if count == 0
+      return  "Not rated yet"
+    else
+      return (average/count).round(2)
+    end
   end
 
   def allowed_access?(user)
