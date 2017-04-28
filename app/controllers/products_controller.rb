@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+# before_action :require_correct_user, only: [:edit, :update, :retire]
   def index
     if params[:search] # for search form
       @products = Product.search(params[:search]).order("name DESC")
