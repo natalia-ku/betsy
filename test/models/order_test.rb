@@ -133,7 +133,7 @@ describe "scopes" do
     orders = Order.all
 
     orders.by_status("pending").each do |order|
-    order.status.must_equal "pending"
+      order.status.must_equal "pending"
     end
     orders.by_status("pending").count.must_equal 2
   end
@@ -203,8 +203,83 @@ describe "model methods" do
     order.merchant_subtotal(merchant_id).must_equal 0
   end
 
+  it "returns true for merchant_shipping_required? if a merchant has unshipped order_products in an order" do
+    order = orders(:sophia_cart)
+    merchant_id = merchants(:dan).id
+    order.merchant_shipping_required?(merchant_id).must_equal true
+  end
+
+  it "returns false for merchant_shipping_required? if all order_products from a merchant have been shipped" do
+    order = orders(:sophia_cart)
+    order.order_products.each do |order_product|
+      order_product.status = "shipped"
+      order_product.save
+    end
+    merchant_id = merchants(:dan).id
+    order.merchant_shipping_required?(merchant_id).must_equal false
+  end
+
+  it "returns true for can_cancel? if a no prodcus in a paid or pending order have been shipped" do
+    order = orders(:sophia_cart)
+    order.status = "paid"
+    order.save
+    order.order_products.each do |order_product|
+      order_product.status = "not shipped"
+      order_product.save
+    end
+    order.can_cancel?.must_equal true
+  end
+
+  it "returns false for can_cancel? if ANY prodcus in a paid or pending order have been shipped" do
+    order = orders(:sophia_cart)
+    order.status = "paid"
+    order.save
+    order.order_products.each do |order_product|
+      order_product.status = "not shipped"
+      order_product.save
+    end
+    order.order_products[0].status = "shipped"
+    order.order_products[0].save
+    order.can_cancel?.must_equal false
+  end
+
+
+  it "returns false for can_cancel? if an order status is complete or canceled" do
+    order = orders(:sophia_cart)
+    order.status = "complete"
+    order.save
+
+    order.can_cancel?.must_equal false
+    order.status = "cancelled"
+    order.save
+    order.can_cancel?.must_equal false
+  end
+
+
+  it "changed the status of an order to complete if all prodcus in an order have been shipped" do
+    order = orders(:sophia_cart)
+    order.status = "paid"
+    order.save
+    order.order_products.each do |order_product|
+      order_product.status = "shipped"
+      order_product.save
+    end
+    order.complete?
+    order.status.must_equal "complete"
+  end
+
+  it "does not change the status of an order if there are ANY unshipped prodcus in the order" do
+    order = orders(:sophia_cart)
+    order.status = "paid"
+    order.save
+    order.order_products.each do |order_product|
+      order_product.status = "shipped"
+      order_product.save
+    end
+    order.order_products[0].status = "not shipped"
+    order.order_products[0].save
+    order.complete?
+    order.status.must_equal "paid"
+  end
 end
-
-
-
 end

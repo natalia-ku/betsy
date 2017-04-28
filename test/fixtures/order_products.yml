@@ -9,6 +9,7 @@ order_product1:
   order: sophia_cart
   product: hat
   quantity: 1
+  status: not shipped
 
 order_product2:
   order: sophia_cart
