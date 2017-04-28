@@ -28,7 +28,7 @@ describe OrdersController do
     it "should redirect to orders page if order doesn't exist" do
       order_id = Order.last.id + 1
       get order_path(order_id)
-      must_redirect_to orders_path
+      must_redirect_to root_path
     end
   end
   describe "shopping_cart" do
@@ -57,7 +57,7 @@ describe OrdersController do
       patch order_path(order.id), params: order_data
       must_respond_with :found
     end
-  
+
 
     it "rerenders new edit order form if order is invalid" do
       order = Order.create(status: "pending")
