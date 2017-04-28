@@ -37,18 +37,18 @@ describe OrdersController do
       must_respond_with :success
     end
   end
-
-  describe "destroy" do
-    it "successfully deletes order from database" do
-      delete order_path(order.id)
-      must_redirect_to products_path
-    end
-    it "after deletion, order doesn't exist anymore" do
-      order_id = Order.first.id
-      delete order_path(order_id)
-      # Order.find_by(id: order_id ).must_be_nil # does not WORKING!!!
-    end
-  end
+  #
+  # describe "destroy" do
+  #   it "successfully deletes order from database" do
+  #     delete order_path(order.id)
+  #     must_redirect_to products_path
+  #   end
+  #   it "after deletion, order doesn't exist anymore" do
+  #     order_id = Order.first.id
+  #     delete order_path(order_id)
+  #     # Order.find_by(id: order_id ).must_be_nil # does not WORKING!!!
+  #   end
+  # end
 
   describe "update" do
     it "updates order" do
@@ -57,13 +57,12 @@ describe OrdersController do
       patch order_path(order.id), params: order_data
       must_respond_with :found
     end
-
-
     it "rerenders new edit order form if order is invalid" do
-      order = Order.create(status: "pending")
-      order_data = {order: {status: 12}}
-      patch order_path(order), params: order_data
-      # must_respond_with :bad_request
+      order = orders(:order234)
+      order_data = {order: {email: " "}}
+      patch order_path(order.id), params: order_data
+      order.reload
+      must_respond_with :bad_request
     end
   end
 
@@ -73,17 +72,14 @@ describe OrdersController do
       must_redirect_to order_path(order.id)
       order.reload.status.must_equal "cancelled"
     end
+    it "make order status cancelled even if order already cancelled" do
+      order = orders(:sophia_cart2)
+      put cancel_order_path(order.id)
+
+      put cancel_order_path(order.id)
+      must_redirect_to order_path(order.id)
+      order.reload.status.must_equal "cancelled"
+    end
   end
-  # DONT NEED THIS TEST<WE DONT HAVE COMPLETE METHOD NOW:
-  # describe "complete action" do
-  #   it "changes the order status to complete" do
-  #     bob = Order.create!(status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake", card_expiration: DateTime.now, credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now)
-  #     get complete_order_path(bob.id)
-  #     must_respond_with :success
-  #     bob.reload
-  #     bob.status.must_equal "complete"
-  #     # for some reason this line doesn't work. it works fine in localhost but not in tests?
-  #   end
-  # end
 
 end
