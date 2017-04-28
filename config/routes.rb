@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  root "products#top_products"
-  #root to: 'merchants#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :merchants, only: [:show, :index]
 
-  delete 'logout', to: "merchants#logout"
+  root "products#top_products"
 
   get "/auth/:provider/callback", to: "merchants#create" , as: "auth_callback"
-
-  resources :merchants do
+  delete 'logout', to: "merchants#logout"
+  
+  resources :merchants, only: [:show, :index] do
     resources :products, except: [:show] #only: [:show, :new, :create, :index]
   end
 
   get "merchants/:id/orders/:order_id", to: "merchants#show_merchants_order", as: "merchant_order_view"
+
 
   resources :products, except:[:destroy] do
     member do
@@ -21,15 +21,13 @@ Rails.application.routes.draw do
     end
   end
 
- patch 'order_products/:id/ship', to: 'order_products#ship', as: 'ship_order_product'
+  patch 'order_products/:id/ship', to: 'order_products#ship', as: 'ship_order_product'
 
-
-resources :reviews, only: [:new, :create]
+  resources :reviews, only: [:new, :create]
 
   resources :orders do
     member do
       put :cancel
-      #get :complete
     end
   end
 
