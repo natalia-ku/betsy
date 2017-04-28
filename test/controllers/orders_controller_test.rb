@@ -32,9 +32,12 @@ describe OrdersController do
     end
   end
   describe "shopping_cart" do
-    it "succesessfully shows shopping cart" do
+    it "shows the shopping cart page if there is no session" do
       get shopping_cart_path
       must_respond_with :success
+    end
+    it "finds the current order and loads it if there is a session" do
+      order = Order.first
     end
   end
   #
@@ -64,7 +67,16 @@ describe OrdersController do
       order.reload
       must_respond_with :bad_request
     end
+
+    it "can cancel the order through the update method" do
+      order = orders(:sophia_cart)
+      order_data = {order: {status: "cancelled"}}
+      patch order_path(order.id), params: order_data
+      order.reload
+      order.status.must_equal "cancelled"
+    end
   end
+
 
   describe "cancel" do
     it "make order status cancelled" do

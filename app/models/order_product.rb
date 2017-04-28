@@ -8,9 +8,9 @@ class OrderProduct < ApplicationRecord
   inclusion: { in: ["shipped", "not shipped"] }
 
   def subtotal
-    if self == nil
-      return 0
-    end
+    # if self == nil
+    #   return 0
+    # end
     return self.quantity * self.product.price
   end
 end

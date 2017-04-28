@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :create_order, only: [:new, :create]
-  # before_action :find_current_order, only:[:edit, :update]
+  # before_action :create_order, only: [:new, :create]
+  before_action :find_current_order, only: [:new, :create, :edit, :update]
 
   def new; end
 

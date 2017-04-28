@@ -8,7 +8,7 @@ before_action :require_correct_user, only: :show
   def show
     @merchant = Merchant.find_by(id: params[:id])
     if @merchant.nil?
-      head :not_found
+      redirect_to root_path
     end
     @orders_by_status = Order.all.by_status(params[:status])
   end

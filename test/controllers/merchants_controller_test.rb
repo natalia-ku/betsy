@@ -17,11 +17,25 @@ describe MerchantsController do
 end
 
   describe "show" do
-    # needs a test for a logged-in merchant but I find disagreeing methods for testing session in rails 5
     it "won't let you access a Merchant that doesn't exist" do
       bogus_user_id = Merchant.last.id + 1
       get merchant_path(bogus_user_id)
-      must_respond_with :redirect
+      must_redirect_to root_path
+    end
+
+    it "will let you access your own show page" do
+      merchant = merchants(:grace)
+      login(merchant)
+      get merchant_path(merchant.id)
+      must_respond_with :success
+    end
+
+    it "will show merchant's orders" do
+      merchant = merchants(:grace)
+      login(merchant)
+      order = orders(:order234)
+      get merchant_order_view_path(merchant.id, order.id)
+      must_respond_with :success
     end
   end
 

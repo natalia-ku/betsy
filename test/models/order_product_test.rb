@@ -41,5 +41,4 @@ describe OrderProduct do
     result.must_equal 230
   end
 
-
 end
