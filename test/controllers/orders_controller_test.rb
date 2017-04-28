@@ -10,11 +10,9 @@ describe OrdersController do
     end
     it "creates an order with valid data" do
       order_data = {order: {status: "paid", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", card_expiration: DateTime.now, cvv: 434,zip_code: 43434, paid_at: DateTime.now}}
-      10.times do
         start_count = Order.count
         post orders_path, params: order_data
         Order.count.must_equal start_count + 1
-      end
     end
   end
 

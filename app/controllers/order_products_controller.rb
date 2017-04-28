@@ -5,7 +5,7 @@ class OrderProductsController < ApplicationController
   def create
     @current_order = current_order
     @order_product = OrderProduct.new(quantity: params[:quantity], order_id: @current_order.id, product_id: params[:product_id])
-    if @order_product.save!
+    if @order_product.save
       redirect_to shopping_cart_path
       flash[:success] = "You successfully added #{@order_product.product.name} to the cart"
     else

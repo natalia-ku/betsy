@@ -9,21 +9,13 @@ describe OrderProductsController do
 
   describe "create" do
     it "adds an order_product to the database" do
-      merchant = merchants(:dan)
-      login(merchant)
-      product1 = Product.new(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)
-      category1 = Category.create!(name: "supercategory")
-      product1.category_ids = category1.id
-      product1.save!
-      order1 = Order.create!(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
+      product1 = products(:owl1)
+      category1 = Category.create(name: "supercategorays")
+      pc1 = ProductCategory.create(product_id: product1.id, category_id: category1.id)
+      product1.reload
+      order1 = Order.create(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
       get product_path(product1.id)
-      order_prod = {order_product: {order: order1, product: product1, quantity: 2}}
-      # result = OrderProduct.find_by(order_id: order.id, product_id: product1.id)
-      # result.wont_be_nil
-      # op.wont_be_nil
-      # op.product_id.must_equal product1.id
-      # op.quantity.must_equal 30
-      post order_products_path, params: { order: order1, product: product1, quantity: 2 }
+      post order_products_path, params:{ order_id: order1.id, product_id: product1.id, quantity: 2 }
       must_redirect_to shopping_cart_path
     end
 
@@ -37,7 +29,15 @@ describe OrderProductsController do
       (after_count - before_count).must_equal 1
     end
     it "rejects bad data" do
-
+      product1 = products(:owl1)
+      category1 = Category.create(name: "supercategorays")
+      pc1 = ProductCategory.create(product_id: product1.id, category_id: category1.id)
+      product1.reload
+      order1 = Order.create(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
+      get product_path(product1.id)
+      post order_products_path, params:{ order_id: order1.id, product_id: product1.id}
+      must_redirect_to product_path(product1.id)
+      OrderProduct.find_by(order_id: order1.id, product_id: product1.id).must_be_nil
     end
   end
 
