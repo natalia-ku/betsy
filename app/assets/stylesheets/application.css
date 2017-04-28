@@ -15,10 +15,16 @@
 *= require_self
 
 */
-
-
 body{
   font-family: 'Merriweather', serif;
+  background-image: url("owl-background.png");
+}
+#main-section{
+  width: 80%;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  min-height: 600px;
 }
 
 .flash {
@@ -30,19 +36,19 @@ html {
   position: relative;
   min-height: 100%;
 }
-main {
-  margin: 0 0 100px;
-  padding-left: 10px;
-}
+
 footer {
   border-top: 1px solid black;
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 100px;
+  height: 70px;
   width: 100%;
+  padding-top: 20px;
 }
-
+#owl-logo{
+  font-size: 150%;
+}
 #search-button, #search-field{
   width: 100%;
 }
