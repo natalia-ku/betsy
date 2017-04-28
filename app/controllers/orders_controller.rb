@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
   def edit; end
 
   def update
+    @order = Order.find_by(id: params[:id])
     @order.update_attributes(order_update_params)
     if params[:paid_order]
       @order.status = "paid"
