@@ -52,8 +52,8 @@ describe Merchant do
 
   describe "total_revenue" do
     it "can call total revenue on the orders" do
-      jamie = merchants(:jamie)
-      jamie.total_revenue.must_be_kind_of Float
+      dan = merchants(:dan)
+      dan.total_revenue.must_equal 30
     end
   end
 
@@ -71,23 +71,30 @@ describe Merchant do
     end
 
     it "revenue_by_status(status) must be float" do
-      jamie = merchants(:jamie)
-      jamie.revenue_by_status("pending").must_be_kind_of Float
-    end
-    it "allowed_review must return boolean" do
       dan = merchants(:dan)
-      dan.allowed_review?(products(:owl1)).must_equal false
-
+      dan.revenue_by_status("pending").must_be_kind_of Float
     end
 
-  end
-
-  describe "allowed_review?" do
-    it "returns true if merchant_id and product's merchant_id is same" do
-      dan = merchants(:dan)
-      product = dan.products.first
-      product.merchant_id.must_equal dan.id
+    it "returns 0 for merchant with no products" do
+      harry = merchants(:harry)
+      harry.revenue_by_status("pending").must_equal 0.0
     end
-  end
+
+
+  #   it "allowed_review must return boolean" do
+  #     dan = merchants(:dan)
+  #     dan.allowed_review? (products(:owl1)).must_equal false
+  #
+  #   end
+  #
+  # end
+  #
+  # describe "allowed_review?" do
+  #   it "returns true if merchant_id and product's merchant_id is same" do
+  #     dan = merchants(:dan)
+  #     product = dan.products.first
+  #     product.merchant_id.must_equal dan.id
+  #   end
+   end
 
 end

@@ -23,7 +23,6 @@ before_action :require_correct_user, only: :show
   end
 
   def new
-    @merchant = Merchant.new
   end
 
   def create
