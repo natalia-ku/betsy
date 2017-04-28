@@ -228,3 +228,13 @@ input#review_review_text{
             animation: fadeIn 1s ease-in;
   }
 }
+
+.orbit button{
+  color:#EF662F;
+}
+/**/
+#products_title{
+  text-align: center;
+   text-decoration:underline;
+   text-decoration-style: dotted;
+}

@@ -1,8 +1,5 @@
-
-
-  <h2 >Product details:</h2>
+<h2 >Product details:</h2>
   <section class = "row">
-
     <section class = "large-6 medium-6 small-12 column">
         <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
         <h4><strong>Name: </strong><%=@product.name%></h4>
@@ -12,14 +9,12 @@
         <% @product.categories.each do |category| %>
           <li><%=link_to category.name, category_path(category.id)%> </li>
         <% end %>
-
       <%if @product.stock == nil || @product.stock < 1%>
         <h4><strong>Stock:</strong> product is out of stock</h4>
       <%else%>
         <h4><strong>Stock: </strong><%=@product.stock%></h4>
       <%end%>
       <h4><strong>Merchant:</strong> <%=link_to "#{Merchant.find(@product.merchant_id).username}", merchant_path(@product.merchant_id) %></h4>
-
 
       <%if  OrderProduct.find_by(order_id: session[:order_id], product_id: @product.id) == nil%>
         <%= form_for @order_product do |f| %>

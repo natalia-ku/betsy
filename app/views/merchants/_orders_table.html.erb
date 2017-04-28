@@ -4,7 +4,7 @@
   <td><%= order.status.capitalize %></td>
   <% if (order.status == "paid") %>
     <% if order.merchant_shipping_required?(@merchant.id) %>
-    <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get %></td>
+    <td><%= button_to "Some products require shipping", merchant_order_view_path(@merchant.id, order.id), method: :get, class:"button hollow topbar-responsive-button" %></td>
     <% end %>
   <% end %>
 </tr>
