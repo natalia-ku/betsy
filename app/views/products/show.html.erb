@@ -6,7 +6,7 @@
     <section class = "large-6 medium-6 small-12 column">
         <%= image_tag @product.photo_url, alt:"picture of #{@product.name}"%>
         <h4><strong>Name: </strong><%=@product.name%></h4>
-        <h4><strong>Price: </strong>$<%=@product.price%></h4>
+        <h4><strong>Price: </strong>$<%=  '%.2f' %(@product.price)%></h4>
         <h4><strong>Description:</strong> <%=@product.description%> </h4>
         <h4><strong>Product categories:</strong></h4>
         <% @product.categories.each do |category| %>
@@ -34,7 +34,7 @@
       <% if @product.allowed_access?(@current_user) %>
               <p><%=button_to "Update this product",  edit_product_path(@product.id),method: :get , class: "button hollow topbar-responsive-button "%> </p>
               <p> <%= button_to "Retire this product", retire_product_path(@product), method: :patch, data: {confirm: 'Are you sure?' }, class: "button hollow topbar-responsive-button warning button"%> </p>
-            
+
       <% end %>
     </section>
 
