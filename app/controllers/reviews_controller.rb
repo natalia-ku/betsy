@@ -1,9 +1,9 @@
 class ReviewsController < ApplicationController
 
-  def new
-    @product = Product.find_by(id: params[:id])
-    @review = Review.new
-  end
+  # def new
+  #   @product = Product.find_by(id: params[:id])
+  #   @review = Review.new
+  # end
 
   def create
     @review = Review.new(review_params)

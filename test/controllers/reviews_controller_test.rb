@@ -1,6 +1,15 @@
 require "test_helper"
 
 describe ReviewsController do
+
+  # describe "new" do
+  # it "succeeds for a real product" do
+  #     product = products(:owl1)
+  #     get product_path(product.id)
+  #     must_respond_with :success
+  #   end
+  # end
+
   describe "create" do
     it "creates a new review for the given product" do
       product = Product.first

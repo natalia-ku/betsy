@@ -1,43 +1,43 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/helpers/application_helper.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/helpers/application_helper.rb": [
         1,
         1,
         1,
         1,
         null,
-        0,
         null,
         null,
-        null
-      ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/helpers/categories_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/helpers/merchants_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/helpers/order_products_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/helpers/orders_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/helpers/products_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/helpers/reviews_helper.rb": [
-        1,
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/controllers/categories_controller.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/helpers/categories_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/sofia/Desktop/ada/betsy/app/helpers/merchants_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/sofia/Desktop/ada/betsy/app/helpers/order_products_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/sofia/Desktop/ada/betsy/app/helpers/orders_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/sofia/Desktop/ada/betsy/app/helpers/products_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/sofia/Desktop/ada/betsy/app/helpers/reviews_helper.rb": [
+        1,
+        null,
+        null
+      ],
+      "/Users/sofia/Desktop/ada/betsy/app/controllers/categories_controller.rb": [
         1,
         null,
         1,
@@ -77,7 +77,7 @@
         2,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/controllers/application_controller.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -94,21 +94,21 @@
         10,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        0,
-        null,
-        null,
         1,
-        1,
-        63,
+        61,
         0,
         null,
         null,
@@ -122,7 +122,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/controllers/merchants_controller_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/controllers/merchants_controller_test.rb": [
         1,
         null,
         1,
@@ -173,7 +173,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/controllers/merchants_controller.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/controllers/merchants_controller.rb": [
         1,
         1,
         null,
@@ -239,7 +239,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/controllers/order_products_controller_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/controllers/order_products_controller_test.rb": [
         1,
         null,
         1,
@@ -342,7 +342,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/controllers/order_products_controller.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/controllers/order_products_controller.rb": [
         1,
         1,
         0,
@@ -376,12 +376,14 @@
         null,
         1,
         0,
+        null,
+        0,
         0,
         0,
         0,
         null,
         null,
-        0,
+        null,
         null,
         0,
         null,
@@ -441,7 +443,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/controllers/orders_controller_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/controllers/orders_controller_test.rb": [
         1,
         null,
         1,
@@ -534,7 +536,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/controllers/orders_controller.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/controllers/orders_controller.rb": [
         1,
         1,
         1,
@@ -655,7 +657,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/controllers/products_controller_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/controllers/products_controller_test.rb": [
         1,
         null,
         1,
@@ -861,10 +863,10 @@
         null,
         1,
         1,
-        1,
+        0,
         null,
-        1,
-        1,
+        0,
+        0,
         null,
         null,
         1,
@@ -872,16 +874,16 @@
         null,
         1,
         1,
-        1,
+        0,
         null,
-        1,
-        1,
+        0,
+        0,
         null,
         null,
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/controllers/products_controller.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/controllers/products_controller.rb": [
         1,
         null,
         1,
@@ -989,15 +991,15 @@
         null,
         null,
         null,
-        1,
-        2,
-        2,
-        1,
-        1,
-        1,
         null,
-        1,
-        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -1008,10 +1010,19 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/controllers/reviews_controller_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/controllers/reviews_controller_test.rb": [
         1,
         null,
         1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         1,
         1,
         1,
@@ -1053,12 +1064,12 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/controllers/reviews_controller.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/controllers/reviews_controller.rb": [
         1,
         null,
-        1,
-        0,
-        0,
+        null,
+        null,
+        null,
         null,
         null,
         1,
@@ -1077,7 +1088,7 @@
         2,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/models/category_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/models/category_test.rb": [
         1,
         null,
         1,
@@ -1155,7 +1166,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/models/merchant_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/models/merchant_test.rb": [
         1,
         null,
         1,
@@ -1232,6 +1243,7 @@
         1,
         1,
         null,
+        null,
         1,
         1,
         1,
@@ -1240,17 +1252,23 @@
         null,
         null,
         null,
-        1,
-        1,
-        1,
-        1,
-        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/merchant.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/merchant.rb": [
         1,
         1,
         1,
@@ -1282,47 +1300,47 @@
         1,
         1,
         1,
-        0,
+        1,
         null,
         1,
         null,
         null,
         1,
-        1,
-        0,
-        null,
-        1,
-        1,
-        0,
-        0,
-        null,
-        0,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        6,
-        6,
-        4,
         2,
+        0,
+        null,
+        2,
+        2,
+        1,
+        0,
+        null,
+        1,
+        null,
+        null,
         2,
         null,
         null,
         null,
-        6,
+        1,
+        8,
+        8,
+        10,
+        5,
+        5,
+        null,
+        null,
+        null,
+        8,
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/application_record.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/application_record.rb": [
         1,
         1,
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/models/order_product_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/models/order_product_test.rb": [
         1,
         null,
         1,
@@ -1369,7 +1387,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/order_product.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/order_product.rb": [
         1,
         1,
         1,
@@ -1380,12 +1398,12 @@
         null,
         null,
         1,
-        3,
-        3,
+        5,
+        5,
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/models/order_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/models/order_test.rb": [
         1,
         null,
         1,
@@ -1522,7 +1540,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/order.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/order.rb": [
         1,
         1,
         1,
@@ -1530,6 +1548,7 @@
         1,
         null,
         1,
+        null,
         null,
         null,
         null,
@@ -1567,18 +1586,18 @@
         null,
         1,
         null,
-        0,
-        0,
-        0,
+        2,
+        6,
+        2,
         null,
         null,
         null,
         1,
-        0,
-        0,
-        0,
+        2,
+        2,
+        2,
         null,
-        0,
+        2,
         null,
         null,
         1,
@@ -1621,7 +1640,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/models/product_category_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/models/product_category_test.rb": [
         1,
         null,
         1,
@@ -1646,13 +1665,13 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/product_category.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/product_category.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/models/product_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/models/product_test.rb": [
         1,
         null,
         1,
@@ -1761,7 +1780,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/product.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/product.rb": [
         1,
         1,
         1,
@@ -1808,7 +1827,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/test/models/review_test.rb": [
+      "/Users/sofia/Desktop/ada/betsy/test/models/review_test.rb": [
         1,
         null,
         1,
@@ -1862,7 +1881,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/review.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/review.rb": [
         1,
         1,
         1,
@@ -1870,7 +1889,7 @@
         null,
         null
       ],
-      "/Users/janicelichtman/Desktop/ADA/class/projects/BETSY/betsy/app/models/category.rb": [
+      "/Users/sofia/Desktop/ada/betsy/app/models/category.rb": [
         1,
         1,
         1,
@@ -1882,6 +1901,6 @@
         null
       ]
     },
-    "timestamp": 1493322315
+    "timestamp": 1493337575
   }
 }
