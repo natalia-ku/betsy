@@ -13,6 +13,7 @@ describe OrderProductsController do
       login(merchant)
       product1 = Product.new(price: 6.00, name: "bldalala", merchant: merchant, photo_url: "na/com.jpg", description: "good product", stock: 12)
       category1 = Category.create!(name: "supercategory")
+#      pc1 = ProductCategory.create(product_id: product1.id, category_id: category.id)
       product1.category_ids = category1.id
       product1.save!
       order1 = Order.create!(status: "pending", email: "new@gmail.com", mailing_address: "123 Main street",  card_name: "somebody fake",credit_card: "434338943", cvv: 434,zip_code: 43434, paid_at: DateTime.now, card_expiration: DateTime.now)
