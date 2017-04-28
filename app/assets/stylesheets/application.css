@@ -15,9 +15,10 @@
  *= require foundation_and_overrides
 
  */
-body{
-  font-family: 'Merriweather', serif;
-}
+ body{
+   font-family: 'Merriweather', serif;
+ }
+
 .flash {
   color: green;
   font-size: 2rem;
@@ -227,5 +228,3 @@ input#review_review_text{
             animation: fadeIn 1s ease-in;
   }
 }
-
-/*BUTTON SHOW MERCHANT*/
