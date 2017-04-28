@@ -65,14 +65,6 @@ describe OrdersController do
       order.reload
       must_respond_with :bad_request
     end
-
-    it "can cancel the order through the update method" do
-      order = orders(:sophia_cart)
-      order_data = {order: {status: "cancelled"}}
-      patch order_path(order.id), params: order_data
-      order.reload
-      order.status.must_equal "cancelled"
-    end
   end
 
 
