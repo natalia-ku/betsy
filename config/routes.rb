@@ -22,15 +22,15 @@ Rails.application.routes.draw do
 
   patch 'order_products/:id/ship', to: 'order_products#ship', as: 'ship_order_product'
 
-  resources :reviews, only: [:new, :create]
+  resources :reviews, only: [:create]
 
-  resources :orders do
+  resources :orders, except: [:index, :destroy] do
     member do
       put :cancel
     end
   end
 
-  resources :order_products
+  resources :order_products, except: [:index, :new, :show] 
 
   get "shopping_cart", to: 'orders#shopping_cart'
 
