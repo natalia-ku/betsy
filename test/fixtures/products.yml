@@ -25,7 +25,8 @@ owl2:
 hat:
   name: hat
   photo_url: /assets/photo_2.jpg
-
+  price: 10.00
+  merchant: harry
 
 one:
   name: Fred

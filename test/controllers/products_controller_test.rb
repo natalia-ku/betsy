@@ -197,28 +197,28 @@ describe ProductsController do
 
 
 
-  describe "destroy" do
-    it "destroys a product that exists" do
-      start_count = Product.count
-
-      product_id = Product.first.id
-      delete product_path(product_id)
-      must_redirect_to products_path
-
-      end_count = Product.count
-      end_count.must_equal start_count - 1
-    end
-
-    it "redirects to products index pagefor a product that DNE" do
-      start_count = Product.count
-
-      product_id = Product.last.id + 1
-      delete product_path(product_id)
-      must_redirect_to products_path
-
-      end_count = Product.count
-      end_count.must_equal start_count
-    end
-  end
+  # describe "destroy" do
+  #   it "destroys a product that exists" do
+  #     start_count = Product.count
+  #
+  #     product_id = Product.first.id
+  #     delete product_path(product_id)
+  #     must_redirect_to products_path
+  #
+  #     end_count = Product.count
+  #     end_count.must_equal start_count - 1
+  #   end
+  #
+  #   it "redirects to products index pagefor a product that DNE" do
+  #     start_count = Product.count
+  #
+  #     product_id = Product.last.id + 1
+  #     delete product_path(product_id)
+  #     must_redirect_to products_path
+  #
+  #     end_count = Product.count
+  #     end_count.must_equal start_count
+  #   end
+  # end
 
 end

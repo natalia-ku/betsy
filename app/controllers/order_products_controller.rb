@@ -38,8 +38,6 @@ class OrderProductsController < ApplicationController
       return
     end
 
-
-
     @order_product.status = "shipped"
 
     if @order_product.save

@@ -105,31 +105,106 @@ describe Order do
     op1 = OrderProduct.create(order: order, product: product1, quantity: 10)
     op2 = OrderProduct.create(order: order, product: product2, quantity: 10)
     order.total_price.must_equal 300
-    end
-
   end
 
-  describe "relations" do
-    it "has a list of order_products" do
-      sophia_cart= orders(:sophia_cart)
-      sophia_cart.must_respond_to :order_products
-      sophia_cart.order_products.each do |order_product|
-        order_product.must_be_kind_of OrderProduct
-      end
-    end
+end
 
-    it "has a list of products" do
-      sophia_cart= orders(:sophia_cart)
-      sophia_cart.must_respond_to :products
-      sophia_cart.products.each do |product|
-        product.must_be_kind_of Product
-      end
+describe "relations" do
+  it "has a list of order_products" do
+    sophia_cart= orders(:sophia_cart)
+    sophia_cart.must_respond_to :order_products
+    sophia_cart.order_products.each do |order_product|
+      order_product.must_be_kind_of OrderProduct
     end
   end
-  describe "model methods" do
-    it "can return the last four of a credit card number" do
-      cart = orders(:sophia_cart)
-      cart.last_four.must_equal "2232"
+
+  it "has a list of products" do
+    sophia_cart= orders(:sophia_cart)
+    sophia_cart.must_respond_to :products
+    sophia_cart.products.each do |product|
+      product.must_be_kind_of Product
     end
   end
+end
+
+
+describe "scopes" do
+  it "can return the orders with a particular status" do
+    orders = Order.all
+
+    orders.by_status("pending").each do |order|
+    order.status.must_equal "pending"
+    end
+    orders.by_status("pending").count.must_equal 2
+  end
+
+  it "returns an empty relation if there are no orders with a particular status" do
+    orders = Order.all
+    pending_orders = orders.by_status("pending")
+    pending_orders.by_status("paid").must_be_kind_of  Order::ActiveRecord_Relation
+    pending_orders.by_status("paid").count.must_equal 0
+  end
+end
+
+describe "model methods" do
+
+  it "can return the last_four of a credit card number" do
+    cart = orders(:sophia_cart)
+    cart.last_four.must_equal "2232"
+  end
+
+  it "can return true for a paid order" do
+    paid_order = orders(:order234)
+    paid_order.is_paid?.must_equal true
+  end
+
+  it "can return false for an order with status other than paid" do
+    not_paid_order = orders(:sophia_cart)
+    not_paid_order.is_paid?.must_equal false
+  end
+
+
+  it "can return the correct total_price of an order" do
+    order = orders(:sophia_cart)
+    order.total_price.must_equal 80
+  end
+
+  it "returns 0 as the total_price of an empty order" do
+    order = Order.new
+    order.total_price.must_equal 0
+  end
+
+  it "returns the order products of a given merchant from an order as the merchant_partial_order" do
+    order = orders(:sophia_cart)
+    merchant_id = merchants(:dan).id
+    order_product2 = order_products(:order_product2)
+    order_product3 = order_products(:order_product3)
+
+    order.merchant_partial_order(merchant_id).count.must_equal 2
+    order.merchant_partial_order(merchant_id).must_include order_product2
+    order.merchant_partial_order(merchant_id).must_include order_product3
+  end
+
+  it "returns an empty array as the as the merchant_partial_order if a given merchant has no products in an order" do
+    order = orders(:sophia_cart)
+    merchant_id = merchants(:ada).id
+    order.merchant_partial_order(merchant_id).must_equal []
+  end
+
+  it "returns the correct merchant_subtotal for a given merchant" do
+    order = orders(:sophia_cart)
+    merchant_id = merchants(:dan).id
+    order.merchant_subtotal(merchant_id).must_equal 70
+  end
+
+  it "returns 0 as the  merchant_subtotal if a given merchant has no products in an order" do
+    order = orders(:sophia_cart)
+    merchant_id = merchants(:ada).id
+    order.merchant_subtotal(merchant_id).must_equal 0
+  end
+
+end
+
+
+
 end

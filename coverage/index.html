@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-04-27T12:45:15-07:00">2017-04-27T12:45:15-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-04-27T19:24:53-07:00">2017-04-27T19:24:53-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">90.13%</span></span>
+    (<span class="covered_percent"><span class="green">90.88%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.66
+         1.71
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>34</b> files in total.
-    <b>1054</b> relevant lines. 
-    <span class="green"><b>950</b> lines covered</span> and
-    <span class="red"><b>104</b> lines missed </span>
+    <b>1075</b> relevant lines. 
+    <span class="green"><b>977</b> lines covered</span> and
+    <span class="red"><b>98</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -57,7 +57,7 @@
         <td>24</td>
         <td>17</td>
         <td>7</td>
-        <td>4.7</td>
+        <td>4.6</td>
       </tr>
       
       <tr>
@@ -102,10 +102,10 @@
       
       <tr>
         <td class="strong"><a href="#25b145c8a3e74393706a5f7723c3e02c40fce612" class="src_link" title="app/controllers/products_controller.rb">app/controllers/products_controller.rb</a></td>
-        <td class="green strong">92.11 %</td>
+        <td class="green strong">91.18 %</td>
         <td>125</td>
-        <td>76</td>
-        <td>70</td>
+        <td>68</td>
+        <td>62</td>
         <td>6</td>
         <td>1.3</td>
       </tr>
@@ -222,22 +222,22 @@
       
       <tr>
         <td class="strong"><a href="#2a615d7a28b3a290e74d409822b81c97c0686906" class="src_link" title="app/models/order.rb">app/models/order.rb</a></td>
-        <td class="red strong">67.92 %</td>
+        <td class="yellow strong">81.13 %</td>
         <td>97</td>
         <td>53</td>
-        <td>36</td>
-        <td>17</td>
-        <td>9.1</td>
+        <td>43</td>
+        <td>10</td>
+        <td>10.3</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#7e2f4895b0b4b6225bc5866b447512df6963fc49" class="src_link" title="app/models/order_product.rb">app/models/order_product.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>14</td>
+        <td class="yellow strong">88.89 %</td>
+        <td>16</td>
+        <td>9</td>
         <td>8</td>
-        <td>8</td>
-        <td>0</td>
-        <td>1.5</td>
+        <td>1</td>
+        <td>2.4</td>
       </tr>
       
       <tr>
@@ -304,8 +304,8 @@
         <td class="strong"><a href="#d7b4d215a072f60f60a73ae2834cc7523513e481" class="src_link" title="test/controllers/products_controller_test.rb">test/controllers/products_controller_test.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>224</td>
-        <td>113</td>
-        <td>113</td>
+        <td>98</td>
+        <td>98</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -353,9 +353,9 @@
       <tr>
         <td class="strong"><a href="#37657c9b5ed17935400dcb3d768a0733029af943" class="src_link" title="test/models/order_test.rb">test/models/order_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>135</td>
-        <td>83</td>
-        <td>83</td>
+        <td>210</td>
+        <td>126</td>
+        <td>126</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -600,8 +600,8 @@
           <code class="ruby">  def find_user</code>
         </li>
       
-        <li class="covered" data-hits="63" data-linenumber="31">
-          <span class="hits">63</span>
+        <li class="covered" data-hits="61" data-linenumber="31">
+          <span class="hits">61</span>
           
           <code class="ruby">    if session[:user_id]</code>
         </li>
@@ -783,7 +783,7 @@
         <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
-          <code class="ruby">      flash[:result_text] = &quot;Successfully created #{@category}&quot;</code>
+          <code class="ruby">      flash[:result_text] = &quot;Successfully created #{@category.name}&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="16">
@@ -807,7 +807,7 @@
         <li class="covered" data-hits="1" data-linenumber="19">
           <span class="hits">1</span>
           
-          <code class="ruby">      flash[:result_text] = &quot;Could not create #{@category}&quot;</code>
+          <code class="ruby">      flash[:result_text] = &quot;Could not create #{@category.name}&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="20">
@@ -1539,43 +1539,43 @@
         <li class="missed" data-hits="0" data-linenumber="33">
           
           
-          <code class="ruby">    if @order_product.order.status != &quot;paid&quot;</code>
+          <code class="ruby">    @order_product = OrderProduct.find(params[:id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="34">
-          
-          
-          <code class="ruby">      flash[:message] = &quot;You cannot ship this product, since order status is #{@order_product.order.status}&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="35">
-          
-          
-          <code class="ruby">      redirect_to merchant_order_view_path(@order_product.product.merchant_id  , @order_product.order_id )</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="36">
-          
-          
-          <code class="ruby">      return</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="37">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
+        <li class="missed" data-hits="0" data-linenumber="35">
           
           
-          <code class="ruby">    @order_product = OrderProduct.find(params[:id])</code>
+          <code class="ruby">    if @order_product.order.status != &quot;paid&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="36">
+          
+          
+          <code class="ruby">      flash[:message] = &quot;You cannot ship this product, since order status is #{@order_product.order.status}&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="37">
+          
+          
+          <code class="ruby">      redirect_to merchant_order_view_path(@order_product.product.merchant_id  , @order_product.order_id )</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="38">
+          
+          
+          <code class="ruby">      return</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
@@ -2665,10 +2665,10 @@
         <div class="source_table" id="25b145c8a3e74393706a5f7723c3e02c40fce612">
   <div class="header">
     <h3>app/controllers/products_controller.rb</h3>
-    <h4><span class="green">92.11 %</span> covered</h4>
+    <h4><span class="green">91.18 %</span> covered</h4>
     <div>
-      <b>76</b> relevant lines. 
-      <span class="green"><b>70</b> lines covered</span> and
+      <b>68</b> relevant lines. 
+      <span class="green"><b>62</b> lines covered</span> and
       <span class="red"><b>6</b> lines missed.</span>
     </div>
   </div>
@@ -3318,76 +3318,76 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="108">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="108">
           
-          <code class="ruby">  def destroy</code>
+          
+          <code class="ruby">  # def destroy</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="109">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="109">
           
-          <code class="ruby">    @product = Product.find_by(id: params[:id])</code>
+          
+          <code class="ruby">  #   @product = Product.find_by(id: params[:id])</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="110">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="110">
           
-          <code class="ruby">    if @product.nil?</code>
+          
+          <code class="ruby">  #   if @product.nil?</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="111">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="111">
           
-          <code class="ruby">      flash[:message] = &quot;Could not find that product&quot;</code>
+          
+          <code class="ruby">  #     flash[:message] = &quot;Could not find that product&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="112">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="112">
           
-          <code class="ruby">      redirect_to products_path</code>
+          
+          <code class="ruby">  #     redirect_to products_path</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="113">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="113">
           
-          <code class="ruby">      return</code>
+          
+          <code class="ruby">  #     return</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="114">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  #   end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="115">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="115">
           
-          <code class="ruby">    if @product.destroy</code>
+          
+          <code class="ruby">  #   if @product.destroy</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="116">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="116">
           
-          <code class="ruby">      redirect_to products_path</code>
+          
+          <code class="ruby">  #     redirect_to products_path</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="117">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  #   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="118">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">  # end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="119">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  #</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="120">
@@ -4302,8 +4302,8 @@
           <code class="ruby">      product.orders.each do |order|</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="57">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="57">
+          <span class="hits">4</span>
           
           <code class="ruby">        if !my_orders.include?(order)</code>
         </li>
@@ -4357,11 +4357,11 @@
         <div class="source_table" id="2a615d7a28b3a290e74d409822b81c97c0686906">
   <div class="header">
     <h3>app/models/order.rb</h3>
-    <h4><span class="red">67.92 %</span> covered</h4>
+    <h4><span class="yellow">81.13 %</span> covered</h4>
     <div>
       <b>53</b> relevant lines. 
-      <span class="green"><b>36</b> lines covered</span> and
-      <span class="red"><b>17</b> lines missed.</span>
+      <span class="green"><b>43</b> lines covered</span> and
+      <span class="red"><b>10</b> lines missed.</span>
     </div>
   </div>
   
@@ -4404,28 +4404,28 @@
           <code class="ruby">  inclusion: { in: %w(pending paid complete cancelled) }</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="6" data-linenumber="7">
+          <span class="hits">6</span>
           
-          <code class="ruby">  scope :by_status,-&gt; (status){ where(:status =&gt; status) }  </code>
+          <code class="ruby">  scope :by_status,-&gt; (status){ where(:status =&gt; status) }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
           
           
-          <code class="ruby">  # Only needed if reqirements include that an order must have at least one OrderProduct</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="9">
           
           
-          <code class="ruby">  # validates :order_products,  presence: true</code>
+          <code class="ruby">  # Only needed if reqirements include that an order must have at least one OrderProduct</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  # validates :order_products,  presence: true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -4512,8 +4512,8 @@
           <code class="ruby">  def is_paid?</code>
         </li>
       
-        <li class="covered" data-hits="427" data-linenumber="25">
-          <span class="hits">427</span>
+        <li class="covered" data-hits="429" data-linenumber="25">
+          <span class="hits">429</span>
           
           <code class="ruby">    status == &quot;paid&quot;</code>
         </li>
@@ -4566,26 +4566,26 @@
           <code class="ruby">  def total_price</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="34">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="34">
+          <span class="hits">5</span>
           
           <code class="ruby">    op = OrderProduct.where(order_id: self.id)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="35">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="35">
+          <span class="hits">5</span>
           
           <code class="ruby">    total = 0.0</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="36">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="36">
+          <span class="hits">5</span>
           
           <code class="ruby">    op.each do |product|</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="37">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="37">
+          <span class="hits">5</span>
           
           <code class="ruby">      total += product.subtotal</code>
         </li>
@@ -4596,8 +4596,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="39">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="39">
+          <span class="hits">5</span>
           
           <code class="ruby">    return total</code>
         </li>
@@ -4632,20 +4632,20 @@
           <code class="ruby">    #returns an array of order-products whose products belong to the given merchant</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="45">
-          
+        <li class="covered" data-hits="6" data-linenumber="45">
+          <span class="hits">6</span>
           
           <code class="ruby">    all_order_products = OrderProduct.where(order_id: self.id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="46">
-          
+        <li class="covered" data-hits="24" data-linenumber="46">
+          <span class="hits">24</span>
           
           <code class="ruby">    my_order_products = all_order_products.select { |order_product| order_product.product.merchant_id == merchant_id}</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="47">
-          
+        <li class="covered" data-hits="6" data-linenumber="47">
+          <span class="hits">6</span>
           
           <code class="ruby">    return my_order_products</code>
         </li>
@@ -4674,20 +4674,20 @@
           <code class="ruby">  def merchant_subtotal(merchant_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="52">
-          
+        <li class="covered" data-hits="2" data-linenumber="52">
+          <span class="hits">2</span>
           
           <code class="ruby">    total = 0.0</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="53">
-          
+        <li class="covered" data-hits="2" data-linenumber="53">
+          <span class="hits">2</span>
           
           <code class="ruby">    merchant_partial_order(merchant_id).each do |order_product|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="54">
-          
+        <li class="covered" data-hits="2" data-linenumber="54">
+          <span class="hits">2</span>
           
           <code class="ruby">      total += order_product.subtotal</code>
         </li>
@@ -4698,8 +4698,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="56">
-          
+        <li class="covered" data-hits="2" data-linenumber="56">
+          <span class="hits">2</span>
           
           <code class="ruby">    return total</code>
         </li>
@@ -4957,11 +4957,11 @@
         <div class="source_table" id="7e2f4895b0b4b6225bc5866b447512df6963fc49">
   <div class="header">
     <h3>app/models/order_product.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="yellow">88.89 %</span> covered</h4>
     <div>
-      <b>8</b> relevant lines. 
+      <b>9</b> relevant lines. 
       <span class="green"><b>8</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
   
@@ -5028,25 +5028,37 @@
           <code class="ruby">  def subtotal</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="11">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="8" data-linenumber="11">
+          <span class="hits">8</span>
           
-          <code class="ruby">    return 0 if self.nil?</code>
+          <code class="ruby">    if self == nil</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="12">
-          <span class="hits">3</span>
+        <li class="missed" data-hits="0" data-linenumber="12">
           
-          <code class="ruby">    return self.quantity * self.product.price</code>
+          
+          <code class="ruby">      return 0</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="14">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    return self.quantity * self.product.price</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby">end</code>
@@ -6945,8 +6957,8 @@
     <h3>test/controllers/products_controller_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>113</b> relevant lines. 
-      <span class="green"><b>113</b> lines covered</span> and
+      <b>98</b> relevant lines. 
+      <span class="green"><b>98</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -8148,142 +8160,142 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="200">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="200">
           
-          <code class="ruby">  describe &quot;destroy&quot; do</code>
+          
+          <code class="ruby">  # describe &quot;destroy&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="201">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="201">
           
-          <code class="ruby">    it &quot;destroys a product that exists&quot; do</code>
+          
+          <code class="ruby">  #   it &quot;destroys a product that exists&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="202">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="202">
           
-          <code class="ruby">      start_count = Product.count</code>
+          
+          <code class="ruby">  #     start_count = Product.count</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="203">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="204">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="204">
           
-          <code class="ruby">      product_id = Product.first.id</code>
+          
+          <code class="ruby">  #     product_id = Product.first.id</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="205">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="205">
           
-          <code class="ruby">      delete product_path(product_id)</code>
+          
+          <code class="ruby">  #     delete product_path(product_id)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="206">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="206">
           
-          <code class="ruby">      must_redirect_to products_path</code>
+          
+          <code class="ruby">  #     must_redirect_to products_path</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="207">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="208">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="208">
           
-          <code class="ruby">      end_count = Product.count</code>
+          
+          <code class="ruby">  #     end_count = Product.count</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="209">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="209">
           
-          <code class="ruby">      end_count.must_equal start_count - 1</code>
+          
+          <code class="ruby">  #     end_count.must_equal start_count - 1</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="210">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  #   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="211">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="212">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="212">
           
-          <code class="ruby">    it &quot;redirects to products index pagefor a product that DNE&quot; do</code>
+          
+          <code class="ruby">  #   it &quot;redirects to products index pagefor a product that DNE&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="213">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="213">
           
-          <code class="ruby">      start_count = Product.count</code>
+          
+          <code class="ruby">  #     start_count = Product.count</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="214">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="215">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="215">
           
-          <code class="ruby">      product_id = Product.last.id + 1</code>
+          
+          <code class="ruby">  #     product_id = Product.last.id + 1</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="216">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="216">
           
-          <code class="ruby">      delete product_path(product_id)</code>
+          
+          <code class="ruby">  #     delete product_path(product_id)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="217">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="217">
           
-          <code class="ruby">      must_redirect_to products_path</code>
+          
+          <code class="ruby">  #     must_redirect_to products_path</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="218">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="219">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="219">
           
-          <code class="ruby">      end_count = Product.count</code>
+          
+          <code class="ruby">  #     end_count = Product.count</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="220">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="220">
           
-          <code class="ruby">      end_count.must_equal start_count</code>
+          
+          <code class="ruby">  #     end_count.must_equal start_count</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="221">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  #   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="222">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">  # end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="223">
@@ -9348,8 +9360,8 @@
           <code class="ruby">      dan.order_products.each do |order_product|</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="48">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="48">
+          <span class="hits">2</span>
           
           <code class="ruby">        order_product.must_be_kind_of OrderProduct</code>
         </li>
@@ -9921,8 +9933,8 @@
     <h3>test/models/order_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>83</b> relevant lines. 
-      <span class="green"><b>83</b> lines covered</span> and
+      <b>126</b> relevant lines. 
+      <span class="green"><b>126</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -10575,7 +10587,7 @@
         <li class="never" data-hits="" data-linenumber="108">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="109">
@@ -10587,7 +10599,7 @@
         <li class="never" data-hits="" data-linenumber="110">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="111">
@@ -10599,49 +10611,49 @@
         <li class="covered" data-hits="1" data-linenumber="112">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &quot;relations&quot; do</code>
+          <code class="ruby">describe &quot;relations&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="113">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;has a list of order_products&quot; do</code>
+          <code class="ruby">  it &quot;has a list of order_products&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="114">
           <span class="hits">1</span>
           
-          <code class="ruby">      sophia_cart= orders(:sophia_cart)</code>
+          <code class="ruby">    sophia_cart= orders(:sophia_cart)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="115">
           <span class="hits">1</span>
           
-          <code class="ruby">      sophia_cart.must_respond_to :order_products</code>
+          <code class="ruby">    sophia_cart.must_respond_to :order_products</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="116">
           <span class="hits">1</span>
           
-          <code class="ruby">      sophia_cart.order_products.each do |order_product|</code>
+          <code class="ruby">    sophia_cart.order_products.each do |order_product|</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="117">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="117">
+          <span class="hits">3</span>
           
-          <code class="ruby">        order_product.must_be_kind_of OrderProduct</code>
+          <code class="ruby">      order_product.must_be_kind_of OrderProduct</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="118">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="119">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="120">
@@ -10653,88 +10665,538 @@
         <li class="covered" data-hits="1" data-linenumber="121">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;has a list of products&quot; do</code>
+          <code class="ruby">  it &quot;has a list of products&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="122">
           <span class="hits">1</span>
           
-          <code class="ruby">      sophia_cart= orders(:sophia_cart)</code>
+          <code class="ruby">    sophia_cart= orders(:sophia_cart)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="123">
           <span class="hits">1</span>
           
-          <code class="ruby">      sophia_cart.must_respond_to :products</code>
+          <code class="ruby">    sophia_cart.must_respond_to :products</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="124">
           <span class="hits">1</span>
           
-          <code class="ruby">      sophia_cart.products.each do |product|</code>
+          <code class="ruby">    sophia_cart.products.each do |product|</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="125">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="125">
+          <span class="hits">3</span>
           
-          <code class="ruby">        product.must_be_kind_of Product</code>
+          <code class="ruby">      product.must_be_kind_of Product</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="126">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="127">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="128">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="129">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="129">
           
-          <code class="ruby">  describe &quot;model methods&quot; do</code>
+          
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="130">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="130">
           
-          <code class="ruby">    it &quot;can return the last four of a credit card number&quot; do</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="131">
           <span class="hits">1</span>
           
-          <code class="ruby">      cart = orders(:sophia_cart)</code>
+          <code class="ruby">describe &quot;scopes&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="132">
           <span class="hits">1</span>
           
-          <code class="ruby">      cart.last_four.must_equal &quot;2232&quot;</code>
+          <code class="ruby">  it &quot;can return the orders with a particular status&quot; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="133">
+        <li class="covered" data-hits="1" data-linenumber="133">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">    orders = Order.all</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="134">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    orders.by_status(&quot;pending&quot;).each do |order|</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="136">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    order.status.must_equal &quot;pending&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="138">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    orders.by_status(&quot;pending&quot;).count.must_equal 2</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="139">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="135">
+        <li class="never" data-hits="" data-linenumber="140">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="141">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;returns an empty relation if there are no orders with a particular status&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="142">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    orders = Order.all</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="143">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    pending_orders = orders.by_status(&quot;pending&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="144">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    pending_orders.by_status(&quot;paid&quot;).must_be_kind_of  Order::ActiveRecord_Relation</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="145">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    pending_orders.by_status(&quot;paid&quot;).count.must_equal 0</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="146">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="147">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="148">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="149">
+          <span class="hits">1</span>
+          
+          <code class="ruby">describe &quot;model methods&quot; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="150">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="151">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;can return the last_four of a credit card number&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="152">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    cart = orders(:sophia_cart)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="153">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    cart.last_four.must_equal &quot;2232&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="154">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="155">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="156">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;can return true for a paid order&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="157">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    paid_order = orders(:order234)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="158">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    paid_order.is_paid?.must_equal true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="159">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="160">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="161">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;can return false for an order with status other than paid&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="162">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    not_paid_order = orders(:sophia_cart)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="163">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    not_paid_order.is_paid?.must_equal false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="164">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="165">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="166">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="167">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;can return the correct total_price of an order&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="168">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order = orders(:sophia_cart)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="169">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.total_price.must_equal 80</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="170">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="171">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="172">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;returns 0 as the total_price of an empty order&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="173">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order = Order.new</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="174">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.total_price.must_equal 0</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="175">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="176">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="177">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;returns the order products of a given merchant from an order as the merchant_partial_order&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="178">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order = orders(:sophia_cart)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="179">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    merchant_id = merchants(:dan).id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="180">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order_product2 = order_products(:order_product2)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="181">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order_product3 = order_products(:order_product3)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="182">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="183">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.merchant_partial_order(merchant_id).count.must_equal 2</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="184">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.merchant_partial_order(merchant_id).must_include order_product2</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="185">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.merchant_partial_order(merchant_id).must_include order_product3</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="186">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="187">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="188">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;returns an empty array as the as the merchant_partial_order if a given merchant has no products in an order&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="189">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order = orders(:sophia_cart)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="190">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    merchant_id = merchants(:ada).id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="191">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.merchant_partial_order(merchant_id).must_equal []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="192">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="193">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="194">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;returns the correct merchant_subtotal for a given merchant&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="195">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order = orders(:sophia_cart)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="196">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    merchant_id = merchants(:dan).id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="197">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.merchant_subtotal(merchant_id).must_equal 70</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="198">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="199">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="200">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  it &quot;returns 0 as the  merchant_subtotal if a given merchant has no products in an order&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="201">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order = orders(:sophia_cart)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="202">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    merchant_id = merchants(:ada).id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="203">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    order.merchant_subtotal(merchant_id).must_equal 0</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="204">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="205">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="206">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="207">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="208">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="209">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="210">
           
           
           <code class="ruby">end</code>
